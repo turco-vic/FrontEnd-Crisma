@@ -1,5 +1,6 @@
 import styles from '../styles/Footer.module.css';
 import { HiLocationMarker, HiPhone, HiMail, HiClock } from 'react-icons/hi';
+import { FaInstagram } from 'react-icons/fa';
 
 export default function Footer() {
   return (
@@ -67,7 +68,17 @@ export default function Footer() {
       <div className={styles.bottom}>
         <div className={styles.bottomContent}>
           <p>&copy; 2025 Paróquia Sant'Ana Sousas - Todos os direitos reservados</p>
-          <p>Desenvolvido por Enzo Turcovic</p>
+          <p className={styles.developerText}>
+            Desenvolvido por Enzo Turcovic 
+            <a 
+              href="https://instagram.com/turco.vic" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className={styles.instagramLink}
+            >
+              <FaInstagram className={styles.instagramIcon} />
+            </a>
+          </p>
         </div>
       </div>
     </footer>

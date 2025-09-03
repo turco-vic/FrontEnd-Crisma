@@ -194,3 +194,31 @@
     padding: 12px;
   }
 }
+
+.developerText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.instagramLink {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.instagramLink:hover {
+  transform: translateY(-2px);
+}
+
+.instagramIcon {
+  color: #ecf0f1;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+.instagramLink:hover .instagramIcon {
+  color: #3498db;
+}

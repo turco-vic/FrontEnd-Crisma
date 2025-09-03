@@ -1,6 +1,9 @@
 "use client";
 import { useState } from 'react';
 import { HiMenu } from 'react-icons/hi';
+import { FaInstagram } from 'react-icons/fa';
+import Image from 'next/image';
+import Link from 'next/link';
 import styles from '../styles/Header.module.css';
 
 const pages = [
@@ -15,16 +18,25 @@ export default function Header() {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Crisma Sousas</h1>
+      <Link href="/" className={styles.logoSection}>
+        <Image 
+          src="/images/logosite.png" 
+          alt="Logo Crisma Sousas" 
+          width={50} 
+          height={50}
+          className={styles.logo}
+        />
+        <h1 className={styles.title}>Crisma Sousas</h1>
+      </Link>
       
       <div
-        className={styles.menuIcon}
+        className={`${styles.menuIcon} ${menuOpen ? styles.active : ''}`}
         onClick={() => setMenuOpen(!menuOpen)}
         aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
         role="button"
         tabIndex={0}
       >
-        <HiMenu size={28} />
+        <HiMenu size={36} />
       </div>
 
       <div className={`${styles.menuContainer} ${menuOpen ? styles.open : ''}`}>
@@ -44,6 +56,15 @@ export default function Header() {
           <p className={styles.menuFooterText}>
             Desenvolvido por Enzo Turcovic
           </p>
+          <a 
+            href="https://instagram.com/turco.vic" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className={styles.instagramLink}
+          >
+            <FaInstagram className={styles.instagramIcon} />
+            <span>@turco.vic</span>
+          </a>
         </div>
       </div>
 
