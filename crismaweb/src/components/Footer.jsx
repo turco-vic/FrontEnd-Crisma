@@ -21,8 +21,7 @@ export default function Footer() {
             <div className={styles.contactItem}>
               <HiPhone className={styles.icon} />
               <div className={styles.contactText}>
-                <p>(19) 99999-9999</p>
-                <p>(19) 99999-9999</p>
+                <p>(19) 3258-2263</p>
               </div>
             </div>
             <div className={styles.contactItem}>

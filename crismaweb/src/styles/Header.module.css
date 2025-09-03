@@ -3,26 +3,27 @@
   align-items: center;
   justify-content: space-between;
   height: 60px;
-  background-color: #f8f9fa;
-  border-bottom: 1px solid #dee2e6;
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  border-bottom: 1px solid #ffffff1a;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 100;
   padding: 0 20px;
+  box-shadow: 0 2px 10px #0000001a;
 }
 
 .title {
   font-size: 24px;
-  font-weight: bold;
-  color: #343a40;
+  font-weight: 700;
+  color: #ffffff;
 }
 
 .menuIcon {
   cursor: pointer;
   z-index: 1002;
-  color: #0070f3;
+  color: #3498db;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -33,7 +34,7 @@
 }
 
 .menuIcon:hover {
-  background-color: #e9ecef;
+  color: #ffffff;
 }
 
 .menuContainer {
@@ -42,8 +43,8 @@
   right: 0;
   width: 280px;
   height: 100vh;
-  background: #ffffff;
-  box-shadow: -4px 0 15px #0000001a;
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  box-shadow: -4px 0 15px #00000033;
   z-index: 1000;
   display: flex;
   flex-direction: column;
@@ -64,7 +65,7 @@
 }
 
 .menuLink {
-  color: #000000;
+  color: #ecf0f1;
   text-decoration: none;
   font-size: 18px;
   font-weight: 500;
@@ -74,20 +75,19 @@
 }
 
 .menuLink:hover {
-  background-color: #f8f9fa;
-  color: #0070f3;
-  border-left-color: #0070f3;
+  background-color: #3498db1a;
+  color: #3498db;
+  border-left-color: #3498db;
 }
 
-/* Footer do Menu */
 .menuFooter {
   margin-top: auto;
   padding: 20px 30px;
-  border-top: 1px solid #dee2e6;
+  border-top: 1px solid #ffffff1a;
 }
 
 .menuFooterText {
-  color: #6c757d;
+  color: #bdc3c7;
   font-size: 14px;
   text-align: center;
   margin: 0;
