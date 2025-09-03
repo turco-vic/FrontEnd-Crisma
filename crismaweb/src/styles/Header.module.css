@@ -60,6 +60,7 @@
   display: flex;
   flex-direction: column;
   gap: 0;
+  flex-grow: 1;
 }
 
 .menuLink {
@@ -76,6 +77,21 @@
   background-color: #f8f9fa;
   color: #0070f3;
   border-left-color: #0070f3;
+}
+
+/* Footer do Menu */
+.menuFooter {
+  margin-top: auto;
+  padding: 20px 30px;
+  border-top: 1px solid #dee2e6;
+}
+
+.menuFooterText {
+  color: #6c757d;
+  font-size: 14px;
+  text-align: center;
+  margin: 0;
+  line-height: 1.4;
 }
 
 .overlay {

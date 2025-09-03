@@ -40,6 +40,11 @@ export default function Header() {
             </a>
           ))}
         </nav>
+        <div className={styles.menuFooter}>
+          <p className={styles.menuFooterText}>
+            Desenvolvido por Enzo Turcovic
+          </p>
+        </div>
       </div>
 
       {menuOpen && (
