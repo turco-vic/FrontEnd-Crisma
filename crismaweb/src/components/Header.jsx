@@ -9,6 +9,7 @@ import styles from '../styles/Header.module.css';
 const pages = [
   { name: 'Home', href: '/' },
   { name: 'Login', href: '/login' },
+  { name: 'Cadastre-se', href: '/cadastro' },
   { name: 'Contato', href: '/contato' },
   { name: 'Sobre', href: '/sobre' },
 ];
