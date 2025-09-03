@@ -95,7 +95,7 @@ export default function CarouselComponent() {
                   <div className={styles.slideImage}>
                     <Card 
                       className={styles.eventCard}
-                      bodyStyle={{ padding: 0 }}
+                      styles={{ body: { padding: 0 } }}
                     >
                       <div className={styles.cardContent}>
                         <div className={styles.eventIcon}>📅</div>
