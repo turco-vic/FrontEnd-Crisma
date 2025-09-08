@@ -99,6 +99,7 @@
     margin: 0;
     font-size: 1.5rem;
     font-weight: 600;
+    color: #ffffff;
 }
 
 .cardContent {
@@ -316,6 +317,7 @@
     font-weight: 700;
     position: relative;
     z-index: 2;
+    color: #ffffff;
 }
 
 .callToAction p {

@@ -1,0 +1,538 @@
+.container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 0;
+}
+
+.hero {
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  color: #ffffff;
+  padding: 80px 20px 60px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.heroIcon {
+  font-size: 4rem;
+  color: #3498db;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 2;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.title {
+    color: #ffffff;
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin: 0 0 20px;
+  position: relative;
+  z-index: 2;
+  text-shadow: 2px 2px 4px #00000033;
+}
+
+.subtitle {
+  font-size: 1.3rem;
+  margin: 0;
+  opacity: 0.9;
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+  line-height: 1.6;
+}
+
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 20px;
+}
+
+.introSection {
+  margin-bottom: 80px;
+}
+
+.introCard {
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px #0000001a;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.introCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px #00000026;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px #0000001a;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px #00000026;
+}
+
+.cardHeader {
+  background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+  color: #ffffff;
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.cardIcon {
+  font-size: 2.5rem;
+  opacity: 0.9;
+}
+
+.cardHeader h2 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.cardContent {
+  padding: 40px;
+}
+
+.cardContent p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #5a6c7d;
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+.cardContent p:last-child {
+  margin-bottom: 0;
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.giftsSection {
+  margin-bottom: 80px;
+}
+
+.giftsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.giftCard {
+  background: #ffffff;
+  padding: 30px 25px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 8px 25px #00000014;
+  transition: all 0.3s ease;
+  border: 1px solid #f0f0f0;
+  position: relative;
+  overflow: hidden;
+}
+
+.giftCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+}
+
+.giftCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px #00000026;
+}
+
+.giftIcon {
+  font-size: 3rem;
+  color: #3498db;
+  margin-bottom: 20px;
+}
+
+.giftCard h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0 0 15px;
+}
+
+.giftCard p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #6c757d;
+  margin: 0;
+}
+
+.twoColumnSection {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 80px;
+}
+
+.symbolsSection,
+.requirementsSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.symbolItem {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  transition: background 0.3s ease;
+}
+
+.symbolItem:hover {
+  background: #e9ecef;
+}
+
+.symbolIcon {
+  font-size: 2rem;
+  color: #3498db;
+  flex-shrink: 0;
+}
+
+.oilIcon,
+.fireIcon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.symbolItem h4 {
+  margin: 0 0 5px;
+  color: #2c3e50;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.symbolItem p {
+  margin: 0;
+  color: #5a6c7d;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+.requirementsList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.requirement {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  transition: background 0.3s ease;
+}
+
+.requirement:hover {
+  background: #e9ecef;
+}
+
+.reqNumber {
+  background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+  color: #ffffff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  box-shadow: 0 4px 15px #3498db4d;
+}
+
+.requirement h4 {
+  margin: 0 0 8px;
+  color: #2c3e50;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.requirement p {
+  margin: 0;
+  color: #5a6c7d;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+.effectsSection {
+  margin-bottom: 80px;
+}
+
+.effectsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.effectItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 30px 20px;
+  background: #f8f9fa;
+  border-radius: 16px;
+  transition: all 0.3s ease;
+}
+
+.effectItem:hover {
+  background: #e9ecef;
+  transform: translateY(-5px);
+}
+
+.effectIcon {
+  font-size: 3rem;
+  color: #3498db;
+  margin-bottom: 20px;
+}
+
+.effectItem h4 {
+  margin: 0 0 15px;
+  color: #2c3e50;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.effectItem p {
+  margin: 0;
+  color: #5a6c7d;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+.callToAction {
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  color: #ffffff;
+  padding: 60px 40px;
+  text-align: center;
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.callToAction::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.ctaIcon {
+  font-size: 3rem;
+  color: #ffffff;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 2;
+  animation: pulse 2s infinite;
+}
+
+.callToAction h2 {
+  font-size: 2.5rem;
+  margin: 0 0 20px;
+  font-weight: 700;
+  position: relative;
+  z-index: 2;
+  color: #ffffff;
+}
+
+.callToAction p {
+  font-size: 1.2rem;
+  margin: 0 0 30px;
+  opacity: 0.9;
+  max-width: 700px;
+  margin: 0 auto 30px;
+  line-height: 1.6;
+  position: relative;
+  z-index: 2;
+}
+
+.ctaButton {
+  display: inline-block;
+  background: #ffffff;
+  color: #3498db;
+  padding: 15px 40px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px #00000033;
+  position: relative;
+  z-index: 2;
+}
+
+.ctaButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px #0000004d;
+  background: #3498db;
+  color: #ffffff;
+}
+
+@media (max-width: 1024px) {
+  .twoColumnSection {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .title {
+    font-size: 3rem;
+  }
+  
+  .giftsGrid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 60px 20px 40px;
+  }
+  
+  .title {
+    font-size: 2.5rem;
+  }
+  
+  .subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .content {
+    padding: 40px 15px;
+  }
+  
+  .cardHeader {
+    padding: 25px 20px;
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+  
+  .cardContent {
+    padding: 30px 20px;
+  }
+  
+  .giftsGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .giftCard {
+    padding: 25px 20px;
+  }
+  
+  .symbolItem {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+  
+  .requirement {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+  
+  .effectsGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .callToAction {
+    padding: 40px 20px;
+  }
+  
+  .callToAction h2 {
+    font-size: 2rem;
+  }
+  
+  .callToAction p {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 40px 15px 30px;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+  
+  .content {
+    padding: 30px 10px;
+  }
+  
+  .cardHeader {
+    padding: 20px 15px;
+  }
+  
+  .cardContent {
+    padding: 25px 15px;
+  }
+  
+  .giftCard {
+    padding: 20px 15px;
+  }
+  
+  .symbolItem,
+  .requirement {
+    padding: 15px;
+  }
+  
+  .callToAction {
+    padding: 30px 15px;
+  }
+}
