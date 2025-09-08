@@ -354,7 +354,7 @@
 
 .ctaIcon {
   font-size: 3rem;
-  color: #ffffff;
+  color: #3498db;
   margin-bottom: 20px;
   position: relative;
   z-index: 2;
@@ -383,8 +383,8 @@
 
 .ctaButton {
   display: inline-block;
-  background: #ffffff;
-  color: #3498db;
+  background: #3498db;
+  color: #ffffff;
   padding: 15px 40px;
   border-radius: 50px;
   text-decoration: none;
@@ -399,8 +399,8 @@
 .ctaButton:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 25px #0000004d;
-  background: #3498db;
-  color: #ffffff;
+  background: #ffffff;
+  color: #3498db;
 }
 
 @media (max-width: 1024px) {

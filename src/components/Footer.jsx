@@ -40,30 +40,24 @@ export default function Footer() {
                 <span>WhatsApp</span>
               </a>
             </div>
+            
+            <div className={styles.quickLinksContainer}>
+              <div className={styles.quickLinks}>
+                <a href="/" className={styles.quickLink}>Home</a>
+                <a href="/sobre" className={styles.quickLink}>Login</a>
+                <a href="/inscrevase" className={styles.quickLink}>Inscrever-se</a>
+                <a href="/contato" className={styles.quickLink}>Contato</a>
+                <a href="/sobre" className={styles.quickLink}>Sobre</a>
+              </div>
+            </div>
           </div>
         </div>
+      </div>
 
-        <div className={styles.section}>
-          <h3 className={styles.sectionTitle}>Informações Úteis</h3>
-          <div className={styles.infoContainer}>
-            <div className={styles.infoItem}>
-              <HiClock className={styles.infoIcon} />
-              <div className={styles.infoText}>
-                <strong>Encontros da Crisma</strong>
-                <span>Sábados, 09h00 às 10h30</span>
-              </div>
-            </div>
-            <div className={styles.infoItem}>
-              <HiHeart className={styles.infoIcon} />
-              <div className={styles.infoText}>
-                <strong>Idade para participar</strong>
-                <span>14 a 17 anos</span>
-              </div>
-            </div>
-            <div className={styles.quickAction}>
-              <p>Quer participar? <a href="/contato" className={styles.contactLink}>Entre em contato</a></p>
-            </div>
-          </div>
+      <div className={styles.callToAction}>
+        <div className={styles.ctaContent}>
+          <HiHeart className={styles.ctaIcon} />
+          <p>Quer participar? <a href="/contato" className={styles.contactLink}>Entre em contato</a></p>
         </div>
       </div>
 

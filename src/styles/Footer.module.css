@@ -8,14 +8,15 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 60px 20px 40px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
+  display: flex;
+  justify-content: center;
 }
 
 .section {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  max-width: 800px;
 }
 
 .sectionTitle {
@@ -74,57 +75,60 @@
   font-weight: 500;
 }
 
-.infoContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+.quickLinksContainer {
+  margin-top: 30px;
+  padding-top: 25px;
+  border-top: 1px solid #ffffff1a;
 }
 
-.infoItem {
+.quickLinks {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.quickLink {
+  color: #ecf0f1;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  padding: 5px 0;
+}
+
+.quickLink:hover {
+  color: #3498db;
+  text-decoration: underline;
+}
+
+.callToAction {
+  background: #3498db26;
+  border-top: 1px solid #3498db4d;
+  border-bottom: 1px solid #3498db4d;
+}
+
+.ctaContent {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 20px;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 15px;
-  padding: 16px;
-  background: #ffffff0d;
-  border-radius: 10px;
-  border: 1px solid #ffffff1a;
-}
-
-.infoIcon {
-  font-size: 24px;
-  color: #3498db;
-  flex-shrink: 0;
-}
-
-.infoText {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.infoText strong {
-  color: #ffffff;
-  font-size: 16px;
-  font-weight: 600;
-}
-
-.infoText span {
-  color: #ecf0f1;
-  font-size: 14px;
-}
-
-.quickAction {
-  background: #3498db26;
-  padding: 16px;
-  border-radius: 10px;
-  border: 1px solid #3498db4d;
   text-align: center;
 }
 
-.quickAction p {
+.ctaIcon {
+  font-size: 24px;
+  color: #3498db;
+}
+
+.ctaContent p {
   margin: 0;
   color: #ecf0f1;
-  font-size: 16px;
+  font-size: 18px;
+  font-weight: 500;
 }
 
 .contactLink {
@@ -191,9 +195,7 @@
 
 @media (max-width: 768px) {
   .content {
-    grid-template-columns: 1fr;
     padding: 40px 20px 30px;
-    gap: 30px;
   }
 
   .sectionTitle {
@@ -212,12 +214,26 @@
     font-size: 18px;
   }
 
-  .infoItem {
-    padding: 14px;
+  .quickLinks {
+    gap: 20px;
   }
 
-  .infoIcon {
+  .quickLink {
+    font-size: 14px;
+  }
+
+  .ctaContent {
+    padding: 20px;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .ctaIcon {
     font-size: 20px;
+  }
+
+  .ctaContent p {
+    font-size: 16px;
   }
 
   .bottomContent {
@@ -244,18 +260,21 @@
     font-size: 14px;
   }
 
-  .infoItem {
-    padding: 12px;
+  .quickLinks {
+    gap: 15px;
     flex-direction: column;
-    text-align: center;
-    gap: 10px;
+    align-items: center;
   }
 
-  .quickAction {
-    padding: 14px;
+  .quickLink {
+    font-size: 13px;
   }
 
-  .quickAction p {
+  .ctaContent {
+    padding: 16px;
+  }
+
+  .ctaContent p {
     font-size: 14px;
   }
 }
