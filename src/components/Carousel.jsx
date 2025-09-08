@@ -19,7 +19,7 @@ const eventBanners = [
     title: "Retiro Espiritual",
     description: "Um fim de semana especial de reflexão e fortalecimento da fé para os jovens crismandos.",
     date: "05-07 de Outubro",
-    time: "Sexta 19h até Domingo 18h",
+    time: "Sexta 19h00 até Domingo 18h00",
     gradient: "linear-gradient(135deg, #2c3e50 0%, #34495e 100%)"
   },
   {

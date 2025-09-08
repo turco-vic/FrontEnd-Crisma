@@ -218,7 +218,8 @@
 .joinButton:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 25px #0000004d;
-  background: #f8f9fa;
+  background: #3498db;
+  color: #ffffff;
 }
 
 @media (max-width: 768px) {

@@ -11,7 +11,7 @@ export default function Home() {
       <Header />
       <main className={styles.main}>
         <section className={styles.hero}>
-          <h1 className={styles.title}>Bem-vindos ao site Crisma Sousas!</h1>
+          <h1 className={styles.title}>Bem-vindo(a) ao site da Crisma Sousas!</h1>
           <p className={styles.subtitle}>
             Acompanhe nossos principais eventos e faça parte desta jornada de fé!
           </p>
