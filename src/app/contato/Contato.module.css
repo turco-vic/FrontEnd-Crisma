@@ -300,13 +300,37 @@
 
 .callToAction p {
     font-size: 1.2rem;
-    margin: 0;
+    margin: 0 0 30px;
     opacity: 0.9;
     max-width: 600px;
-    margin: 0 auto;
+    margin: 0 auto 30px;
     line-height: 1.6;
     position: relative;
     z-index: 2;
+}
+
+.ctaButton {
+    display: inline-block;
+    background: #ffffff;
+    color: #3498db;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px #00000033;
+    position: relative;
+    z-index: 2;
+    text-decoration: none;
+}
+
+.ctaButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px #0000004d;
+    background: #3498db;
+    color: #ffffff;
 }
 
 @media (max-width: 1024px) {
@@ -391,6 +415,11 @@
 
     .callToAction p {
         font-size: 1.1rem;
+    }
+
+    .ctaButton {
+        padding: 12px 30px;
+        font-size: 1rem;
     }
 }
 

@@ -7,16 +7,17 @@ import { HiAcademicCap, HiLightBulb, HiSparkles } from 'react-icons/hi';
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <>
       <Header />
-      <main className={styles.main}>
-        <section className={styles.hero}>
+      <div className={styles.container}>
+        <div className={styles.hero}>
           <h1 className={styles.title}>Bem-vindo(a) ao site da Crisma Sousas!</h1>
           <p className={styles.subtitle}>
             Acompanhe nossos principais eventos e faça parte desta jornada de fé!
           </p>
-        </section>
+        </div>
         
+        <main className={styles.main}>
         <section className={styles.carouselSection}>
           <CarouselComponent />
         </section>
@@ -110,8 +111,9 @@ export default function Home() {
             </a>
           </div>
         </section>
-      </main>
+        </main>
+      </div>
       <Footer />
-    </div>
+    </>
   );
 }  
