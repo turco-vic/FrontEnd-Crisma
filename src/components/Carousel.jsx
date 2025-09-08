@@ -2,6 +2,7 @@
 import { useRef } from 'react';
 import { Carousel, Button, Card } from 'antd';
 import { LeftOutlined, RightOutlined, CalendarOutlined, ClockCircleOutlined } from '@ant-design/icons';
+import { FaCalendarAlt } from 'react-icons/fa';
 import styles from '../styles/Carousel.module.css';
 
 const eventBanners = [
@@ -98,7 +99,9 @@ export default function CarouselComponent() {
                       styles={{ body: { padding: 0 } }}
                     >
                       <div className={styles.cardContent}>
-                        <div className={styles.eventIcon}>📅</div>
+                        <div className={styles.eventIcon}>
+                          <FaCalendarAlt />
+                        </div>
                         <div className={styles.cardText}>
                           <h4>Evento</h4>
                           <p>Crisma Sousas</p>

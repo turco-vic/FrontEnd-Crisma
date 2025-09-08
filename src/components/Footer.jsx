@@ -1,66 +1,68 @@
 import styles from '../styles/Footer.module.css';
-import { HiLocationMarker, HiPhone, HiMail, HiClock } from 'react-icons/hi';
-import { FaInstagram } from 'react-icons/fa';
+import { FaInstagram, FaFacebook, FaWhatsapp, FaEnvelope } from 'react-icons/fa';
+import { HiClock, HiHeart } from 'react-icons/hi';
 
 export default function Footer() {
   return (
     <footer className={styles.container}>
       <div className={styles.content}>
-
         <div className={styles.section}>
-          <h3 className={styles.sectionTitle}>Contato</h3>
-          <div className={styles.contactInfo}>
-            <div className={styles.contactItem}>
-              <HiLocationMarker className={styles.icon} />
-              <div className={styles.contactText}>
-                <p>Paróquia Sant'Ana Sousas</p>
-                <p>R. Siqueira Campos, 90</p>
-                <p>Sousas - Campinas/SP</p>
-                <p>CEP: 13106-006</p>
-              </div>
-            </div>
-            <div className={styles.contactItem}>
-              <HiPhone className={styles.icon} />
-              <div className={styles.contactText}>
-                <p>(19) 3258-2263</p>
-              </div>
-            </div>
-            <div className={styles.contactItem}>
-              <HiMail className={styles.icon} />
-              <div className={styles.contactText}>
-                <p>crismamatrizsousas@gmail.com</p>
-                <p>santanasousas@arquidiocesecampinas.com</p>
-              </div>
+          <h3 className={styles.sectionTitle}>Siga-nos nas Redes Sociais</h3>
+          <div className={styles.socialInfo}>
+            <p className={styles.socialDescription}>
+              Acompanhe nossos momentos especiais, reflexões e 
+              atividades da comunidade Crisma Sousas.
+            </p>
+            <div className={styles.socialLinks}>
+              <a 
+                href="https://instagram.com/crismasousas" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className={styles.socialLink}
+              >
+                <FaInstagram className={styles.socialIcon} />
+                <span>@crismasousas</span>
+              </a>
+              <a 
+                href="mailto:crismamatrizsousas@gmail.com" 
+                className={styles.socialLink}
+              >
+                <FaEnvelope className={styles.socialIcon} />
+                <span>E-mail</span>
+              </a>
+              <a 
+                href="https://wa.me/5519982634578" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className={styles.socialLink}
+              >
+                <FaWhatsapp className={styles.socialIcon} />
+                <span>WhatsApp</span>
+              </a>
             </div>
           </div>
         </div>
 
         <div className={styles.section}>
-          <h3 className={styles.sectionTitle}>Horários da Crisma</h3>
-          <div className={styles.scheduleInfo}>
-            <div className={styles.scheduleItem}>
-              <HiClock className={styles.icon} />
-              <div className={styles.scheduleText}>
-                <div className={styles.scheduleDay}>
-                  <strong>Sábados</strong>
-                  <span>09h00 às 10h30</span>
-                </div>
+          <h3 className={styles.sectionTitle}>Informações Úteis</h3>
+          <div className={styles.infoContainer}>
+            <div className={styles.infoItem}>
+              <HiClock className={styles.infoIcon} />
+              <div className={styles.infoText}>
+                <strong>Encontros da Crisma</strong>
+                <span>Sábados, 09h00 às 10h30</span>
               </div>
             </div>
-          </div>
-        </div>
-
-        <div className={styles.section}>
-          <h3 className={styles.sectionTitle}>Crisma Sousas</h3>
-          <div className={styles.aboutText}>
-            <p>
-              Acompanhamos jovens em sua jornada de fé, 
-              preparando-os para receber o Sacramento da Confirmação.
-            </p>
-            <p>
-              Nossa missão é fortalecer a comunidade cristã através 
-              da formação espiritual e do testemunho de vida.
-            </p>
+            <div className={styles.infoItem}>
+              <HiHeart className={styles.infoIcon} />
+              <div className={styles.infoText}>
+                <strong>Idade para participar</strong>
+                <span>14 a 17 anos</span>
+              </div>
+            </div>
+            <div className={styles.quickAction}>
+              <p>Quer participar? <a href="/contato" className={styles.contactLink}>Entre em contato</a></p>
+            </div>
           </div>
         </div>
       </div>

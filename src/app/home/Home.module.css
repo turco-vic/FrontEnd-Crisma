@@ -35,7 +35,190 @@
 }
 
 .carouselSection {
-  margin-bottom: 60px;
+  margin-bottom: 80px;
+}
+
+.aboutSection {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 50px 40px;
+  margin-bottom: 80px;
+  box-shadow: 0 10px 30px #0000001a;
+  border: 1px solid #f0f0f0;
+}
+
+.aboutHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.aboutIcon {
+  font-size: 2.5rem;
+  color: #3498db;
+}
+
+.aboutTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin: 0;
+}
+
+.aboutContent {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.aboutText {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.aboutText p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #5a6c7d;
+  text-align: justify;
+  margin: 0;
+}
+
+.featuresSection {
+  margin-bottom: 80px;
+}
+
+.featuresTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.featureCard {
+  background: #ffffff;
+  padding: 40px 30px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 8px 25px #00000014;
+  transition: all 0.3s ease;
+  border: 1px solid #f0f0f0;
+}
+
+.featureCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px #00000026;
+}
+
+.featureIcon {
+  font-size: 3rem;
+  color: #3498db;
+  margin-bottom: 20px;
+}
+
+.featureCard h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0 0 15px;
+}
+
+.featureCard p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #6c757d;
+  margin: 0;
+}
+
+.joinSection {
+  background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+  border-radius: 20px;
+  padding: 60px 40px;
+  margin-bottom: 80px;
+  text-align: center;
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+.joinSection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.joinContent {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.joinTitle {
+  color: #ffffff;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0 0 20px;
+  text-shadow: 2px 2px 4px #ffffff42;
+}
+
+.joinText {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  margin: 0 0 40px;
+  opacity: 0.95;
+}
+
+.joinInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.joinItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.joinIcon {
+  font-size: 1.3rem;
+}
+
+.joinButton {
+  display: inline-block;
+  background: #ffffff;
+  color: #3498db;
+  padding: 15px 40px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px #00000033;
+}
+
+.joinButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px #0000004d;
+  background: #f8f9fa;
 }
 
 @media (max-width: 768px) {
@@ -56,7 +239,85 @@
   }
 
   .carouselSection {
-    margin-bottom: 40px;
+    margin-bottom: 60px;
+  }
+
+  .aboutSection {
+    padding: 40px 25px;
+    margin-bottom: 60px;
+  }
+
+  .aboutHeader {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .aboutIcon {
+    font-size: 2rem;
+  }
+
+  .aboutTitle {
+    font-size: 2rem;
+  }
+
+  .aboutText p {
+    font-size: 1rem;
+    text-align: left;
+  }
+
+  .featuresSection {
+    margin-bottom: 60px;
+  }
+
+  .featuresTitle {
+    font-size: 2rem;
+    margin-bottom: 30px;
+  }
+
+  .featuresGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .featureCard {
+    padding: 30px 20px;
+  }
+
+  .featureIcon {
+    font-size: 2.5rem;
+  }
+
+  .featureCard h3 {
+    font-size: 1.2rem;
+  }
+
+  .joinSection {
+    padding: 40px 25px;
+    margin-bottom: 60px;
+  }
+
+  .joinTitle {
+    font-size: 2rem;
+  }
+
+  .joinText {
+    font-size: 1.1rem;
+  }
+
+  .joinInfo {
+    gap: 15px;
+    margin-bottom: 30px;
+  }
+
+  .joinItem {
+    flex-direction: column;
+    gap: 8px;
+    font-size: 1rem;
+  }
+
+  .joinButton {
+    padding: 12px 30px;
+    font-size: 1rem;
   }
 }
 
@@ -71,5 +332,35 @@
 
   .subtitle {
     font-size: 1rem;
+  }
+
+  .aboutSection {
+    padding: 30px 20px;
+    margin-bottom: 40px;
+  }
+
+  .aboutTitle {
+    font-size: 1.8rem;
+  }
+
+  .featuresTitle {
+    font-size: 1.8rem;
+  }
+
+  .featureCard {
+    padding: 25px 15px;
+  }
+
+  .joinSection {
+    padding: 30px 20px;
+    margin-bottom: 40px;
+  }
+
+  .joinTitle {
+    font-size: 1.8rem;
+  }
+
+  .joinItem {
+    font-size: 0.95rem;
   }
 }

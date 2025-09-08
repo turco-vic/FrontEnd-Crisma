@@ -12,6 +12,7 @@ const pages = [
   { name: 'Cadastre-se', href: '/cadastro' },
   { name: 'Contato', href: '/contato' },
   { name: 'Sobre', href: '/sobre' },
+  { name: 'Sobre o Desenvolvedor', href: '/sobredev' },
 ];
 
 export default function Header() {
