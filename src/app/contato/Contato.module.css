@@ -7,23 +7,13 @@
 .hero {
     background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
     color: #ffffff;
-    padding: 80px 20px 60px;
+    padding: 120px 20px 60px;
     text-align: center;
     position: relative;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1;
 }
 
 .title1 {
@@ -259,24 +249,12 @@
 .callToAction {
     background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
     color: #ffffff;
-    padding: 60px 20px;
+    padding: 60px 40px;
     text-align: center;
-    margin-top: 40px;
+    margin: 40px;
+    border-radius: 20px;
     position: relative;
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.callToAction::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1;
 }
 
 .ctaIcon {
@@ -345,7 +323,7 @@
 
 @media (max-width: 768px) {
     .hero {
-        padding: 60px 20px 40px;
+        padding: 120px 20px 40px;
     }
 
     .title {
@@ -404,6 +382,7 @@
 
     .callToAction {
         padding: 40px 20px;
+        margin: 20px;
     }
 
     .callToAction h2 {
@@ -417,7 +396,7 @@
 
 @media (max-width: 480px) {
     .hero {
-        padding: 40px 15px 30px;
+        padding: 100px 15px 30px;
     }
 
     .title {
@@ -450,5 +429,9 @@
 
     .step {
         padding: 15px;
+    }
+
+    .callToAction {
+        margin: 15px;
     }
 }

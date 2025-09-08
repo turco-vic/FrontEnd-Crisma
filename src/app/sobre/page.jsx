@@ -1,7 +1,7 @@
 import styles from "./Sobre.module.css";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import { FaCross, FaHeart, FaPray, FaUsers, FaBook, FaChurch, FaHandsHelping, FaDove } from 'react-icons/fa';
+import { FaCross, FaHeart, FaPray, FaUsers, FaBook, FaChurch, FaHandsHelping, FaDove, FaOilCan, FaFire } from 'react-icons/fa';
 import { HiAcademicCap, HiLightBulb, HiSparkles, HiGift } from 'react-icons/hi';
 
 export default function Sobre() {
@@ -98,14 +98,14 @@ export default function Sobre() {
                     </div>
                   </div>
                   <div className={styles.symbolItem}>
-                    <div className={styles.oilIcon}>🛢️</div>
+                    <FaOilCan className={styles.symbolIcon} />
                     <div>
                       <h4>O Santo Crisma</h4>
                       <p>Óleo perfumado que simboliza a unção e consagração</p>
                     </div>
                   </div>
                   <div className={styles.symbolItem}>
-                    <div className={styles.fireIcon}>🔥</div>
+                    <FaFire className={styles.symbolIcon} />
                     <div>
                       <h4>O Fogo</h4>
                       <p>Representa a ação transformadora do Espírito Santo</p>
