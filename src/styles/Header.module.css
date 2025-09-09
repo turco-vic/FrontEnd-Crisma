@@ -4,18 +4,18 @@
   justify-content: space-between;
   height: 60px;
   background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-  border-bottom: 1px solid #ffffff1a;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 100;
-  padding: 0 20px;
-  box-shadow: 0 2px 10px #0000001a;
+  padding: 0 1rem;
+  box-shadow: 0 2px 1rem rgba(0, 0, 0, 0.1);
 }
 
 .title {
-  font-size: 24px;
+  font-size: 1rem;
   font-weight: 700;
   color: #ffffff;
 }
@@ -23,7 +23,7 @@
 .logoSection {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 1rem;
   text-decoration: none;
   color: #ffffff;
   cursor: pointer;
@@ -44,7 +44,7 @@
 }
 
 .logo {
-  border-radius: 8px;
+  border-radius: 1rem;
   object-fit: contain;
 }
 
@@ -55,9 +55,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 8px;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 1rem;
   transition: all 0.2s ease;
 }
 
@@ -74,14 +74,14 @@
   position: fixed;
   top: 0;
   right: 0;
-  width: 280px;
+  width: 18rem;
   height: 100vh;
   background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-  box-shadow: -4px 0 15px #00000033;
+  box-shadow: -4px 0 1rem rgba(0, 0, 0, 0.2);
   z-index: 1000;
   display: flex;
   flex-direction: column;
-  padding: 80px 0 20px 0;
+  padding: 5rem 0 1rem 0;
   transition: transform 0.3s ease;
   transform: translateX(100%);
 }
@@ -100,30 +100,30 @@
 .menuLink {
   color: #ecf0f1;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 1rem;
   font-weight: 500;
-  padding: 15px 30px;
+  padding: 1rem 2rem;
   transition: background-color 0.2s ease, color 0.2s ease;
   border-left: 3px solid transparent;
 }
 
 .menuLink:hover {
-  background-color: #3498db1a;
+  background-color: rgba(52, 152, 219, 0.1);
   color: #3498db;
   border-left-color: #3498db;
 }
 
 .menuFooter {
   margin-top: auto;
-  padding: 20px 30px;
-  border-top: 1px solid #ffffff1a;
+  padding: 1rem 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .menuFooterText {
   color: #bdc3c7;
-  font-size: 14px;
+  font-size: 1rem;
   text-align: center;
-  margin: 0 0 12px 0;
+  margin: 0 0 1rem 0;
   line-height: 1.4;
 }
 
@@ -131,13 +131,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 1rem;
   color: #bdc3c7;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 1rem;
   transition: all 0.3s ease;
-  padding: 8px;
-  border-radius: 6px;
+  padding: 1rem;
+  border-radius: 1rem;
 }
 
 .instagramLink:hover {
@@ -146,7 +146,7 @@
 }
 
 .instagramIcon {
-  font-size: 20px;
+  font-size: 1rem;
 }
 
 .overlay {
@@ -155,6 +155,6 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: #00000080;
+  background-color: rgba(0, 0, 0, 0.5);
   z-index: 999;
 }

@@ -45,7 +45,7 @@ export default function Footer() {
               <div className={styles.quickLinks}>
                 <a href="/" className={styles.quickLink}>Home</a>
                 <a href="/sobre" className={styles.quickLink}>Login</a>
-                <a href="/inscrevase" className={styles.quickLink}>Inscrever-se</a>
+                <a href="/inscreverse" className={styles.quickLink}>Inscrever-se</a>
                 <a href="/contato" className={styles.quickLink}>Contato</a>
                 <a href="/sobre" className={styles.quickLink}>Sobre</a>
               </div>
@@ -65,13 +65,13 @@ export default function Footer() {
         <div className={styles.bottomContent}>
           <p>&copy; 2025 Paróquia Sant'Ana Sousas - Todos os direitos reservados</p>
           <p className={styles.developerText}>
-            Desenvolvido por Enzo Turcovic 
             <a 
               href="https://instagram.com/turco.vic" 
               target="_blank" 
               rel="noopener noreferrer"
-              className={styles.instagramLink}
+              className={styles.developerLink}
             >
+              Desenvolvido por Enzo Turcovic 
               <FaInstagram className={styles.instagramIcon} />
             </a>
           </p>

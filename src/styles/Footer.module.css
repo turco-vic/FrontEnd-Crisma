@@ -5,9 +5,9 @@
 }
 
 .content {
-  max-width: 1200px;
+  max-width: 75rem;
   margin: 0 auto;
-  padding: 60px 20px 40px;
+  padding: 4rem 1rem 3rem;
   display: flex;
   justify-content: center;
 }
@@ -16,58 +16,58 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 800px;
+  max-width: 50rem;
 }
 
 .sectionTitle {
-  font-size: 24px;
+  font-size: 2rem;
   font-weight: 700;
-  margin-bottom: 24px;
+  margin-bottom: 2rem;
   color: #3498db;
   border-bottom: 2px solid #3498db;
-  padding-bottom: 8px;
+  padding-bottom: 1rem;
 }
 
 .socialInfo {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 1rem;
 }
 
 .socialDescription {
   color: #ecf0f1;
   line-height: 1.6;
   margin: 0;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 .socialLinks {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 1rem;
 }
 
 .socialLink {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 1rem;
   color: #ecf0f1;
   text-decoration: none;
-  padding: 12px 16px;
-  border-radius: 10px;
-  background: #ffffff0d;
+  padding: 1rem 1rem;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.05);
   transition: all 0.3s ease;
-  border: 1px solid #ffffff1a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .socialLink:hover {
-  background: #3498db26;
-  transform: translateX(8px);
+  background: rgba(52, 152, 219, 0.15);
+  transform: translateX(1rem);
   border-color: #3498db;
 }
 
 .socialIcon {
-  font-size: 20px;
+  font-size: 1rem;
   color: #3498db;
 }
 
@@ -76,15 +76,15 @@
 }
 
 .quickLinksContainer {
-  margin-top: 30px;
-  padding-top: 25px;
-  border-top: 1px solid #ffffff1a;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .quickLinks {
   display: flex;
   justify-content: center;
-  gap: 30px;
+  gap: 2rem;
   flex-wrap: wrap;
 }
 
@@ -92,9 +92,9 @@
   color: #ecf0f1;
   text-decoration: none;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 1rem;
   transition: all 0.3s ease;
-  padding: 5px 0;
+  padding: 1rem 0;
 }
 
 .quickLink:hover {
@@ -103,31 +103,31 @@
 }
 
 .callToAction {
-  background: #3498db26;
-  border-top: 1px solid #3498db4d;
-  border-bottom: 1px solid #3498db4d;
+  background: rgba(52, 152, 219, 0.15);
+  border-top: 1px solid rgba(52, 152, 219, 0.3);
+  border-bottom: 1px solid rgba(52, 152, 219, 0.3);
 }
 
 .ctaContent {
-  max-width: 1200px;
+  max-width: 75rem;
   margin: 0 auto;
-  padding: 24px 20px;
+  padding: 2rem 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 15px;
+  gap: 1rem;
   text-align: center;
 }
 
 .ctaIcon {
-  font-size: 24px;
+  font-size: 2rem;
   color: #3498db;
 }
 
 .ctaContent p {
   margin: 0;
   color: #ecf0f1;
-  font-size: 18px;
+  font-size: 1rem;
   font-weight: 500;
 }
 
@@ -144,32 +144,46 @@
 }
 
 .bottom {
-  background: #00000033;
-  border-top: 1px solid #ffffff1a;
+  background: rgba(0, 0, 0, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .bottomContent {
-  max-width: 1200px;
+  max-width: 75rem;
   margin: 0 auto;
-  padding: 20px;
+  padding: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 1rem;
 }
 
 .bottomContent p {
   margin: 0;
   color: #bdc3c7;
-  font-size: 14px;
+  font-size: 1rem;
 }
 
 .developerText {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 1rem;
+}
+
+.developerLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  color: #bdc3c7;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.developerLink:hover {
+  color: #3498db;
+  transform: translateY(-2px);
 }
 
 .instagramLink {
@@ -185,55 +199,55 @@
 
 .instagramIcon {
   color: #ecf0f1;
-  font-size: 16px;
+  font-size: 1rem;
   transition: color 0.3s ease;
 }
 
-.instagramLink:hover .instagramIcon {
+.developerLink:hover .instagramIcon {
   color: #3498db;
 }
 
 @media (max-width: 768px) {
   .content {
-    padding: 40px 20px 30px;
+    padding: 3rem 1rem 2rem;
   }
 
   .sectionTitle {
-    font-size: 20px;
+    font-size: 1rem;
   }
 
   .socialLinks {
-    gap: 12px;
+    gap: 1rem;
   }
 
   .socialLink {
-    padding: 10px 14px;
+    padding: 1rem 1rem;
   }
 
   .socialIcon {
-    font-size: 18px;
+    font-size: 1rem;
   }
 
   .quickLinks {
-    gap: 20px;
+    gap: 1rem;
   }
 
   .quickLink {
-    font-size: 14px;
+    font-size: 1rem;
   }
 
   .ctaContent {
-    padding: 20px;
+    padding: 1rem;
     flex-direction: column;
-    gap: 12px;
+    gap: 1rem;
   }
 
   .ctaIcon {
-    font-size: 20px;
+    font-size: 1rem;
   }
 
   .ctaContent p {
-    font-size: 16px;
+    font-size: 1rem;
   }
 
   .bottomContent {
@@ -244,37 +258,37 @@
 
 @media (max-width: 480px) {
   .content {
-    padding: 30px 16px 20px;
+    padding: 2rem 1rem 1rem;
   }
 
   .sectionTitle {
-    font-size: 18px;
+    font-size: 1rem;
   }
 
   .socialDescription {
-    font-size: 14px;
+    font-size: 1rem;
   }
 
   .socialLink {
-    padding: 8px 12px;
-    font-size: 14px;
+    padding: 1rem 1rem;
+    font-size: 1rem;
   }
 
   .quickLinks {
-    gap: 15px;
+    gap: 1rem;
     flex-direction: column;
     align-items: center;
   }
 
   .quickLink {
-    font-size: 13px;
+    font-size: 1rem;
   }
 
   .ctaContent {
-    padding: 16px;
+    padding: 1rem;
   }
 
   .ctaContent p {
-    font-size: 14px;
+    font-size: 1rem;
   }
 }

@@ -9,7 +9,7 @@ import styles from '../styles/Header.module.css';
 const pages = [
   { name: 'Home', href: '/' },
   { name: 'Login', href: '/login' },
-  { name: 'Inscrever-se', href: '/inscrevase' },
+  { name: 'Inscrever-se', href: '/inscreverse' },
   { name: 'Contato', href: '/contato' },
   { name: 'Sobre', href: '/sobre' },
   { name: 'Sobre o Desenvolvedor', href: '/sobredev' },

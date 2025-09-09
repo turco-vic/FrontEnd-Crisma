@@ -107,15 +107,15 @@ export default function Contato() {
               </div>
             </div>
           </div>
-        </div>
 
-        <div className={styles.callToAction}>
-          <HiHeart className={styles.ctaIcon} />
-          <h2 className={styles.title2}>Venha fazer parte da nossa comunidade!</h2>
-          <p>Entre em contato conosco e dê o próximo passo em sua caminhada cristã.</p>
-          <button className={styles.ctaButton} onClick={() => window.location.href = 'tel:(19)3258-2263'}>
-            Entre em Contato
-          </button>
+          <div className={styles.callToAction}>
+            <HiHeart className={styles.ctaIcon} />
+            <h2 className={styles.title2}>Venha fazer parte da nossa comunidade!</h2>
+            <p>Entre em contato conosco e dê o próximo passo em sua caminhada cristã.</p>
+            <button className={styles.ctaButton} onClick={() => window.location.href = '/inscrevase'}>
+              Inscrever-se
+            </button>
+          </div>
         </div>
       </div>
       <Footer />

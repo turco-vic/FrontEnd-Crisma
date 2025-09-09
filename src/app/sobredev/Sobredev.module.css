@@ -1,0 +1,511 @@
+.container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 0;
+}
+
+.hero {
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  color: #ffffff;
+  padding: 8.8rem 1.3rem 3.8rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.heroIcon {
+  font-size: 4rem;
+  color: #3498db;
+  margin-bottom: 1.3rem;
+  position: relative;
+  z-index: 2;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.title {
+  color: #ffffff;
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin: 0 0 1.3rem;
+  position: relative;
+  z-index: 2;
+  text-shadow: 0.1rem 0.1rem 0.3rem #0000004d;
+}
+
+.subtitle {
+  font-size: 1.3rem;
+  margin: 0;
+  opacity: 0.9;
+  position: relative;
+  z-index: 2;
+  max-width: 38rem;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.content {
+  max-width: 75rem;
+  margin: 0 auto;
+  padding: 3.8rem 1.3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.section {
+  width: 100%;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0 0.6rem 1.9rem #0000001a;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-0.3rem);
+  box-shadow: 0 1.3rem 2.5rem #00000026;
+}
+
+.cardHeader {
+  background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+  color: #ffffff;
+  padding: 1.6rem 1.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.cardIcon {
+  font-size: 1.8rem;
+  opacity: 0.9;
+}
+
+.cardHeader h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.cardContent {
+  padding: 1.9rem;
+}
+
+.profileInfo {
+  display: flex;
+  gap: 1.9rem;
+  align-items: flex-start;
+}
+
+.profilePhoto {
+  flex-shrink: 0;
+}
+
+.photoPlaceholder {
+  width: 12rem;
+  height: 12rem;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 0.2rem solid #dee2e6;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.photoPlaceholder:hover {
+  border-color: #3498db;
+  transform: scale(1.02);
+}
+
+.photoIcon {
+  font-size: 3rem;
+  color: #6c757d;
+  margin-bottom: 0.5rem;
+}
+
+.photoText {
+  font-size: 0.9rem;
+  color: #6c757d;
+  text-align: center;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Estilo para quando a imagem real for adicionada */
+.profileImage {
+  width: 12rem;
+  height: 12rem;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 0.2rem solid #dee2e6;
+  transition: all 0.3s ease;
+}
+
+.profileImage:hover {
+  border-color: #3498db;
+  transform: scale(1.02);
+}
+
+.profileText h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin: 0 0 0.5rem;
+}
+
+.role {
+  font-size: 1.1rem;
+  color: #3498db;
+  font-weight: 600;
+  margin: 0 0 1.3rem;
+}
+
+.profileText p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #5a6c7d;
+  margin: 0 0 1.3rem;
+  text-align: justify;
+}
+
+.profileText p:last-child {
+  margin-bottom: 0;
+}
+
+.educationList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.9rem;
+}
+
+.educationItem {
+  display: flex;
+  gap: 1.3rem;
+  padding: 1.3rem;
+  background: #f8f9fa;
+  border-radius: 0.8rem;
+  border-left: 0.3rem solid #3498db;
+}
+
+.educationIcon {
+  font-size: 1.5rem;
+  color: #3498db;
+  margin-top: 0.3rem;
+  flex-shrink: 0;
+}
+
+.educationContent h4 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0 0 0.3rem;
+}
+
+.institution {
+  font-size: 1rem;
+  color: #3498db;
+  font-weight: 500;
+  margin: 0 0 0.8rem;
+}
+
+.description {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #6c757d;
+  margin: 0;
+}
+
+.techGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
+  gap: 1.9rem;
+}
+
+.techCategory h4 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0 0 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 0.1rem solid #e9ecef;
+}
+
+.techList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.techItem {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.6rem 0.8rem;
+  background: #f8f9fa;
+  border-radius: 0.5rem;
+  transition: background 0.3s ease;
+}
+
+.techItem:hover {
+  background: #e9ecef;
+}
+
+.techIcon {
+  font-size: 1.3rem;
+  color: #3498db;
+}
+
+.techItem span {
+  font-size: 0.9rem;
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+.projectInfo p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #5a6c7d;
+  margin: 0 0 1.3rem;
+  text-align: justify;
+}
+
+.projectFeatures {
+  list-style: none;
+  padding: 0;
+  margin: 1.3rem 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 0.5rem;
+}
+
+.projectFeatures li {
+  position: relative;
+  padding-left: 1.3rem;
+  font-size: 0.9rem;
+  color: #2c3e50;
+  line-height: 1.5;
+}
+
+.projectFeatures li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #3498db;
+  font-weight: bold;
+}
+
+.callToAction {
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  color: #ffffff;
+  padding: 3.8rem 2.5rem;
+  text-align: center;
+  border-radius: 1.3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.ctaIcon {
+  font-size: 3rem;
+  color: #3498db;
+  margin-bottom: 1.3rem;
+  animation: pulse 2s infinite;
+}
+
+.ctaTitle {
+  color: #ffffff;
+  font-size: 2.5rem;
+  margin: 0 0 0.9rem;
+  font-weight: 700;
+}
+
+.ctaText {
+  font-size: 1.2rem;
+  margin: 0 0 1.9rem;
+  opacity: 0.9;
+  max-width: 38rem;
+  margin: 0 auto 1.9rem;
+  line-height: 1.6;
+}
+
+.contactLinks {
+  display: flex;
+  justify-content: center;
+  gap: 1.3rem;
+  flex-wrap: wrap;
+}
+
+.contactLink {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #ffffff;
+  color: #3498db;
+  padding: 0.8rem 1.6rem;
+  border-radius: 3.1rem;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 0.3rem 0.9rem #00000033;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.contactLink:hover {
+  transform: translateY(-0.1rem);
+  box-shadow: 0 0.5rem 1.6rem #0000004d;
+  background: #3498db;
+  color: #ffffff;
+}
+
+.contactIcon {
+  font-size: 1.1rem;
+}
+
+@media (max-width: 48rem) {
+  .hero {
+    padding: 7.5rem 1.3rem 2.5rem;
+  }
+
+  .title {
+    font-size: 2.5rem;
+  }
+
+  .subtitle {
+    font-size: 1.1rem;
+  }
+
+  .content {
+    padding: 2.5rem 0.9rem;
+  }
+
+  .cardHeader {
+    padding: 1.3rem 1.6rem;
+    flex-direction: column;
+    text-align: center;
+    gap: 0.6rem;
+  }
+
+  .cardContent {
+    padding: 1.6rem 1.3rem;
+  }
+
+  .profileInfo {
+    flex-direction: column;
+    gap: 1.3rem;
+    align-items: center;
+    text-align: center;
+  }
+
+  .photoPlaceholder {
+    width: 10rem;
+    height: 10rem;
+  }
+
+  .profileImage {
+    width: 10rem;
+    height: 10rem;
+  }
+
+  .photoIcon {
+    font-size: 2.5rem;
+  }
+
+  .educationItem {
+    flex-direction: column;
+    gap: 0.8rem;
+    text-align: center;
+  }
+
+  .techGrid {
+    grid-template-columns: 1fr;
+    gap: 1.3rem;
+  }
+
+  .projectFeatures {
+    grid-template-columns: 1fr;
+  }
+
+  .callToAction {
+    padding: 2.5rem 1.3rem;
+  }
+
+  .ctaTitle {
+    font-size: 2rem;
+  }
+
+  .contactLinks {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contactLink {
+    justify-content: center;
+    min-width: 12rem;
+  }
+}
+
+@media (max-width: 30rem) {
+  .hero {
+    padding: 6.3rem 0.9rem 1.9rem;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .content {
+    padding: 1.9rem 0.6rem;
+  }
+
+  .cardHeader {
+    padding: 1rem 1.3rem;
+  }
+
+  .cardContent {
+    padding: 1.3rem 1rem;
+  }
+
+  .photoPlaceholder {
+    width: 8rem;
+    height: 8rem;
+  }
+
+  .profileImage {
+    width: 8rem;
+    height: 8rem;
+  }
+
+  .photoIcon {
+    font-size: 2rem;
+  }
+
+  .photoText {
+    font-size: 0.8rem;
+  }
+
+  .callToAction {
+    padding: 1.9rem 1rem;
+  }
+
+  .ctaTitle {
+    font-size: 1.8rem;
+  }
+}

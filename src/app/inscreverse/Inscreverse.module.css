@@ -1,0 +1,265 @@
+.container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 0;
+}
+
+.hero {
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  color: #ffffff;
+  padding: 8.8rem 1.3rem 3.8rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.heroIcon {
+  font-size: 4rem;
+  color: #3498db;
+  margin-bottom: 1.3rem;
+  position: relative;
+  z-index: 2;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.title {
+  color: #ffffff;
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin: 0 0 1.3rem;
+  position: relative;
+  z-index: 2;
+  text-shadow: 0.1rem 0.1rem 0.3rem #0000004d;
+}
+
+.subtitle {
+  font-size: 1.3rem;
+  margin: 0;
+  opacity: 0.9;
+  position: relative;
+  z-index: 2;
+  max-width: 38rem;
+  line-height: 1.6;
+}
+
+.content {
+  max-width: 75rem;
+  margin: 0 auto;
+  padding: 3.8rem 1.3rem;
+}
+
+.optionsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  gap: 2.5rem;
+  margin-bottom: 3.8rem;
+}
+
+.optionCard {
+  background: #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0 0.6rem 1.9rem #0000001a;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.optionCard:hover {
+  transform: translateY(-0.3rem);
+  box-shadow: 0 1rem 2.5rem #0000001a;
+}
+
+.cardContent {
+  padding: 2.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.cardIcon {
+  font-size: 3rem;
+  color: #3498db;
+  margin-bottom: 1.3rem;
+  text-align: center;
+}
+
+.cardTitle {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0 0 1rem;
+  text-align: center;
+}
+
+.cardDescription {
+  font-size: 1rem;
+  color: #7f8c8d;
+  line-height: 1.6;
+  margin-bottom: 1.6rem;
+  text-align: center;
+  flex-grow: 1;
+}
+
+.cardFeatures {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.9rem;
+}
+
+.cardFeatures span {
+  font-size: 0.9rem;
+  color: #27ae60;
+  font-weight: 500;
+}
+
+.cardAction {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+  color: #ffffff;
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  margin-top: auto;
+  transition: all 0.3s ease;
+}
+
+.cardAction:hover {
+  background: linear-gradient(135deg, #2980b9 0%, #1f669e 100%);
+}
+
+.infoSection {
+  background: #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0 0.3rem 0.9rem #0000000d;
+  padding: 2.5rem;
+  text-align: center;
+}
+
+.infoTitle {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0 0 1.9rem;
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
+  gap: 1.6rem;
+}
+
+.infoCard {
+  background: #f8f9fa;
+  border-radius: 0.8rem;
+  padding: 1.6rem;
+  border-left: 0.3rem solid #3498db;
+}
+
+.infoCard h4 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0 0 0.8rem;
+}
+
+.infoCard p {
+  font-size: 0.9rem;
+  color: #7f8c8d;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Media Queries */
+@media (max-width: 48rem) {
+  .hero {
+    padding: 7.5rem 1.3rem 2.5rem;
+  }
+
+  .title {
+    font-size: 2.5rem;
+  }
+
+  .subtitle {
+    font-size: 1.1rem;
+  }
+
+  .content {
+    padding: 2.5rem 0.9rem;
+  }
+
+  .optionsGrid {
+    grid-template-columns: 1fr;
+    gap: 1.9rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .cardContent {
+    padding: 1.9rem;
+  }
+
+  .cardIcon {
+    font-size: 2.5rem;
+  }
+
+  .cardTitle {
+    font-size: 1.5rem;
+  }
+
+  .infoSection {
+    padding: 1.9rem;
+  }
+
+  .infoGrid {
+    grid-template-columns: 1fr;
+    gap: 1.3rem;
+  }
+}
+
+@media (max-width: 30rem) {
+  .hero {
+    padding: 6.3rem 0.9rem 1.9rem;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .content {
+    padding: 1.9rem 0.6rem;
+  }
+
+  .cardContent {
+    padding: 1.3rem;
+  }
+
+  .cardTitle {
+    font-size: 1.3rem;
+  }
+
+  .cardDescription {
+    font-size: 0.9rem;
+  }
+
+  .infoSection {
+    padding: 1.3rem;
+  }
+
+  .infoTitle {
+    font-size: 1.6rem;
+  }
+}
