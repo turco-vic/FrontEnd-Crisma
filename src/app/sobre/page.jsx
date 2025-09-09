@@ -10,7 +10,6 @@ export default function Sobre() {
       <Header />
       <div className={styles.container}>
         <div className={styles.hero}>
-          <FaCross className={styles.heroIcon} />
           <h1 className={styles.title}>O Sacramento da Crisma</h1>
           <p className={styles.subtitle}>
             Conhecendo mais sobre este importante sacramento de iniciação cristã

@@ -31,7 +31,7 @@ export default function Footer() {
                 <span>E-mail</span>
               </a>
               <a 
-                href="https://wa.me/5519982634578" 
+                href="https://wa.me/5519981853201" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className={styles.socialLink}

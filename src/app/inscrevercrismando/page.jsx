@@ -281,7 +281,7 @@ export default function InscreverCrismando() {
                 <div className={styles.formGroup}>
                   <label htmlFor="logradouro" className={styles.label}>
                     <FaRoad className={styles.labelIcon} />
-                    Logradouro *
+                    Rua *
                   </label>
                   <input
                     type="text"
