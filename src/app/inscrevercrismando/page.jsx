@@ -526,8 +526,19 @@ export default function InscreverCrismando() {
               <div className={styles.uploadGrid}>
                 <div className={styles.uploadGroup}>
                   <label className={styles.uploadLabel}>
-                    <FaUpload className={styles.uploadIcon} />
-                    <span>Certidão de Batismo *</span>
+                    {imagePreview.certidaoBatismo && imagePreview.certidaoBatismo !== 'uploaded' ? (
+                      <img src={imagePreview.certidaoBatismo} alt="Certidão de Batismo" className={styles.uploadedDocumentImage} />
+                    ) : imagePreview.certidaoBatismo === 'uploaded' ? (
+                      <>
+                        <FaCheck className={styles.uploadedDocumentIcon} />
+                        <span className={styles.uploadSuccessText}>Documento enviado!</span>
+                      </>
+                    ) : (
+                      <>
+                        <FaUpload className={styles.uploadIcon} />
+                        <span>Clique para enviar</span>
+                      </>
+                    )}
                   </label>
                   <input
                     type="file"
@@ -536,24 +547,25 @@ export default function InscreverCrismando() {
                     className={styles.fileInput}
                     required
                   />
+                  <h3 className={styles.documentTitle}>Certidão de Batismo *</h3>
                   <p className={styles.fileInfo}>PDF, JPG ou PNG - Máx. 5MB</p>
-                  {imagePreview.certidaoBatismo && imagePreview.certidaoBatismo !== 'uploaded' && (
-                    <div className={styles.imagePreview}>
-                      <img src={imagePreview.certidaoBatismo} alt="Preview da certidão de batismo" className={styles.previewImage} />
-                    </div>
-                  )}
-                  {imagePreview.certidaoBatismo === 'uploaded' && (
-                    <div className={styles.uploadedFile}>
-                      <FaCheck className={styles.checkIcon} />
-                      <span>Documento enviado com sucesso!</span>
-                    </div>
-                  )}
                 </div>
 
                 <div className={styles.uploadGroup}>
                   <label className={styles.uploadLabel}>
-                    <FaUpload className={styles.uploadIcon} />
-                    <span>Certidão de Primeira Eucaristia *</span>
+                    {imagePreview.certidaoEucaristia && imagePreview.certidaoEucaristia !== 'uploaded' ? (
+                      <img src={imagePreview.certidaoEucaristia} alt="Certidão de Primeira Eucaristia" className={styles.uploadedDocumentImage} />
+                    ) : imagePreview.certidaoEucaristia === 'uploaded' ? (
+                      <>
+                        <FaCheck className={styles.uploadedDocumentIcon} />
+                        <span className={styles.uploadSuccessText}>Documento enviado!</span>
+                      </>
+                    ) : (
+                      <>
+                        <FaUpload className={styles.uploadIcon} />
+                        <span>Clique para enviar</span>
+                      </>
+                    )}
                   </label>
                   <input
                     type="file"
@@ -562,24 +574,25 @@ export default function InscreverCrismando() {
                     className={styles.fileInput}
                     required
                   />
+                  <h3 className={styles.documentTitle}>Certidão de Primeira Eucaristia *</h3>
                   <p className={styles.fileInfo}>PDF, JPG ou PNG - Máx. 5MB</p>
-                  {imagePreview.certidaoEucaristia && imagePreview.certidaoEucaristia !== 'uploaded' && (
-                    <div className={styles.imagePreview}>
-                      <img src={imagePreview.certidaoEucaristia} alt="Preview da certidão de eucaristia" className={styles.previewImage} />
-                    </div>
-                  )}
-                  {imagePreview.certidaoEucaristia === 'uploaded' && (
-                    <div className={styles.uploadedFile}>
-                      <FaCheck className={styles.checkIcon} />
-                      <span>Documento enviado com sucesso!</span>
-                    </div>
-                  )}
                 </div>
 
                 <div className={styles.uploadGroup}>
                   <label className={styles.uploadLabel}>
-                    <FaUpload className={styles.uploadIcon} />
-                    <span>RG (Documento de Identidade) *</span>
+                    {imagePreview.rg && imagePreview.rg !== 'uploaded' ? (
+                      <img src={imagePreview.rg} alt="RG (Documento de Identidade)" className={styles.uploadedDocumentImage} />
+                    ) : imagePreview.rg === 'uploaded' ? (
+                      <>
+                        <FaCheck className={styles.uploadedDocumentIcon} />
+                        <span className={styles.uploadSuccessText}>Documento enviado!</span>
+                      </>
+                    ) : (
+                      <>
+                        <FaUpload className={styles.uploadIcon} />
+                        <span>Clique para enviar</span>
+                      </>
+                    )}
                   </label>
                   <input
                     type="file"
@@ -588,18 +601,8 @@ export default function InscreverCrismando() {
                     className={styles.fileInput}
                     required
                   />
+                  <h3 className={styles.documentTitle}>RG (Documento de Identidade) *</h3>
                   <p className={styles.fileInfo}>PDF, JPG ou PNG - Máx. 5MB</p>
-                  {imagePreview.rg && imagePreview.rg !== 'uploaded' && (
-                    <div className={styles.imagePreview}>
-                      <img src={imagePreview.rg} alt="Preview do RG" className={styles.previewImage} />
-                    </div>
-                  )}
-                  {imagePreview.rg === 'uploaded' && (
-                    <div className={styles.uploadedFile}>
-                      <FaCheck className={styles.checkIcon} />
-                      <span>Documento enviado com sucesso!</span>
-                    </div>
-                  )}
                 </div>
               </div>
             </section>

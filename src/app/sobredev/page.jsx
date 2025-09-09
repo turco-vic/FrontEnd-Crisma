@@ -32,7 +32,7 @@ export default function SobreDev() {
               <div className={styles.profileInfo}>
                 <div className={styles.profilePhoto}>
                       <Image 
-                        src="/images/profile/perfil7.jpg" 
+                        src="/images/profile/photoprofile.jpg" 
                         alt="Foto de Enzo Turcovic" 
                         width={192} 
                         height={192}
