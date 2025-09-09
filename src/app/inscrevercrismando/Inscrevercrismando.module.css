@@ -138,6 +138,49 @@
   color: #95a5a6;
 }
 
+.inputError {
+  border-color: #e74c3c !important;
+  background-color: #fdf2f2 !important;
+  box-shadow: 0 0 0 1px rgba(231, 76, 60, 0.2) !important;
+}
+
+.inputError:focus {
+  border-color: #c0392b !important;
+  box-shadow: 0 0 0 1px rgba(192, 57, 43, 0.3) !important;
+}
+
+.errorMessage {
+  color: #e74c3c;
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
+  display: block;
+}
+
+.passwordFeedback {
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
+  display: block;
+  transition: color 0.3s ease;
+}
+
+.passwordFeedback.valid {
+  color: #27ae60;
+}
+
+.passwordFeedback.invalid {
+  color: #e67e22;
+}
+
+.uploadLabelError {
+  border-color: #e74c3c !important;
+  background-color: #fdf2f2 !important;
+}
+
+.uploadLabelError:hover {
+  border-color: #c0392b !important;
+  background-color: #fbeaea !important;
+}
+
 .passwordContainer {
   position: relative;
   display: flex;
@@ -274,6 +317,16 @@
   transform: translateY(-0.1rem);
 }
 
+.uploadLabelError {
+  border-color: #e74c3c !important;
+  background-color: #fdf2f2 !important;
+}
+
+.uploadLabelError:hover {
+  border-color: #c0392b !important;
+  background-color: #fbeaea !important;
+}
+
 .uploadIcon {
   font-size: 2.2rem;
   color: #3498db;
@@ -281,6 +334,11 @@
   filter: drop-shadow(0 2px 4px rgba(52, 152, 219, 0.3));
   z-index: 2;
   position: relative;
+}
+
+.uploadIconError {
+  color: #e74c3c !important;
+  filter: drop-shadow(0 2px 4px rgba(231, 76, 60, 0.3)) !important;
 }
 
 .uploadLabel span {

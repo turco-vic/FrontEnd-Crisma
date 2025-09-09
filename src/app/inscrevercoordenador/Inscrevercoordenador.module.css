@@ -138,6 +138,72 @@
   color: #95a5a6;
 }
 
+.inputError {
+  border-color: #ff1900 !important;
+  background-color: #fdf2f2 !important;
+  box-shadow: 0 0 0 0.1rem rgba(231, 76, 60, 0.2) !important;
+}
+
+.inputError:focus {
+  border-color: #ff1900 !important;
+  box-shadow: 0 0 0 0.1rem rgba(192, 57, 43, 0.3) !important;
+}
+
+.errorMessage {
+  color: #ff1900;
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
+  display: block;
+}
+
+.passwordFeedback {
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
+  display: block;
+  transition: color 0.3s ease;
+}
+
+.passwordFeedback.valid {
+  color: #27ae60;
+}
+
+.passwordFeedback.invalid {
+  color: #ff1900;
+}
+
+.passwordContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.passwordContainer .input {
+  padding-right: 4rem;
+  width: 100%;
+}
+
+.eyeButton {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #7f8c8d;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s ease;
+  z-index: 2;
+}
+
+.eyeButton:hover {
+  color: #0a295e;
+}
+
 .uploadContainer {
   display: flex;
   justify-content: center;
@@ -170,10 +236,24 @@
   transform: translateY(-0.1rem);
 }
 
+.uploadLabelError {
+  border-color: #ff1900 !important;
+  background-color: #fdf2f2 !important;
+}
+
+.uploadLabelError:hover {
+  border-color: #ff1900 !important;
+  background-color: #fbeaea !important;
+}
+
 .uploadIcon {
   font-size: 2.5rem;
   color: #0a295e;
   margin-bottom: 1rem;
+}
+
+.uploadIconError {
+  color: #ff1900 !important;
 }
 
 .uploadLabel span {

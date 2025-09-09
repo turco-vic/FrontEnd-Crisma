@@ -46,6 +46,130 @@ export default function InscreverCrismando() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [loadingCep, setLoadingCep] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [passwordFeedback, setPasswordFeedback] = useState('');
+
+  const getPasswordRequirements = (password) => {
+    const requirements = [];
+    const hasMinLength = password.length >= 6;
+    const hasUpperCase = /[A-Z]/.test(password);
+    const hasLowerCase = /[a-z]/.test(password);
+    const hasNumber = /[0-9]/.test(password);
+
+    if (!hasMinLength) requirements.push('6 caracteres');
+    if (!hasUpperCase) requirements.push('1 letra maiúscula');
+    if (!hasLowerCase) requirements.push('1 letra minúscula');
+    if (!hasNumber) requirements.push('1 número');
+
+    if (requirements.length === 0) {
+      return 'Senha válida! ✓';
+    } else if (password.length === 0) {
+      return 'Digite uma senha com 6 caracteres, 1 maiúscula, 1 minúscula e 1 número';
+    } else {
+      return `Ainda falta: ${requirements.join(', ')}`;
+    }
+  };
+
+  const validateField = (name, value) => {
+    const newErrors = { ...errors };
+    
+    switch (name) {
+      case 'nome':
+      case 'sobrenome':
+      case 'nomeResponsavel':
+        if (!value.trim()) {
+          newErrors[name] = 'Este campo é obrigatório';
+        } else {
+          delete newErrors[name];
+        }
+        break;
+      case 'dataNascimento':
+        if (!value.trim()) {
+          newErrors[name] = 'Data de nascimento é obrigatória';
+        } else {
+          delete newErrors[name];
+        }
+        break;
+      case 'cep':
+        if (!value.trim()) {
+          newErrors[name] = 'CEP é obrigatório';
+        } else if (value.replace(/\D/g, '').length !== 8) {
+          newErrors[name] = 'CEP deve ter 8 dígitos';
+        } else {
+          delete newErrors[name];
+        }
+        break;
+      case 'logradouro':
+      case 'numero':
+      case 'bairro':
+      case 'cidade':
+        if (!value.trim()) {
+          newErrors[name] = 'Este campo é obrigatório';
+        } else {
+          delete newErrors[name];
+        }
+        break;
+      case 'telefone':
+      case 'telefoneResponsavel':
+        if (!value.trim()) {
+          newErrors[name] = 'Telefone é obrigatório';
+        } else {
+          delete newErrors[name];
+        }
+        break;
+      case 'instagram':
+        if (!value.trim()) {
+          newErrors[name] = 'Instagram é obrigatório';
+        } else {
+          delete newErrors[name];
+        }
+        break;
+      case 'email':
+        if (!value.trim()) {
+          newErrors[name] = 'Email é obrigatório';
+        } else if (!/\S+@\S+\.\S+/.test(value)) {
+          newErrors[name] = 'Email inválido';
+        } else {
+          delete newErrors[name];
+        }
+        break;
+      case 'senha':
+        if (!value.trim()) {
+          newErrors[name] = 'Senha é obrigatória';
+        } else if (value.length < 6) {
+          newErrors[name] = 'Senha deve ter pelo menos 6 caracteres';
+        } else if (!/[A-Z]/.test(value) || !/[a-z]/.test(value) || !/[0-9]/.test(value)) {
+          newErrors[name] = 'Senha deve ter 1 letra maiúscula, 1 minúscula e 1 número';
+        } else {
+          delete newErrors[name];
+        }
+        break;
+      case 'confirmarSenha':
+        if (!value.trim()) {
+          newErrors[name] = 'Confirmação de senha é obrigatória';
+        } else if (value !== formData.senha) {
+          newErrors[name] = 'Senhas não coincidem';
+        } else {
+          delete newErrors[name];
+        }
+        break;
+      case 'foto':
+      case 'certidaoBatismo':
+      case 'certidaoEucaristia':
+      case 'rg':
+        if (!value) {
+          newErrors[name] = 'Este documento é obrigatório';
+        } else {
+          delete newErrors[name];
+        }
+        break;
+      default:
+        break;
+    }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -53,6 +177,16 @@ export default function InscreverCrismando() {
       ...prev,
       [name]: value
     }));
+    
+    // Atualizar feedback da senha em tempo real
+    if (name === 'senha') {
+      setPasswordFeedback(getPasswordRequirements(value));
+    }
+    
+    // Validar campo em tempo real se já houve erro
+    if (errors[name]) {
+      validateField(name, value);
+    }
   };
 
   const buscarCep = async (cep) => {
@@ -76,11 +210,10 @@ export default function InscreverCrismando() {
           cidade: data.localidade || ''
         }));
       } else {
-        alert('CEP não encontrado. Verifique o número digitado.');
+        console.log('CEP não encontrado');
       }
     } catch (error) {
       console.error('Erro ao buscar CEP:', error);
-      alert('Erro ao buscar CEP. Tente novamente.');
     } finally {
       setLoadingCep(false);
     }
@@ -131,19 +264,84 @@ export default function InscreverCrismando() {
           [fieldName]: 'uploaded'
         }));
       }
+      
+      // Validar campo de arquivo
+      validateField(fieldName, file);
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     
+    // Validar todos os campos obrigatórios
+    const fieldsToValidate = [
+      'nome', 'sobrenome', 'dataNascimento', 'cep', 'logradouro', 'numero', 
+      'bairro', 'cidade', 'telefone', 'instagram', 'email', 'senha', 
+      'confirmarSenha', 'nomeResponsavel', 'telefoneResponsavel', 
+      'foto', 'certidaoBatismo', 'certidaoEucaristia', 'rg'
+    ];
+    
+    let hasErrors = false;
+    let firstErrorField = null;
+    
+    fieldsToValidate.forEach(field => {
+      const value = ['foto', 'certidaoBatismo', 'certidaoEucaristia', 'rg'].includes(field) 
+        ? formData[field] 
+        : formData[field];
+      const isValid = validateField(field, value);
+      if (!isValid) {
+        hasErrors = true;
+        if (!firstErrorField) {
+          firstErrorField = field;
+        }
+      }
+    });
+    
+    if (hasErrors) {
+      // Fazer scroll para o primeiro campo com erro
+      if (firstErrorField) {
+        let element;
+        
+        // Para campos de arquivo, buscar o container de upload mais próximo
+        if (['foto', 'certidaoBatismo', 'certidaoEucaristia', 'rg'].includes(firstErrorField)) {
+          if (firstErrorField === 'foto') {
+            element = document.querySelector('input[accept=".jpg,.jpeg,.png"]');
+          } else {
+            const fileInputs = document.querySelectorAll('input[accept=".pdf,.jpg,.jpeg,.png"]');
+            if (firstErrorField === 'certidaoBatismo') {
+              element = fileInputs[0];
+            } else if (firstErrorField === 'certidaoEucaristia') {
+              element = fileInputs[1];
+            } else if (firstErrorField === 'rg') {
+              element = fileInputs[2];
+            }
+          }
+        } else {
+          // Para campos normais, buscar pelo ID
+          element = document.getElementById(firstErrorField);
+        }
+        
+        if (element) {
+          element.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'center',
+            inline: 'nearest'
+          });
+          
+          // Focar no campo se não for um campo de arquivo
+          if (!['foto', 'certidaoBatismo', 'certidaoEucaristia', 'rg'].includes(firstErrorField)) {
+            setTimeout(() => element.focus(), 300);
+          }
+        }
+      }
+      return;
+    }
+    
     if (formData.senha !== formData.confirmarSenha) {
-      alert('As senhas não coincidem. Por favor, verifique e tente novamente.');
       return;
     }
     
     if (formData.senha.length < 6) {
-      alert('A senha deve ter pelo menos 6 caracteres.');
       return;
     }
     
@@ -153,7 +351,6 @@ export default function InscreverCrismando() {
       enderecoCompleto: `${formData.logradouro}, ${formData.numero}${formData.complemento ? ', ' + formData.complemento : ''}, ${formData.bairro}, ${formData.cidade}, CEP: ${formData.cep}`
     };
     
-    alert('Inscrição de crismando enviada com sucesso! Em breve entraremos em contato.');
     console.log('Dados do formulário:', dadosCompletos);
   };
 
@@ -182,12 +379,12 @@ export default function InscreverCrismando() {
               
               <div className={styles.photoSection}>
                 <div className={styles.uploadGroup}>
-                  <label className={styles.uploadLabel}>
+                  <label className={`${styles.uploadLabel} ${errors.foto ? styles.uploadLabelError : ''}`}>
                     {imagePreview.foto && imagePreview.foto !== 'uploaded' ? (
                       <img src={imagePreview.foto} alt="Foto para perfil" className={styles.uploadedPhoto} />
                     ) : (
                       <>
-                        <FaUpload className={styles.uploadIcon} />
+                        <FaUpload className={`${styles.uploadIcon} ${errors.foto && !formData.foto ? styles.uploadIconError : ''}`} />
                         <span>Foto para perfil *</span>
                       </>
                     )}
@@ -430,7 +627,8 @@ export default function InscreverCrismando() {
                       name="senha"
                       value={formData.senha}
                       onChange={handleInputChange}
-                      className={styles.input}
+                      onBlur={(e) => validateField('senha', e.target.value)}
+                      className={`${styles.input} ${errors.senha ? styles.inputError : ''}`}
                       placeholder="Mínimo 6 caracteres"
                       minLength="6"
                       required
@@ -443,6 +641,11 @@ export default function InscreverCrismando() {
                       {showPassword ? <FaEyeSlash /> : <FaEye />}
                     </button>
                   </div>
+                  {passwordFeedback && (
+                    <span className={`${styles.passwordFeedback} ${passwordFeedback.includes('✓') ? styles.valid : styles.invalid}`}>
+                      {passwordFeedback}
+                    </span>
+                  )}
                 </div>
 
                 <div className={styles.formGroup}>
@@ -457,7 +660,8 @@ export default function InscreverCrismando() {
                       name="confirmarSenha"
                       value={formData.confirmarSenha}
                       onChange={handleInputChange}
-                      className={styles.input}
+                      onBlur={(e) => validateField('confirmarSenha', e.target.value)}
+                      className={`${styles.input} ${errors.confirmarSenha ? styles.inputError : ''}`}
                       placeholder="Digite a senha novamente"
                       minLength="6"
                       required
@@ -470,6 +674,7 @@ export default function InscreverCrismando() {
                       {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
                     </button>
                   </div>
+                  {errors.confirmarSenha && <span className={styles.errorMessage}>{errors.confirmarSenha}</span>}
                 </div>
               </div>
             </section>
@@ -525,7 +730,7 @@ export default function InscreverCrismando() {
               
               <div className={styles.uploadGrid}>
                 <div className={styles.uploadGroup}>
-                  <label className={styles.uploadLabel}>
+                  <label className={`${styles.uploadLabel} ${errors.certidaoBatismo ? styles.uploadLabelError : ''}`}>
                     {imagePreview.certidaoBatismo && imagePreview.certidaoBatismo !== 'uploaded' ? (
                       <img src={imagePreview.certidaoBatismo} alt="Certidão de Batismo" className={styles.uploadedDocumentImage} />
                     ) : imagePreview.certidaoBatismo === 'uploaded' ? (
@@ -535,7 +740,7 @@ export default function InscreverCrismando() {
                       </>
                     ) : (
                       <>
-                        <FaUpload className={styles.uploadIcon} />
+                        <FaUpload className={`${styles.uploadIcon} ${errors.certidaoBatismo && !formData.certidaoBatismo ? styles.uploadIconError : ''}`} />
                         <span>Clique para enviar</span>
                       </>
                     )}
@@ -552,7 +757,7 @@ export default function InscreverCrismando() {
                 </div>
 
                 <div className={styles.uploadGroup}>
-                  <label className={styles.uploadLabel}>
+                  <label className={`${styles.uploadLabel} ${errors.certidaoEucaristia ? styles.uploadLabelError : ''}`}>
                     {imagePreview.certidaoEucaristia && imagePreview.certidaoEucaristia !== 'uploaded' ? (
                       <img src={imagePreview.certidaoEucaristia} alt="Certidão de Primeira Eucaristia" className={styles.uploadedDocumentImage} />
                     ) : imagePreview.certidaoEucaristia === 'uploaded' ? (
@@ -562,7 +767,7 @@ export default function InscreverCrismando() {
                       </>
                     ) : (
                       <>
-                        <FaUpload className={styles.uploadIcon} />
+                        <FaUpload className={`${styles.uploadIcon} ${errors.certidaoEucaristia && !formData.certidaoEucaristia ? styles.uploadIconError : ''}`} />
                         <span>Clique para enviar</span>
                       </>
                     )}
@@ -579,7 +784,7 @@ export default function InscreverCrismando() {
                 </div>
 
                 <div className={styles.uploadGroup}>
-                  <label className={styles.uploadLabel}>
+                  <label className={`${styles.uploadLabel} ${errors.rg ? styles.uploadLabelError : ''}`}>
                     {imagePreview.rg && imagePreview.rg !== 'uploaded' ? (
                       <img src={imagePreview.rg} alt="RG (Documento de Identidade)" className={styles.uploadedDocumentImage} />
                     ) : imagePreview.rg === 'uploaded' ? (
@@ -589,7 +794,7 @@ export default function InscreverCrismando() {
                       </>
                     ) : (
                       <>
-                        <FaUpload className={styles.uploadIcon} />
+                        <FaUpload className={`${styles.uploadIcon} ${errors.rg && !formData.rg ? styles.uploadIconError : ''}`} />
                         <span>Clique para enviar</span>
                       </>
                     )}

@@ -3,11 +3,12 @@ import { useState } from 'react';
 import styles from './Inscrevercoordenador.module.css';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
-import { FaUserTie, FaUser, FaEnvelope, FaPhone, FaLock, FaUpload, FaCheck, FaCamera } from 'react-icons/fa';
+import { FaUserTie, FaUser, FaEnvelope, FaPhone, FaLock, FaUpload, FaCheck, FaCamera, FaEye, FaEyeSlash } from 'react-icons/fa';
 
 export default function InscreverCoordenador() {
   const [formData, setFormData] = useState({
-    nomeCompleto: '',
+    nome: '',
+    sobrenome: '',
     telefone: '',
     email: '',
     senha: '',
@@ -20,6 +21,100 @@ export default function InscreverCoordenador() {
   });
 
   const [imagePreview, setImagePreview] = useState(null);
+  const [errors, setErrors] = useState({});
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [passwordFeedback, setPasswordFeedback] = useState('');
+
+  const getPasswordRequirements = (password) => {
+    const requirements = [];
+    const hasMinLength = password.length >= 6;
+    const hasUpperCase = /[A-Z]/.test(password);
+    const hasLowerCase = /[a-z]/.test(password);
+    const hasNumber = /[0-9]/.test(password);
+
+    if (!hasMinLength) requirements.push('6 caracteres');
+    if (!hasUpperCase) requirements.push('1 letra maiúscula');
+    if (!hasLowerCase) requirements.push('1 letra minúscula');
+    if (!hasNumber) requirements.push('1 número');
+
+    if (requirements.length === 0) {
+      return 'Senha válida!';
+    } else if (password.length === 0) {
+      return 'Digite uma senha com 6 caracteres, 1 maiúscula, 1 minúscula e 1 número';
+    } else {
+      return `Ainda falta: ${requirements.join(', ')}`;
+    }
+  };
+
+  const validateField = (name, value) => {
+    const newErrors = { ...errors };
+    
+    switch (name) {
+      case 'nome':
+        if (!value.trim()) {
+          newErrors[name] = 'Nome é obrigatório';
+        } else {
+          delete newErrors[name];
+        }
+        break;
+      case 'sobrenome':
+        if (!value.trim()) {
+          newErrors[name] = 'Sobrenome completo é obrigatório';
+        } else {
+          delete newErrors[name];
+        }
+        break;
+      case 'telefone':
+        if (!value.trim()) {
+          newErrors[name] = 'Telefone é obrigatório';
+        } else {
+          delete newErrors[name];
+        }
+        break;
+      case 'email':
+        if (!value.trim()) {
+          newErrors[name] = 'Email é obrigatório';
+        } else if (!/\S+@\S+\.\S+/.test(value)) {
+          newErrors[name] = 'Email inválido';
+        } else {
+          delete newErrors[name];
+        }
+        break;
+      case 'senha':
+        if (!value.trim()) {
+          newErrors[name] = 'Senha é obrigatória';
+        } else if (value.length < 6) {
+          newErrors[name] = 'Senha deve ter pelo menos 6 caracteres';
+        } else if (!/[A-Z]/.test(value) || !/[a-z]/.test(value) || !/[0-9]/.test(value)) {
+          newErrors[name] = 'Senha deve ter 1 letra maiúscula, 1 minúscula e 1 número';
+        } else {
+          delete newErrors[name];
+        }
+        break;
+      case 'confirmarSenha':
+        if (!value.trim()) {
+          newErrors[name] = 'Confirmação de senha é obrigatória';
+        } else if (value !== formData.senha) {
+          newErrors[name] = 'Senhas não coincidem';
+        } else {
+          delete newErrors[name];
+        }
+        break;
+      case 'fotoPerfil':
+        if (!value) {
+          newErrors[name] = 'Foto de perfil é obrigatória';
+        } else {
+          delete newErrors[name];
+        }
+        break;
+      default:
+        break;
+    }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -27,6 +122,14 @@ export default function InscreverCoordenador() {
       ...prev,
       [name]: value
     }));
+    
+    if (name === 'senha') {
+      setPasswordFeedback(getPasswordRequirements(value));
+    }
+    
+    if (errors[name]) {
+      validateField(name, value);
+    }
   };
 
   const handleFileChange = (e) => {
@@ -47,24 +150,62 @@ export default function InscreverCoordenador() {
         setImagePreview(e.target.result);
       };
       reader.readAsDataURL(file);
+      
+      validateField('fotoPerfil', file);
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     
+    const fieldsToValidate = ['nome', 'sobrenome', 'telefone', 'email', 'senha', 'confirmarSenha', 'fotoPerfil'];
+    let hasErrors = false;
+    let firstErrorField = null;
+    
+    fieldsToValidate.forEach(field => {
+      const value = field === 'fotoPerfil' ? formData.fotoPerfil : formData[field];
+      const isValid = validateField(field, value);
+      if (!isValid) {
+        hasErrors = true;
+        if (!firstErrorField) {
+          firstErrorField = field;
+        }
+      }
+    });
+    
+    if (hasErrors) {
+      if (firstErrorField) {
+        const element = firstErrorField === 'fotoPerfil' 
+          ? document.querySelector('input[type="file"]')
+          : document.getElementById(firstErrorField);
+        
+        if (element) {
+          element.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'center',
+            inline: 'nearest'
+          });
+  
+          if (firstErrorField !== 'fotoPerfil') {
+            setTimeout(() => element.focus(), 300);
+          }
+        }
+      }
+      return;
+    }
+    
     if (formData.senha !== formData.confirmarSenha) {
-      alert('As senhas não coincidem. Por favor, verifique e tente novamente.');
       return;
     }
     
     if (formData.senha.length < 6) {
-      alert('A senha deve ter pelo menos 6 caracteres.');
       return;
     }
     
-    alert('Cadastro de coordenador realizado com sucesso! Em breve entraremos em contato.');
-    console.log('Dados do coordenador:', formData);
+    console.log('Dados do coordenador:', {
+      ...formData,
+      nomeCompleto: `${formData.nome} ${formData.sobrenome}`.trim()
+    });
   };
 
   return (
@@ -92,18 +233,37 @@ export default function InscreverCoordenador() {
               
               <div className={styles.formGrid}>
                 <div className={styles.formGroup}>
-                  <label htmlFor="nomeCompleto" className={styles.label}>
+                  <label htmlFor="nome" className={styles.label}>
                     <FaUser className={styles.labelIcon} />
-                    Nome Completo *
+                    Nome *
                   </label>
                   <input
                     type="text"
-                    id="nomeCompleto"
-                    name="nomeCompleto"
-                    value={formData.nomeCompleto}
+                    id="nome"
+                    name="nome"
+                    value={formData.nome}
                     onChange={handleInputChange}
-                    className={styles.input}
-                    placeholder="Digite seu nome completo"
+                    onBlur={(e) => validateField('nome', e.target.value)}
+                    className={`${styles.input} ${errors.nome ? styles.inputError : ''}`}
+                    placeholder="Digite seu nome"
+                    required
+                  />
+                </div>
+
+                <div className={styles.formGroup}>
+                  <label htmlFor="sobrenome" className={styles.label}>
+                    <FaUser className={styles.labelIcon} />
+                    Sobrenome Completo *
+                  </label>
+                  <input
+                    type="text"
+                    id="sobrenome"
+                    name="sobrenome"
+                    value={formData.sobrenome}
+                    onChange={handleInputChange}
+                    onBlur={(e) => validateField('sobrenome', e.target.value)}
+                    className={`${styles.input} ${errors.sobrenome ? styles.inputError : ''}`}
+                    placeholder="Digite seu sobrenome completo"
                     required
                   />
                 </div>
@@ -119,7 +279,8 @@ export default function InscreverCoordenador() {
                     name="telefone"
                     value={formData.telefone}
                     onChange={handleInputChange}
-                    className={styles.input}
+                    onBlur={(e) => validateField('telefone', e.target.value)}
+                    className={`${styles.input} ${errors.telefone ? styles.inputError : ''}`}
                     placeholder="(00) 00000-0000"
                     required
                   />
@@ -136,7 +297,8 @@ export default function InscreverCoordenador() {
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    className={styles.input}
+                    onBlur={(e) => validateField('email', e.target.value)}
+                    className={`${styles.input} ${errors.email ? styles.inputError : ''}`}
                     placeholder="seuemail@exemplo.com"
                     required
                   />
@@ -147,17 +309,32 @@ export default function InscreverCoordenador() {
                     <FaLock className={styles.labelIcon} />
                     Senha *
                   </label>
-                  <input
-                    type="password"
-                    id="senha"
-                    name="senha"
-                    value={formData.senha}
-                    onChange={handleInputChange}
-                    className={styles.input}
-                    placeholder="Mínimo 6 caracteres"
-                    minLength="6"
-                    required
-                  />
+                  <div className={styles.passwordContainer}>
+                    <input
+                      type={showPassword ? "text" : "password"}
+                      id="senha"
+                      name="senha"
+                      value={formData.senha}
+                      onChange={handleInputChange}
+                      onBlur={(e) => validateField('senha', e.target.value)}
+                      className={`${styles.input} ${errors.senha ? styles.inputError : ''}`}
+                      placeholder="Mínimo 6 caracteres"
+                      minLength="6"
+                      required
+                    />
+                    <button
+                      type="button"
+                      className={styles.eyeButton}
+                      onClick={() => setShowPassword(!showPassword)}
+                    >
+                      {showPassword ? <FaEyeSlash /> : <FaEye />}
+                    </button>
+                  </div>
+                  {passwordFeedback && (
+                    <span className={`${styles.passwordFeedback} ${passwordFeedback.includes('✓') ? styles.valid : styles.invalid}`}>
+                      {passwordFeedback}
+                    </span>
+                  )}
                 </div>
 
                 <div className={styles.formGroup}>
@@ -165,17 +342,28 @@ export default function InscreverCoordenador() {
                     <FaLock className={styles.labelIcon} />
                     Confirmar Senha *
                   </label>
-                  <input
-                    type="password"
-                    id="confirmarSenha"
-                    name="confirmarSenha"
-                    value={formData.confirmarSenha}
-                    onChange={handleInputChange}
-                    className={styles.input}
-                    placeholder="Digite a senha novamente"
-                    minLength="6"
-                    required
-                  />
+                  <div className={styles.passwordContainer}>
+                    <input
+                      type={showConfirmPassword ? "text" : "password"}
+                      id="confirmarSenha"
+                      name="confirmarSenha"
+                      value={formData.confirmarSenha}
+                      onChange={handleInputChange}
+                      onBlur={(e) => validateField('confirmarSenha', e.target.value)}
+                      className={`${styles.input} ${errors.confirmarSenha ? styles.inputError : ''}`}
+                      placeholder="Digite a senha novamente"
+                      minLength="6"
+                      required
+                    />
+                    <button
+                      type="button"
+                      className={styles.eyeButton}
+                      onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                    >
+                      {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
+                    </button>
+                  </div>
+                  {errors.confirmarSenha && <span className={styles.errorMessage}>{errors.confirmarSenha}</span>}
                 </div>
               </div>
             </section>
@@ -188,7 +376,7 @@ export default function InscreverCoordenador() {
               
               <div className={styles.uploadContainer}>
                 <div className={styles.uploadGroup}>
-                  <label className={styles.uploadLabel}>
+                  <label className={`${styles.uploadLabel} ${errors.fotoPerfil ? styles.uploadLabelError : ''}`}>
                     {imagePreview ? (
                       <img 
                         src={imagePreview} 
@@ -197,7 +385,7 @@ export default function InscreverCoordenador() {
                       />
                     ) : (
                       <>
-                        <FaUpload className={styles.uploadIcon} />
+                        <FaUpload className={`${styles.uploadIcon} ${errors.fotoPerfil && !formData.fotoPerfil ? styles.uploadIconError : ''}`} />
                         <span>Foto de Perfil *</span>
                       </>
                     )}
