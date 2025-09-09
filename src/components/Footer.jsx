@@ -57,7 +57,7 @@ export default function Footer() {
       <div className={styles.callToAction}>
         <div className={styles.ctaContent}>
           <HiHeart className={styles.ctaIcon} />
-          <p>Quer participar? <a href="/contato" className={styles.contactLink}>Entre em contato</a></p>
+          <p>Quer participar? <a href="/inscreverse" className={styles.contactLink}>Inscreva-se</a></p>
         </div>
       </div>
 
@@ -73,6 +73,7 @@ export default function Footer() {
             >
               Desenvolvido por Enzo Turcovic 
               <FaInstagram className={styles.instagramIcon} />
+              <span>@turco.vic</span>
             </a>
           </p>
         </div>

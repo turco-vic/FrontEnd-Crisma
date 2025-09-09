@@ -4,18 +4,21 @@
     padding: 0;
     display: flex;
     flex-direction: column;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 .hero {
     background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
     color: #ffffff;
-    padding: 8rem 1rem 4rem;
+    padding: 6rem 1rem 4rem;
     text-align: center;
     position: relative;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 60px;
 }
 
 .title1 {
@@ -46,6 +49,19 @@
     flex-direction: column;
     gap: 3rem;
     flex: 1;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.mainContent {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
 }
 
 .mainInfo {
@@ -310,6 +326,58 @@
     color: #3498db;
 }
 
+@media (min-width: 64rem) {
+    .content {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        grid-template-areas: 
+            "main sidebar"
+            "cta cta";
+        gap: 3rem;
+        align-items: start;
+    }
+
+    .mainContent {
+        grid-area: main;
+    }
+
+    .sidebar {
+        grid-area: sidebar;
+    }
+
+    .callToAction {
+        grid-area: cta;
+        margin: 2rem 0 0;
+    }
+}
+
+@media (max-width: 64rem) and (min-width: 48rem) {
+    .content {
+        gap: 2rem;
+        padding: 3rem 2rem;
+    }
+
+    .title1 {
+        font-size: 3rem;
+    }
+
+    .cardHeader h2 {
+        font-size: 1rem;
+    }
+
+    .contactItem {
+        padding: 1rem;
+    }
+
+    .step {
+        padding: 1rem;
+    }
+
+    .hero {
+        margin-top: 60px;
+    }
+}
+
 @media (max-width: 64rem) {
     .content {
         gap: 2rem;
@@ -319,15 +387,20 @@
     .title1 {
         font-size: 3rem;
     }
+
+    .hero {
+        margin-top: 60px;
+    }
 }
 
 @media (max-width: 48rem) {
     .hero {
-        padding: 8rem 1rem 3rem;
+        padding: 4rem 1rem 3rem;
+        margin-top: 60px;
     }
 
     .title1 {
-        font-size: 3rem;
+        font-size: 2rem;
     }
 
     .subtitle1 {
@@ -336,28 +409,42 @@
 
     .content {
         padding: 2rem 1rem;
+        gap: 2rem;
     }
 
     .cardHeader {
-        padding: 1rem 2rem;
+        padding: 1rem;
         flex-direction: column;
         text-align: center;
         gap: 1rem;
     }
 
+    .cardHeader h2 {
+        font-size: 1rem;
+    }
+
     .cardContent {
-        padding: 2rem 1rem;
+        padding: 1rem;
     }
 
     .contactItem {
         flex-direction: column;
         align-items: flex-start;
         gap: 1rem;
-        padding: 1rem 1rem;
+        padding: 1rem;
     }
 
     .icon {
         margin-top: 0;
+        font-size: 1rem;
+    }
+
+    .contactText h3 {
+        font-size: 1rem;
+    }
+
+    .contactText p {
+        font-size: 1rem;
     }
 
     .scheduleDay {
@@ -366,26 +453,48 @@
         gap: 1rem;
     }
 
+    .day {
+        font-size: 1rem;
+    }
+
     .time {
         align-self: flex-start;
+        font-size: 1rem;
+        padding: 1rem;
     }
 
     .step {
         flex-direction: column;
         text-align: center;
         gap: 1rem;
+        padding: 1rem;
     }
 
     .stepNumber {
         align-self: center;
+        width: 2rem;
+        height: 2rem;
+        font-size: 1rem;
+    }
+
+    .stepContent h4 {
+        font-size: 1rem;
+    }
+
+    .stepContent p {
+        font-size: 1rem;
     }
 
     .callToAction {
-        padding: 3rem 1rem;
-        margin: 1rem 1rem 0;
+        padding: 2rem 1rem;
+        margin: 1rem 0 0;
     }
 
     .title2 {
+        font-size: 2rem;
+    }
+
+    .ctaIcon {
         font-size: 2rem;
     }
 
@@ -399,44 +508,93 @@
     }
 }
 
-@media (max-width: 30rem) {
+@media (max-width: 375px) {
     .hero {
-        padding: 6rem 1rem 2rem;
+        padding: 3rem 1rem 2rem;
+        margin-top: 60px;
     }
 
     .title1 {
         font-size: 2rem;
     }
 
-    .content {
-        padding: 1rem 1rem;
+    .subtitle1 {
+        font-size: 1rem;
     }
 
-    .card {
-        border-radius: 1rem;
+    .content {
+        padding: 1rem;
+        gap: 1rem;
     }
 
     .cardHeader {
-        padding: 1rem 1rem;
+        padding: 1rem;
+    }
+
+    .cardHeader h2 {
+        font-size: 1rem;
     }
 
     .cardContent {
-        padding: 1rem 1rem;
+        padding: 1rem;
     }
 
     .contactItem {
         padding: 1rem;
+        gap: 1rem;
+    }
+
+    .contactText h3 {
+        font-size: 1rem;
+    }
+
+    .contactText p {
+        font-size: 1rem;
     }
 
     .scheduleItem {
-        padding: 1rem 1rem;
+        padding: 1rem;
     }
 
     .step {
         padding: 1rem;
     }
 
+    .stepNumber {
+        width: 2rem;
+        height: 2rem;
+        font-size: 1rem;
+    }
+
+    .stepContent h4 {
+        font-size: 1rem;
+    }
+
+    .stepContent p {
+        font-size: 1rem;
+    }
+
     .callToAction {
-        margin: 1rem 1rem 0;
+        margin: 1rem 0 0;
+        padding: 1rem;
+    }
+
+    .title2 {
+        font-size: 2rem;
+    }
+
+    .ctaIcon {
+        font-size: 1rem;
+    }
+
+    .callToAction p {
+        font-size: 1rem;
+    }
+
+    .ctaButton {
+        padding: 1rem;
+        font-size: 1rem;
+        width: 100%;
+        border-radius: 1rem;
     }
 }

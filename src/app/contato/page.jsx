@@ -19,88 +19,92 @@ export default function Contato() {
         </div>
 
         <div className={styles.content}>
-          <div className={styles.mainInfo}>
-            <div className={styles.card}>
-              <div className={styles.cardHeader}>
-                <FaChurch className={styles.cardIcon} />
-                <h2>Paróquia Sant'Ana Sousas</h2>
-              </div>
-              <div className={styles.cardContent}>
-                <div className={styles.contactItem}>
-                  <HiLocationMarker className={styles.icon} />
-                  <div className={styles.contactText}>
-                    <h3>Endereço</h3>
-                    <p>R. Siqueira Campos, 90</p>
-                    <p>Sousas - Campinas/SP</p>
-                    <p>CEP: 13106-006</p>
-                  </div>
+          <div className={styles.mainContent}>
+            <div className={styles.mainInfo}>
+              <div className={styles.card}>
+                <div className={styles.cardHeader}>
+                  <FaChurch className={styles.cardIcon} />
+                  <h2>Paróquia Sant'Ana Sousas</h2>
                 </div>
+                <div className={styles.cardContent}>
+                  <div className={styles.contactItem}>
+                    <HiLocationMarker className={styles.icon} />
+                    <div className={styles.contactText}>
+                      <h3>Endereço</h3>
+                      <p>R. Siqueira Campos, 90</p>
+                      <p>Sousas - Campinas/SP</p>
+                      <p>CEP: 13106-006</p>
+                    </div>
+                  </div>
 
-                <div className={styles.contactItem}>
-                  <HiPhone className={styles.icon} />
-                  <div className={styles.contactText}>
-                    <h3>Telefone</h3>
-                    <p>(19) 3258-2263</p>
+                  <div className={styles.contactItem}>
+                    <HiPhone className={styles.icon} />
+                    <div className={styles.contactText}>
+                      <h3>Telefone</h3>
+                      <p>(19) 3258-2263</p>
+                    </div>
                   </div>
-                </div>
 
-                <div className={styles.contactItem}>
-                  <HiMail className={styles.icon} />
-                  <div className={styles.contactText}>
-                    <h3>E-mails</h3>
-                    <p>crismamatrizsousas@gmail.com</p>
-                    <p>santanasousas@arquidiocesecampinas.com</p>
+                  <div className={styles.contactItem}>
+                    <HiMail className={styles.icon} />
+                    <div className={styles.contactText}>
+                      <h3>E-mails</h3>
+                      <p>crismamatrizsousas@gmail.com</p>
+                      <p>santanasousas@arquidiocesecampinas.com</p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div className={styles.card}>
-              <div className={styles.cardHeader}>
-                <HiClock className={styles.cardIcon} />
-                <h2>Horários da Crisma</h2>
-              </div>
-              <div className={styles.cardContent}>
-                <div className={styles.scheduleItem}>
-                  <div className={styles.scheduleDay}>
-                    <span className={styles.day}>Sábados</span>
-                    <span className={styles.time}>09h00 às 10h30</span>
-                  </div>
+              <div className={styles.card}>
+                <div className={styles.cardHeader}>
+                  <HiClock className={styles.cardIcon} />
+                  <h2>Horários da Crisma</h2>
                 </div>
-                <div className={styles.scheduleNote}>
-                  <p><strong>Importante:</strong> Compareça pontualmente aos encontros para um melhor aproveitamento da formação.</p>
+                <div className={styles.cardContent}>
+                  <div className={styles.scheduleItem}>
+                    <div className={styles.scheduleDay}>
+                      <span className={styles.day}>Sábados</span>
+                      <span className={styles.time}>09h00 às 10h30</span>
+                    </div>
+                  </div>
+                  <div className={styles.scheduleNote}>
+                    <p><strong>Importante:</strong> Compareça pontualmente aos encontros para um melhor aproveitamento da formação.</p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className={styles.sideInfo}>
-            <div className={styles.card}>
-              <div className={styles.cardHeader}>
-                <HiUsers className={styles.cardIcon} />
-                <h2>Como Participar</h2>
-              </div>
-              <div className={styles.cardContent}>
-                <div className={styles.participationSteps}>
-                  <div className={styles.step}>
-                    <div className={styles.stepNumber}>1</div>
-                    <div className={styles.stepContent}>
-                      <h4>Entre em Contato</h4>
-                      <p>Ligue ou envie um e-mail para se informar sobre as inscrições</p>
+          <div className={styles.sidebar}>
+            <div className={styles.sideInfo}>
+              <div className={styles.card}>
+                <div className={styles.cardHeader}>
+                  <HiUsers className={styles.cardIcon} />
+                  <h2>Como Participar</h2>
+                </div>
+                <div className={styles.cardContent}>
+                  <div className={styles.participationSteps}>
+                    <div className={styles.step}>
+                      <div className={styles.stepNumber}>1</div>
+                      <div className={styles.stepContent}>
+                        <h4>Entre em Contato</h4>
+                        <p>Ligue ou envie um e-mail para se informar sobre as inscrições</p>
+                      </div>
                     </div>
-                  </div>
-                  <div className={styles.step}>
-                    <div className={styles.stepNumber}>2</div>
-                    <div className={styles.stepContent}>
-                      <h4>Faça sua Inscrição</h4>
-                      <p>Compareça na paróquia com os documentos necessários</p>
+                    <div className={styles.step}>
+                      <div className={styles.stepNumber}>2</div>
+                      <div className={styles.stepContent}>
+                        <h4>Faça sua Inscrição</h4>
+                        <p>Compareça na paróquia com os documentos necessários</p>
+                      </div>
                     </div>
-                  </div>
-                  <div className={styles.step}>
-                    <div className={styles.stepNumber}>3</div>
-                    <div className={styles.stepContent}>
-                      <h4>Participe dos Encontros</h4>
-                      <p>Compareça aos sábados para a formação</p>
+                    <div className={styles.step}>
+                      <div className={styles.stepNumber}>3</div>
+                      <div className={styles.stepContent}>
+                        <h4>Participe dos Encontros</h4>
+                        <p>Compareça aos sábados para a formação</p>
+                      </div>
                     </div>
                   </div>
                 </div>

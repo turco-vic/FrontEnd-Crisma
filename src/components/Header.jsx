@@ -21,16 +21,16 @@ export default function Header() {
   return (
     <div className={styles.container}>
       <Link href="/" className={styles.logoSection}>
-        <Image 
-          src="/images/logosite.png" 
-          alt="Logo Crisma Sousas" 
-          width={50} 
+        <Image
+          src="/images/logosite.png"
+          alt="Logo Crisma Sousas"
+          width={50}
           height={50}
           className={styles.logo}
         />
         <h1 className={styles.title}>Crisma Sousas</h1>
       </Link>
-      
+
       <div
         className={`${styles.menuIcon} ${menuOpen ? styles.active : ''}`}
         onClick={() => setMenuOpen(!menuOpen)}
@@ -44,10 +44,10 @@ export default function Header() {
       <div className={`${styles.menuContainer} ${menuOpen ? styles.open : ''}`}>
         <nav className={styles.menuLinks}>
           {pages.map(page => (
-            <a 
-              key={page.href} 
-              href={page.href} 
-              className={styles.menuLink} 
+            <a
+              key={page.href}
+              href={page.href}
+              className={styles.menuLink}
               onClick={() => setMenuOpen(false)}
             >
               {page.name}
@@ -55,24 +55,20 @@ export default function Header() {
           ))}
         </nav>
         <div className={styles.menuFooter}>
-          <p className={styles.menuFooterText}>
-            Desenvolvido por Enzo Turcovic
-          </p>
-          <a 
-            href="https://instagram.com/turco.vic" 
-            target="_blank" 
+          <a
+            href="https://instagram.com/turco.vic"
+            target="_blank"
             rel="noopener noreferrer"
             className={styles.instagramLink}
           >
-            <FaInstagram className={styles.instagramIcon} />
-            <span>@turco.vic</span>
+            Desenvolvido por Enzo Turcovic
           </a>
         </div>
       </div>
 
       {menuOpen && (
-        <div 
-          className={styles.overlay} 
+        <div
+          className={styles.overlay}
           onClick={() => setMenuOpen(false)}
         />
       )}

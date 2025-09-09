@@ -119,25 +119,14 @@
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.menuFooterText {
-  color: #bdc3c7;
-  font-size: 1rem;
-  text-align: center;
-  margin: 0 0 1rem 0;
-  line-height: 1.4;
-}
-
 .instagramLink {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
   color: #bdc3c7;
   text-decoration: none;
-  font-size: 1rem;
+  font-size: 0.9rem;
   transition: all 0.3s ease;
-  padding: 1rem;
-  border-radius: 1rem;
 }
 
 .instagramLink:hover {
