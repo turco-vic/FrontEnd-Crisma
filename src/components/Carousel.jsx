@@ -88,6 +88,7 @@ export default function CarouselComponent() {
                       type="primary" 
                       size="large"
                       className={styles.slideButton}
+                      onClick={() => window.location.href = `/saibamaisevento?id=${event.id}`}
                     >
                       Saiba Mais
                     </Button>

@@ -1,0 +1,648 @@
+.container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.hero {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    color: white;
+    padding: 6rem 2rem 4rem;
+    margin-top: 80px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.05);
+    z-index: 0;
+}
+
+.heroContent {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.backButton {
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.25rem;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.backButton:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: scale(1.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.heroText {
+    text-align: center;
+}
+
+.title {
+    color: #ffffff;
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.subtitle {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+    line-height: 1.4;
+}
+
+.eventMeta {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.metaItem {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #ffffff1a;
+    padding: 0.75rem 1rem;
+    border-radius: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.metaItem:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.metaIcon {
+    font-size: 1.1rem;
+    color: #3498db;
+}
+
+.heroIcon {
+    font-size: 4rem;
+    color: rgba(255, 255, 255, 0.8);
+    animation: pulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes pulse {
+    from {
+        opacity: 0.8;
+        transform: scale(1);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+}
+
+.imageSection {
+    background: #ffffff;
+    padding: 3rem 1rem;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.imageContainer {
+    max-width: 75rem;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imagePlaceholder {
+    width: 100%;
+    max-width: 50rem;
+    height: 25rem;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border: 2px dashed #dee2e6;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    color: #6c757d;
+    transition: all 0.3s ease;
+}
+
+.imagePlaceholder:hover {
+    border-color: #3498db;
+    background: linear-gradient(135deg, #f0f8ff 0%, #e6f2ff 100%);
+    color: #3498db;
+}
+
+.placeholderIcon {
+    font-size: 4rem;
+    opacity: 0.6;
+}
+
+.imagePlaceholder p {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.imagePlaceholder span {
+    font-size: 1rem;
+    opacity: 0.7;
+    margin: 0;
+}
+
+.scheduleInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.scheduleItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 1rem;
+    border-left: 3px solid #3498db;
+}
+
+.scheduleLabel {
+    color: #2c3e50;
+    font-size: 1rem;
+}
+
+.scheduleValue {
+    color: #3498db;
+    font-size: 1rem;
+    font-weight: 600;
+    background: #ffffff;
+    padding: 1rem 1rem;
+    border-radius: 1rem;
+    box-shadow: 0 1px 1rem rgba(52, 152, 219, 0.2);
+}
+
+.content {
+    max-width: 75rem;
+    margin: 0 auto;
+    padding: 4rem 1rem;
+    flex: 1;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.section {
+    margin-bottom: 3rem;
+}
+
+.twoColumns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.card {
+    background: #ffffff;
+    border-radius: 1rem;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.15);
+}
+
+.cardHeader {
+    background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+    color: #ffffff;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.cardIcon {
+    font-size: 2rem;
+    opacity: 0.9;
+}
+
+.cardHeader h2 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.cardContent {
+    padding: 2rem;
+}
+
+.locationInfo h3 {
+    margin: 0 0 1rem;
+    color: #2c3e50;
+    font-size: 1rem;
+}
+
+.locationInfo p {
+    margin: 0;
+    color: #5a6c7d;
+    line-height: 1.6;
+}
+
+.contactInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.contactItem {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 1rem;
+}
+
+.contactIcon {
+    font-size: 1rem;
+    color: #3498db;
+    margin-top: 3px;
+    flex-shrink: 0;
+}
+
+.contactItem strong {
+    color: #2c3e50;
+    font-size: 1rem;
+    margin-bottom: 3px;
+    display: block;
+}
+
+.contactItem p {
+    margin: 0;
+    color: #5a6c7d;
+    font-size: 1rem;
+}
+
+.instagramContainer {
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.instagramContainer:hover {
+    background: #e3f2fd;
+    border-color: #3498db;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
+}
+
+.instagramContainer:hover .contactIcon {
+    color: #3498db;
+    transform: scale(1.1);
+}
+
+.instagramContainer:hover p {
+    color: #3498db;
+}
+
+.ctaSection {
+    margin-top: 4rem;
+}
+
+.ctaCard {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    color: #ffffff;
+    padding: 4rem 3rem;
+    text-align: center;
+    border-radius: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.ctaIcon {
+    font-size: 3rem;
+    color: #3498db;
+    margin-bottom: 1rem;
+    animation: pulse 2s infinite;
+}
+
+.ctaCard h2 {
+    font-size: 3rem;
+    margin: 0 0 1rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.ctaCard p {
+    font-size: 1rem;
+    margin: 0 auto 2rem;
+    opacity: 0.9;
+    max-width: 38rem;
+    line-height: 1.6;
+}
+
+.ctaButtons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.ctaButton {
+    background: #3498db;
+    color: #ffffff;
+    padding: 1rem 3rem;
+    border: none;
+    border-radius: 3rem;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 1rem rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    display: inline-block;
+}
+
+.ctaButton:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.3);
+    background: #2980b9;
+}
+
+.ctaButtonSecondary {
+    background: transparent;
+    color: #ffffff;
+    padding: 1rem 3rem;
+    border: 2px solid #ffffff;
+    border-radius: 3rem;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.ctaButtonSecondary:hover {
+    background: #ffffff;
+    color: #2c3e50;
+    transform: translateY(-1px);
+}
+
+@media (max-width: 64rem) {
+    .heroContent {
+        grid-template-columns: auto 1fr;
+        gap: 1.5rem;
+    }
+
+    .heroIcon {
+        display: none;
+    }
+
+    .title {
+        font-size: 2.5rem;
+    }
+
+    .subtitle {
+        font-size: 1.125rem;
+    }
+
+    .eventMeta {
+        gap: 1rem;
+    }
+
+    .twoColumns {
+        grid-template-columns: 1fr;
+    }
+
+    .imagePlaceholder {
+        height: 20rem;
+    }
+
+    .placeholderIcon {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 48rem) {
+    .hero {
+        padding: 3rem 1rem 2rem;
+        margin-top: 60px;
+    }
+
+    .heroContent {
+        grid-template-columns: auto 1fr;
+        gap: 1rem;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+    }
+
+    .eventMeta {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .metaItem {
+        justify-content: center;
+        padding: 0.5rem 0.75rem;
+    }
+
+    .content {
+        padding: 2rem 1rem;
+    }
+
+    .imageSection {
+        padding: 2rem 1rem;
+    }
+
+    .imagePlaceholder {
+        height: 15rem;
+    }
+
+    .placeholderIcon {
+        font-size: 2rem;
+    }
+
+    .imagePlaceholder p {
+        font-size: 1rem;
+    }
+
+    .imagePlaceholder span {
+        font-size: 1rem;
+    }
+
+    .backButton {
+        width: 2.5rem;
+        height: 2.5rem;
+        font-size: 1rem;
+    }
+
+    .cardHeader {
+        padding: 1rem;
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .cardHeader h2 {
+        font-size: 1rem;
+    }
+
+    .cardContent {
+        padding: 1rem;
+    }
+
+    .scheduleItem {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .scheduleValue {
+        align-self: flex-start;
+        padding: 1rem;
+    }
+
+    .ctaCard {
+        padding: 2rem 1rem;
+    }
+
+    .ctaCard h2 {
+        font-size: 2rem;
+    }
+
+    .ctaButtons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .ctaButton,
+    .ctaButtonSecondary {
+        width: 100%;
+        max-width: 20rem;
+    }
+}
+
+@media (max-width: 375px) {
+    .hero {
+        padding: 3rem 1rem 2rem;
+        margin-top: 60px;
+    }
+
+    .title {
+        font-size: 1.75rem;
+    }
+
+    .subtitle {
+        font-size: 0.875rem;
+    }
+
+    .content {
+        padding: 1rem;
+    }
+
+    .imageSection {
+        padding: 1rem;
+    }
+
+    .imagePlaceholder {
+        height: 12rem;
+    }
+
+    .placeholderIcon {
+        font-size: 2rem;
+    }
+
+    .imagePlaceholder p {
+        font-size: 1rem;
+    }
+
+    .imagePlaceholder span {
+        font-size: 1rem;
+    }
+
+    .backButton {
+        width: 2rem;
+        height: 2rem;
+        font-size: 1rem;
+    }
+
+    .cardHeader {
+        padding: 1rem;
+    }
+
+    .cardHeader h2 {
+        font-size: 1rem;
+    }
+
+    .cardContent {
+        padding: 1rem;
+    }
+
+    .contactItem {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .scheduleItem {
+        padding: 1rem;
+    }
+
+    .scheduleValue {
+        padding: 1rem;
+        font-size: 1rem;
+    }
+
+    .ctaCard {
+        padding: 1rem;
+    }
+
+    .ctaCard h2 {
+        font-size: 1rem;
+    }
+
+    .ctaIcon {
+        font-size: 2rem;
+    }
+}
