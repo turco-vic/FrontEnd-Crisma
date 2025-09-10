@@ -12,9 +12,6 @@ export default function SobreDev() {
       <Header />
       <div className={styles.container}>
       <section className={styles.hero}>
-        <div className={styles.heroIcon}>
-          <FaUser />
-        </div>
         <h1 className={styles.title}>Sobre o Desenvolvedor</h1>
         <p className={styles.subtitle}>
           Conheça a pessoa por trás do desenvolvimento deste projeto

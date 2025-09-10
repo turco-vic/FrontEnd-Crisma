@@ -11,9 +11,6 @@ export default function Inscreverse() {
       <Header />
       <div className={styles.container}>
         <section className={styles.hero}>
-          <div className={styles.heroIcon}>
-            <FaUserPlus />
-          </div>
           <h1 className={styles.title}>Escolha o Tipo de Inscrição</h1>
           <p className={styles.subtitle}>
             Selecione o tipo de inscrição adequado para continuar
