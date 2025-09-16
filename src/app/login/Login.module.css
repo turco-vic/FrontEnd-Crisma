@@ -23,13 +23,13 @@
 .heroIcon {
   width: 5rem;
   height: 5rem;
-  background: linear-gradient(135deg, #0a295e, #103679);
+  background: linear-gradient(135deg, #3498db, #2980b9);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto 1.5rem;
-  box-shadow: 0 4px 20px rgba(10, 41, 94, 0.3);
+  box-shadow: 0 4px 20px rgba(52, 152, 219, 0.3);
 }
 
 .heroIcon svg {
@@ -39,7 +39,7 @@
 
 .title {
   font-size: 2.5rem;
-  color: #0a295e;
+  color: #3498db;
   margin-bottom: 1rem;
   font-weight: 700;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -90,7 +90,7 @@
 
 .labelIcon {
   margin-right: 0.5rem;
-  color: #0a295e;
+  color: #3498db;
   font-size: 1.1rem;
 }
 
@@ -107,8 +107,8 @@
 
 .input:focus {
   outline: none;
-  border-color: #0a295e;
-  box-shadow: 0 0 0 0.1rem rgba(10, 41, 94, 0.2);
+  border-color: #3498db;
+  box-shadow: 0 0 0 0.1rem rgba(52, 152, 219, 0.2);
   background: #fafafa;
 }
 
@@ -162,7 +162,7 @@
 }
 
 .eyeButton:hover {
-  color: #0a295e;
+  color: #3498db;
 }
 
 /* Seção de submit */
@@ -172,7 +172,7 @@
 }
 
 .submitButton {
-  background: linear-gradient(135deg, #0a295e, #103679);
+  background: linear-gradient(135deg, #3498db, #2980b9);
   color: white;
   border: none;
   padding: 1rem 2rem;
@@ -186,13 +186,13 @@
   gap: 0.7rem;
   width: 100%;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(10, 41, 94, 0.3);
+  box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
 }
 
 .submitButton:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 25px rgba(10, 41, 94, 0.4);
-  background: linear-gradient(135deg, #103679, #1a4a8a);
+  box-shadow: 0 6px 25px rgba(52, 152, 219, 0.4);
+  background: linear-gradient(135deg, #2980b9, #1f5f99);
 }
 
 .submitButton:active {
@@ -211,14 +211,14 @@
 }
 
 .link {
-  color: #0a295e;
+  color: #3498db;
   text-decoration: none;
   font-weight: 600;
   transition: color 0.3s ease;
 }
 
 .link:hover {
-  color: #103679;
+  color: #2980b9;
   text-decoration: underline;
 }
 
