@@ -16,90 +16,7 @@ export default function PainelCoordenador() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const getMockData = () => {
-        return [
-            {
-                id: 1,
-                nome: "Turma São Francisco",
-                coordenador: "Padre João Silva",
-                numeroAlunos: 25,
-                horario: "Sábados 14:00",
-                status: "Ativa",
-                ano: "2024",
-                descricao: "Turma de crisma com foco na espiritualidade franciscana",
-                local: "Sala 1 - Catequese",
-                capacidadeMaxima: 25,
-                telefone: "(11) 3456-7890",
-                email: "joao.silva@paroquia.com",
-                dataInicio: "2024-02-10",
-                dataFim: "2024-11-30"
-            },
-            {
-                id: 2,
-                nome: "Turma Santa Clara",
-                coordenador: "Catequista Maria Santos",
-                numeroAlunos: 22,
-                horario: "Domingos 15:30",
-                status: "Ativa",
-                ano: "2024",
-                descricao: "Turma de crisma inspirada em Santa Clara de Assis",
-                local: "Sala 2 - Catequese",
-                capacidadeMaxima: 30,
-                telefone: "(11) 9876-5432",
-                email: "maria.santos@paroquia.com",
-                dataInicio: "2024-02-11",
-                dataFim: "2024-12-01"
-            },
-            {
-                id: 3,
-                nome: "Turma São José",
-                coordenador: "Diácono Pedro Costa",
-                numeroAlunos: 18,
-                horario: "Sábados 16:00",
-                status: "Ativa",
-                ano: "2024",
-                descricao: "Turma de crisma dedicada a São José",
-                local: "Sala 3 - Catequese",
-                capacidadeMaxima: 20,
-                telefone: "(11) 2345-6789",
-                email: "pedro.costa@paroquia.com",
-                dataInicio: "2024-02-10",
-                dataFim: "2024-11-30"
-            },
-            {
-                id: 4,
-                nome: "Turma Santo Antônio",
-                coordenador: "Catequista Ana Rodrigues",
-                numeroAlunos: 20,
-                horario: "Domingos 08:30",
-                status: "Ativa",
-                ano: "2024",
-                descricao: "Turma focada nos ensinamentos de Santo Antônio de Pádua",
-                local: "Sala 4 - Catequese",
-                capacidadeMaxima: 28,
-                telefone: "(11) 8765-4321",
-                email: "ana.rodrigues@paroquia.com",
-                dataInicio: "2024-02-11",
-                dataFim: "2024-12-01"
-            },
-            {
-                id: 5,
-                nome: "Turma São Paulo",
-                coordenador: "Padre Carlos Mendes",
-                numeroAlunos: 15,
-                horario: "Sábados 09:00",
-                status: "Pausada",
-                ano: "2024",
-                descricao: "Turma baseada nos ensinamentos do Apóstolo Paulo",
-                local: "Salão Paroquial",
-                capacidadeMaxima: 35,
-                telefone: "(11) 5432-1098",
-                email: "carlos.mendes@paroquia.com",
-                dataInicio: "2024-02-10",
-                dataFim: "2024-11-30"
-            }
-        ];
-    };
+
 
     const fetchTurmas = async () => {
         try {
@@ -171,8 +88,8 @@ export default function PainelCoordenador() {
         } catch (error) {
             console.error('Erro ao carregar turmas:', error);
             console.error('Detalhes do erro:', error.response?.data || error.message);
-            console.log('Usando dados mock como fallback...');
-            setTurmas(getMockData());
+            setError('Erro ao conectar com o backend. Verifique se o servidor está funcionando.');
+            setTurmas([]);
         } finally {
             setLoading(false);
         }
@@ -294,11 +211,21 @@ export default function PainelCoordenador() {
                     <div className={styles.salasSection}>
                         <div className={styles.sectionHeader}>
                             <h2 className={styles.sectionTitle}>Turmas Ativas</h2>
-                            <p className={styles.sectionDescription}>Clique em uma turma para ver os detalhes e crismandos</p>
+                            <p className={styles.sectionDescription}>
+                                {turmas.length === 0 
+                                    ? "Nenhuma turma encontrada. Verifique se o backend está conectado."
+                                    : "Clique em uma turma para ver os detalhes e crismandos"
+                                }
+                            </p>
                         </div>
 
-                        <div className={styles.salasGrid}>
-                            {salasAtivas.map((sala) => (
+                        {salasAtivas.length === 0 ? (
+                            <div className={styles.noData}>
+                                <p>Nenhuma turma ativa encontrada.</p>
+                            </div>
+                        ) : (
+                            <div className={styles.salasGrid}>
+                                {salasAtivas.map((sala) => (
                                 <div
                                     key={sala.id}
                                     className={styles.salaCard}
@@ -338,8 +265,9 @@ export default function PainelCoordenador() {
                                         <FaArrowRight className={styles.arrowIcon} />
                                     </div>
                                 </div>
-                            ))}
-                        </div>
+                                ))}
+                            </div>
+                        )}
                     </div>
 
                     {salasPausadas.length > 0 && (
