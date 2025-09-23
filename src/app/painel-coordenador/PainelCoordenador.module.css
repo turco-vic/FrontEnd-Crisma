@@ -130,7 +130,7 @@
     font-weight: 500;
 }
 
-.salasSection {
+.turmasSection {
     margin-bottom: 3rem;
 }
 
@@ -152,13 +152,13 @@
     line-height: 1.6;
 }
 
-.salasGrid {
+.turmasGrid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 2rem;
 }
 
-.salaCard {
+.turmaCard {
     background: #ffffff;
     border-radius: 1rem;
     box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
@@ -168,22 +168,22 @@
     border: 2px solid transparent;
 }
 
-.salaCard:hover {
+.turmaCard:hover {
     transform: translateY(-5px);
     box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.15);
     border-color: #3498db;
 }
 
-.salaCardPausada {
+.turmaCardPausada {
     opacity: 0.7;
 }
 
-.salaCardPausada:hover {
+.turmaCardPausada:hover {
     opacity: 1;
     border-color: #e67e22;
 }
 
-.salaHeader {
+.turmaHeader {
     background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
     color: #ffffff;
     padding: 1.5rem 2rem;
@@ -192,18 +192,18 @@
     align-items: center;
 }
 
-.salaCardPausada .salaHeader {
+.turmaCardPausada .turmaHeader {
     background: linear-gradient(135deg, #e67e22 0%, #d35400 100%);
 }
 
-.salaNome {
+.turmaNome {
     margin: 0;
     font-size: 1.5rem;
     font-weight: 600;
     color: #ffffff;
 }
 
-.salaStatus {
+.turmaStatus {
     display: flex;
     align-items: center;
 }
@@ -222,7 +222,7 @@
     background: rgba(255, 255, 255, 0.3);
 }
 
-.salaInfo {
+.turmaInfo {
     padding: 2rem;
     display: flex;
     flex-direction: column;
@@ -255,7 +255,7 @@
     line-height: 1.5;
 }
 
-.salaFooter {
+.turmaFooter {
     background: #f8f9fa;
     padding: 1.5rem 2rem;
     display: flex;
@@ -276,7 +276,7 @@
     transition: transform 0.3s ease;
 }
 
-.salaCard:hover .arrowIcon {
+.turmaCard:hover .arrowIcon {
     transform: translateX(5px);
 }
 
@@ -337,23 +337,23 @@
         font-size: 2rem;
     }
 
-    .salasGrid {
+    .turmasGrid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
     }
 
-    .salaHeader {
+    .turmaHeader {
         padding: 1rem 1.5rem;
         flex-direction: column;
         gap: 1rem;
         text-align: center;
     }
 
-    .salaInfo {
+    .turmaInfo {
         padding: 1.5rem;
     }
 
-    .salaFooter {
+    .turmaFooter {
         padding: 1rem 1.5rem;
     }
 }
@@ -388,24 +388,24 @@
         font-size: 1.8rem;
     }
 
-    .salaCard {
+    .turmaCard {
         margin: 0 -1rem;
         border-radius: 0;
     }
 
-    .salaHeader {
+    .turmaHeader {
         padding: 1rem;
     }
 
-    .salaNome {
+    .turmaNome {
         font-size: 1.3rem;
     }
 
-    .salaInfo {
+    .turmaInfo {
         padding: 1rem;
     }
 
-    .salaFooter {
+    .turmaFooter {
         padding: 1rem;
     }
 }

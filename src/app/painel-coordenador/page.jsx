@@ -38,7 +38,7 @@ export default function PainelCoordenador() {
                 turmasData.map(async (turma) => {
                     try {
                         console.log(`Buscando crismandos para turma ${turma.id}`);
-                        const crismandosResponse = await axios.get(`http://localhost:3000/api/turmas/${turma.id}/crismandos`, {
+                        const crismandosResponse = await axios.get(`http://localhost:3000/api/turmas/${turmas.id}/crismandos`, {
                             timeout: 5000,
                             headers: {
                                 'Content-Type': 'application/json'
@@ -118,8 +118,8 @@ export default function PainelCoordenador() {
         fetchTurmas();
     }, []);
 
-    const handleSalaClick = (salaId) => {
-        router.push(`/painel-coordenador/sala/${salaId}`);
+    const handleTurmaClick = (turmaId) => {
+        router.push(`/painel-coordenador/turmas/${turmaId}`);
     };
 
     if (loading) {
@@ -158,9 +158,9 @@ export default function PainelCoordenador() {
         );
     }
 
-    const salasAtivas = turmas.filter(sala => sala.status === "Ativa");
-    const salasPausadas = turmas.filter(sala => sala.status === "Pausada");
-    const totalAlunos = turmas.reduce((total, sala) => total + sala.numeroAlunos, 0);
+    const turmasAtivas = turmas.filter(turma => turma.status === "Ativa");
+    const turmasPausadas = turmas.filter(turma => turma.status === "Pausada");
+    const totalAlunos = turmas.reduce((total, turma) => total + turma.numeroAlunos, 0);
 
     return (
         <>
@@ -169,7 +169,7 @@ export default function PainelCoordenador() {
                 <div className={styles.hero}>
                     <h1 className={styles.title}>Painel do Coordenador</h1>
                     <p className={styles.subtitle}>
-                        Gerencie as salas de crisma e acompanhe o desenvolvimento dos crismandos
+                        Gerencie as turmas de crisma e acompanhe o desenvolvimento dos crismandos
                     </p>
                 </div>
 
@@ -194,7 +194,7 @@ export default function PainelCoordenador() {
                         <div className={styles.statCard}>
                             <HiAcademicCap className={styles.statIcon} />
                             <div className={styles.statInfo}>
-                                <h3 className={styles.statNumber}>{salasAtivas.length}</h3>
+                                <h3 className={styles.statNumber}>{turmasAtivas.length}</h3>
                                 <p className={styles.statLabel}>Turmas Ativas</p>
                             </div>
                         </div>
@@ -208,7 +208,7 @@ export default function PainelCoordenador() {
                         </div>
                     </div>
 
-                    <div className={styles.salasSection}>
+                    <div className={styles.turmasSection}>
                         <div className={styles.sectionHeader}>
                             <h2 className={styles.sectionTitle}>Turmas Ativas</h2>
                             <p className={styles.sectionDescription}>
@@ -219,48 +219,48 @@ export default function PainelCoordenador() {
                             </p>
                         </div>
 
-                        {salasAtivas.length === 0 ? (
+                        {turmasAtivas.length === 0 ? (
                             <div className={styles.noData}>
                                 <p>Nenhuma turma ativa encontrada.</p>
                             </div>
                         ) : (
-                            <div className={styles.salasGrid}>
-                                {salasAtivas.map((sala) => (
-                                <div
-                                    key={sala.id}
-                                    className={styles.salaCard}
-                                    onClick={() => handleSalaClick(sala.id)}
-                                >
-                                    <div className={styles.salaHeader}>
-                                        <h3 className={styles.salaNome}>{sala.nome}</h3>
-                                        <div className={styles.salaStatus}>
-                                            <span className={styles.statusBadge}>{sala.status}</span>
+                            <div className={styles.turmasGrid}>
+                                {turmasAtivas.map((turma) => (
+                                    <div
+                                    key={turma.id}
+                                    className={styles.turmaCard}
+                                    onClick={() => handleTurmaClick(turma.id)}
+                                    >
+                                    <div className={styles.turmaHeader}>
+                                        <h3 className={styles.turmaNome}>{turma.nome}</h3>
+                                        <div className={styles.turmaStatus}>
+                                            <span className={styles.statusBadge}>{turma.status}</span>
                                         </div>
                                     </div>
 
-                                    <div className={styles.salaInfo}>
+                                    <div className={styles.turmaInfo}>
                                         <div className={styles.infoItem}>
                                             <FaChalkboardTeacher className={styles.infoIcon} />
-                                            <span className={styles.infoText}>{sala.coordenador}</span>
+                                            <span className={styles.infoText}>{turma.coordenador}</span>
                                         </div>
 
                                         <div className={styles.infoItem}>
                                             <FaUsers className={styles.infoIcon} />
-                                            <span className={styles.infoText}>{sala.numeroAlunos} crismandos</span>
+                                            <span className={styles.infoText}>{turma.numeroAlunos} crismandos</span>
                                         </div>
 
                                         <div className={styles.infoItem}>
                                             <FaCalendarAlt className={styles.infoIcon} />
-                                            <span className={styles.infoText}>{sala.horario}</span>
+                                            <span className={styles.infoText}>{turma.horario}</span>
                                         </div>
 
                                         <div className={styles.infoItem}>
                                             <span className={styles.infoLabel}>Ano:</span>
-                                            <span className={styles.infoText}>{sala.ano}</span>
+                                            <span className={styles.infoText}>{turma.ano}</span>
                                         </div>
                                     </div>
 
-                                    <div className={styles.salaFooter}>
+                                    <div className={styles.turmaFooter}>
                                         <span className={styles.viewDetails}>Ver Detalhes</span>
                                         <FaArrowRight className={styles.arrowIcon} />
                                     </div>
@@ -270,50 +270,50 @@ export default function PainelCoordenador() {
                         )}
                     </div>
 
-                    {salasPausadas.length > 0 && (
-                        <div className={styles.salasSection}>
+                    {turmasPausadas.length > 0 && (
+                        <div className={styles.turmasSection}>
                             <div className={styles.sectionHeader}>
                                 <h2 className={styles.sectionTitle}>Turmas Pausadas</h2>
                                 <p className={styles.sectionDescription}>Turmas temporariamente inativas</p>
                             </div>
 
-                            <div className={styles.salasGrid}>
-                                {salasPausadas.map((sala) => (
+                            <div className={styles.turmasGrid}>
+                                {turmasPausadas.map((turma) => (
                                     <div
-                                        key={sala.id}
-                                        className={`${styles.salaCard} ${styles.salaCardPausada}`}
-                                        onClick={() => handleSalaClick(sala.id)}
+                                        key={turma.id}
+                                        className={`${styles.turmaCard} ${styles.turmaCardPausada}`}
+                                        onClick={() => handleTurmaClick(turma.id)}
                                     >
-                                        <div className={styles.salaHeader}>
-                                            <h3 className={styles.salaNome}>{sala.nome}</h3>
-                                            <div className={styles.salaStatus}>
-                                                <span className={`${styles.statusBadge} ${styles.statusPausada}`}>{sala.status}</span>
+                                        <div className={styles.turmaHeader}>
+                                            <h3 className={styles.turmaNome}>{turma.nome}</h3>
+                                            <div className={styles.turmaStatus}>
+                                                <span className={`${styles.statusBadge} ${styles.statusPausada}`}>{turma.status}</span>
                                             </div>
                                         </div>
 
-                                        <div className={styles.salaInfo}>
+                                        <div className={styles.turmaInfo}>
                                             <div className={styles.infoItem}>
                                                 <FaChalkboardTeacher className={styles.infoIcon} />
-                                                <span className={styles.infoText}>{sala.coordenador}</span>
+                                                <span className={styles.infoText}>{turma.coordenador}</span>
                                             </div>
 
                                             <div className={styles.infoItem}>
                                                 <FaUsers className={styles.infoIcon} />
-                                                <span className={styles.infoText}>{sala.numeroAlunos} crismandos</span>
+                                                <span className={styles.infoText}>{turma.numeroAlunos} crismandos</span>
                                             </div>
 
                                             <div className={styles.infoItem}>
                                                 <FaCalendarAlt className={styles.infoIcon} />
-                                                <span className={styles.infoText}>{sala.horario}</span>
+                                                <span className={styles.infoText}>{turma.horario}</span>
                                             </div>
 
                                             <div className={styles.infoItem}>
                                                 <span className={styles.infoLabel}>Ano:</span>
-                                                <span className={styles.infoText}>{sala.ano}</span>
+                                                <span className={styles.infoText}>{turma.ano}</span>
                                             </div>
                                         </div>
 
-                                        <div className={styles.salaFooter}>
+                                        <div className={styles.turmaFooter}>
                                             <span className={styles.viewDetails}>Ver Detalhes</span>
                                             <FaArrowRight className={styles.arrowIcon} />
                                         </div>

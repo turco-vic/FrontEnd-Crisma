@@ -36,19 +36,8 @@ export default function DetalheTurma() {
                 setLoading(true);
                 setError(null);
 
-                const [turmasResponse, crismandosResponse] = await Promise.all([
-                    axios.get('http://localhost:3000/api/turmas', { timeout: 5000 }),
-                    axios.get(`http://localhost:3000/api/turmas/${id}/crismandos`, { timeout: 5000 })
-                ]);
-
-                const turmaData = turmasResponse.data.find(t => t.id === id);
-                
-                if (turmaData) {
-                    setTurma(turmaData);
-                    setCrismandos(crismandosResponse.data || []);
-                } else {
-                    throw new Error('Turma não encontrada');
-                }
+                const turmaResponse = await axios.get(`http://localhost:3000/api/turmas/${id}`, { timeout: 5000 });
+                setTurma(turmaResponse.data);
             } catch (err) {
                 console.error('Erro ao carregar dados da turma:', err);
                 setError('Não foi possível conectar ao servidor. Verifique se o backend está funcionando.');
@@ -120,7 +109,6 @@ export default function DetalheTurma() {
                 </div>
 
                 <div className={styles.content}>
-                    {/* Informações da Turma */}
                     <div className={styles.section}>
                         <h2 className={styles.sectionTitle}>
                             <FaInfoCircle className={styles.sectionIcon} />
@@ -146,7 +134,7 @@ export default function DetalheTurma() {
                             <div className={styles.infoCard}>
                                 <FaCalendarAlt className={styles.cardIcon} />
                                 <div className={styles.cardContent}>
-                                    <h3 className={styles.cardTitle}>Faixa Etária</h3>
+                                    <h3 className={styles.cardTitle}>Fim</h3>
                                     <p className={styles.cardText}>{turma.age_range || turma.idade || 'N/A'}</p>
                                 </div>
                             </div>
@@ -170,7 +158,7 @@ export default function DetalheTurma() {
                             <div className={styles.infoCard}>
                                 <FaPhone className={styles.cardIcon} />
                                 <div className={styles.cardContent}>
-                                    <h3 className={styles.cardTitle}>Telefone</h3>
+                                    <h3 className={styles.cardTitle}>Início</h3>
                                     <p className={styles.cardText}>
                                         {turma.phone || (turma.contato && turma.contato.telefone) || 'N/A'}
                                     </p>
@@ -186,7 +174,6 @@ export default function DetalheTurma() {
                         )}
                     </div>
 
-                    {/* Lista de Crismandos */}
                     <div className={styles.section}>
                         <h2 className={styles.sectionTitle}>
                             <HiUserGroup className={styles.sectionIcon} />
@@ -205,7 +192,7 @@ export default function DetalheTurma() {
                                     <div 
                                         key={crismando.id} 
                                         className={styles.crismandoCard}
-                                        onClick={() => router.push(`/painel-coordenador/sala/${id}/crismando/${crismando.id}`)}
+                                        onClick={() => router.push(`/painel-coordenador/turmas/${id}/crismandos/${crismando.id}`)}
                                     >
                                         <div className={styles.crismandoAvatar}>
                                             <FaUser />

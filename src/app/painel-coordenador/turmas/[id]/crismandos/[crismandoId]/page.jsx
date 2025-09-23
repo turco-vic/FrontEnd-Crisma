@@ -23,11 +23,11 @@ import axios from 'axios';
 export default function DetalheCrismando() {
     const params = useParams();
     const router = useRouter();
-    const salaId = parseInt(params.id);
+    const turmaId = parseInt(params.id);
     const crismandoId = parseInt(params.crismandoId);
 
     const [crismando, setCrismando] = useState(null);
-    const [sala, setSala] = useState(null);
+    const [turma, setTurma] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -37,18 +37,18 @@ export default function DetalheCrismando() {
                 setLoading(true);
                 setError(null);
 
-                const [salaResponse, crismandosResponse] = await Promise.all([
+                const [turmaResponse, crismandosResponse] = await Promise.all([
                     axios.get(`http://localhost:3000/api/turmas`, { timeout: 3000 }),
-                    axios.get(`http://localhost:3000/api/turmas/${salaId}/crismandos`, { timeout: 3000 })
+                    axios.get(`http://localhost:3000/api/turmas/${turmaId}/crismandos`, { timeout: 3000 })
                 ]);
 
-                const salaData = salaResponse.data.find(s => s.id === salaId);
+                const turmaData = turmaResponse.data.find(t => t.id === turmaId);
                 const crismandoData = crismandosResponse.data.find(c => c.id === crismandoId);
 
-                if (salaData && crismandoData) {
-                    setSala({
-                        nome: salaData.name,
-                        coordenador: salaData.coordinator_name
+                if (turmaData && crismandoData) {
+                    setTurma({
+                        nome: turmaData.name,
+                        coordenador: turmaData.coordinator_name
                     });
                     setCrismando(crismandoData);
                 } else {
@@ -62,10 +62,10 @@ export default function DetalheCrismando() {
             }
         };
 
-        if (salaId && crismandoId) {
+        if (turmaId && crismandoId) {
             fetchCrismandoData();
         }
-    }, [salaId, crismandoId]);
+    }, [turmaId, crismandoId]);
 
     const formatWhatsAppLink = (telefone) => {
         const cleanPhone = telefone.replace(/\D/g, '');
@@ -87,7 +87,7 @@ export default function DetalheCrismando() {
         );
     }
 
-    if (error || !crismando || !sala) {
+    if (error || !crismando || !turma) {
         return (
             <>
                 <Header />
@@ -96,7 +96,7 @@ export default function DetalheCrismando() {
                         <h1>Crismando não encontrado</h1>
                         <p>{error || 'O crismando solicitado não foi encontrado ou o servidor não está disponível.'}</p>
                         <button 
-                            onClick={() => router.push(`/painel-coordenador/sala/${salaId}`)} 
+                            onClick={() => router.push(`/painel-coordenador/turma/${turmaId}`)} 
                             className={styles.backButton}
                         >
                             <FaArrowLeft /> Voltar para a Turma
@@ -114,18 +114,17 @@ export default function DetalheCrismando() {
             <div className={styles.container}>
                 <div className={styles.hero}>
                     <button 
-                        onClick={() => router.push(`/painel-coordenador/sala/${salaId}`)} 
+                        onClick={() => router.push(`/painel-coordenador/turmas/${turmaId}`)} 
                         className={styles.backButton}
                     >
-                        <FaArrowLeft /> Voltar para {sala.nome}
+                        <FaArrowLeft /> Voltar para {turma.nome}
                     </button>
                     <HiAcademicCap className={styles.heroIcon} />
                     <h1 className={styles.title}>{crismando.nome || crismando.name}</h1>
-                    <p className={styles.subtitle}>Crismando da {sala.nome}</p>
+                    <p className={styles.subtitle}>Crismando da {turma.nome}</p>
                 </div>
 
                 <div className={styles.content}>
-                    {/* Informações Pessoais */}
                     <div className={styles.section}>
                         <h2 className={styles.sectionTitle}>
                             <FaUser className={styles.sectionIcon} />
@@ -207,7 +206,6 @@ export default function DetalheCrismando() {
                         </div>
                     </div>
 
-                    {/* Informações da Turma */}
                     <div className={styles.section}>
                         <h2 className={styles.sectionTitle}>
                             <FaChalkboardTeacher className={styles.sectionIcon} />
@@ -218,7 +216,7 @@ export default function DetalheCrismando() {
                                 <HiUserGroup className={styles.cardIcon} />
                                 <div className={styles.cardContent}>
                                     <h3 className={styles.cardTitle}>Turma</h3>
-                                    <p className={styles.cardText}>{sala.nome}</p>
+                                    <p className={styles.cardText}>{turma.nome}</p>
                                 </div>
                             </div>
 
@@ -226,7 +224,7 @@ export default function DetalheCrismando() {
                                 <FaChalkboardTeacher className={styles.cardIcon} />
                                 <div className={styles.cardContent}>
                                     <h3 className={styles.cardTitle}>Coordenador</h3>
-                                    <p className={styles.cardText}>{sala.coordenador}</p>
+                                    <p className={styles.cardText}>{turma.coordenador}</p>
                                 </div>
                             </div>
                         </div>
