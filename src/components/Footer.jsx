@@ -54,13 +54,6 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className={styles.callToAction}>
-        <div className={styles.ctaContent}>
-          <HiHeart className={styles.ctaIcon} />
-          <p>Quer participar? <a href="/inscreverse" className={styles.contactLink}>Inscreva-se</a></p>
-        </div>
-      </div>
-
       <div className={styles.bottom}>
         <div className={styles.bottomContent}>
           <p>&copy; 2025 Paróquia Sant'Ana Sousas - Todos os direitos reservados</p>

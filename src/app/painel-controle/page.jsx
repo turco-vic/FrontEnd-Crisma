@@ -119,7 +119,7 @@ export default function PainelCoordenador() {
     }, []);
 
     const handleTurmaClick = (turmaId) => {
-        router.push(`/painel-coordenador/turmas/${turmaId}`);
+        router.push(`/painel-controle/turmas/${turmaId}`);
     };
 
     if (loading) {

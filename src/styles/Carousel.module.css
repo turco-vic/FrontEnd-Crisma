@@ -115,6 +115,7 @@
   border-radius: 8px !important;
   box-shadow: 0 4px 12px #3498db4d !important;
   transition: all 0.3s ease !important;
+  width: 100% !important;
 }
 
 .slideButton:hover {

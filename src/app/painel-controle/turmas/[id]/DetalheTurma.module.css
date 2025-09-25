@@ -25,9 +25,9 @@
     position: absolute;
     top: 2rem;
     left: 2rem;
-    background: rgba(255, 255, 255, 0.2);
+    background: #ffffff33;
     color: #ffffff;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid #ffffff4d;
     padding: 1rem 1.5rem;
     border-radius: 0.5rem;
     font-size: 1rem;
@@ -40,8 +40,8 @@
 }
 
 .backButton:hover {
-    background: rgba(255, 255, 255, 0.3);
-    border-color: rgba(255, 255, 255, 0.5);
+    background: #ffffff4d;
+    border-color: #ffffff80;
 }
 
 .heroIcon {

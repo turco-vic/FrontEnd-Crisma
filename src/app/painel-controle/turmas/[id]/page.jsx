@@ -76,7 +76,7 @@ export default function DetalheTurma() {
                         <h1>Turma não encontrada</h1>
                         <p>{error || 'A turma solicitada não foi encontrada ou o servidor não está disponível.'}</p>
                         <button 
-                            onClick={() => router.push('/painel-coordenador')} 
+                            onClick={() => router.push('/painel-controle')} 
                             className={styles.backButton}
                         >
                             <FaArrowLeft /> Voltar ao Painel
@@ -94,7 +94,7 @@ export default function DetalheTurma() {
             <div className={styles.container}>
                 <div className={styles.hero}>
                     <button 
-                        onClick={() => router.push('/painel-coordenador')} 
+                        onClick={() => router.push('/painel-controle')} 
                         className={styles.backButton}
                     >
                         <FaArrowLeft /> Voltar ao Painel
@@ -115,13 +115,6 @@ export default function DetalheTurma() {
                             Informações da Turma
                         </h2>
                         <div className={styles.infoGrid}>
-                            <div className={styles.infoCard}>
-                                <FaUser className={styles.cardIcon} />
-                                <div className={styles.cardContent}>
-                                    <h3 className={styles.cardTitle}>Coordenador</h3>
-                                    <p className={styles.cardText}>{turma.coordinator_name || turma.coordenador || 'N/A'}</p>
-                                </div>
-                            </div>
 
                             <div className={styles.infoCard}>
                                 <FaUsers className={styles.cardIcon} />
@@ -192,7 +185,7 @@ export default function DetalheTurma() {
                                     <div 
                                         key={crismando.id} 
                                         className={styles.crismandoCard}
-                                        onClick={() => router.push(`/painel-coordenador/turmas/${id}/crismandos/${crismando.id}`)}
+                                        onClick={() => router.push(`/painel-controle/turmas/${id}/crismandos/${crismando.id}`)}
                                     >
                                         <div className={styles.crismandoAvatar}>
                                             <FaUser />

@@ -114,53 +114,6 @@
   text-decoration: underline;
 }
 
-.callToAction {
-  background: rgba(52, 152, 219, 0.15);
-  border-top: 1px solid rgba(52, 152, 219, 0.3);
-  border-bottom: 1px solid rgba(52, 152, 219, 0.3);
-}
-
-.ctaContent {
-  max-width: 75rem;
-  margin: 0 auto;
-  padding: 2rem 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  text-align: center;
-}
-
-.ctaIcon {
-  font-size: 2rem;
-  color: #3498db;
-}
-
-.ctaContent p {
-  margin: 0;
-  color: #ecf0f1;
-  font-size: 1rem;
-  font-weight: 500;
-}
-
-.contactLink {
-  color: #3498db;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-
-.contactLink:hover {
-  color: #5dade2;
-  text-decoration: underline;
-}
-
-@media (hover: none) {
-  .contactLink:active {
-    color: #5dade2;
-  }
-}
-
 .bottom {
   background: rgba(0, 0, 0, 0.2);
   border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -284,20 +237,6 @@
     padding: 0.8rem 0;
   }
 
-  .ctaContent {
-    padding: 1.5rem 1rem;
-    flex-direction: column;
-    gap: 0.8rem;
-  }
-
-  .ctaIcon {
-    font-size: 1.5rem;
-  }
-
-  .ctaContent p {
-    font-size: 0.95rem;
-  }
-
   .bottomContent {
     flex-direction: column;
     text-align: center;
@@ -351,19 +290,6 @@
     padding: 0.5rem 0;
   }
 
-  .ctaContent {
-    padding: 1rem 0.8rem;
-    gap: 0.5rem;
-  }
-
-  .ctaIcon {
-    font-size: 1.2rem;
-  }
-
-  .ctaContent p {
-    font-size: 0.9rem;
-  }
-
   .bottomContent {
     padding: 1rem 0.8rem;
     gap: 0.5rem;
@@ -409,14 +335,6 @@
   }
 
   .quickLink {
-    font-size: 0.85rem;
-  }
-
-  .ctaContent {
-    padding: 0.8rem 0.5rem;
-  }
-
-  .ctaContent p {
     font-size: 0.85rem;
   }
 
