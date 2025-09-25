@@ -2,19 +2,20 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import styles from './PainelCoordenador.module.css';
+import styles from './PainelControle.module.css';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import { FaUsers, FaChalkboardTeacher, FaCalendarAlt, FaArrowRight } from 'react-icons/fa';
 import { HiUserGroup, HiAcademicCap } from 'react-icons/hi';
 import axios from 'axios';
 
-export default function PainelCoordenador() {
+export default function PainelControle() {
     const router = useRouter();
     
     const [turmas, setTurmas] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [totalAlunos, setTotalAlunos] = useState(0);
 
 
 
@@ -23,7 +24,6 @@ export default function PainelCoordenador() {
             setLoading(true);
             setError(null);
             
-            console.log('Fazendo requisição para: http://localhost:3000/api/turmas');
             const response = await axios.get('http://localhost:3000/api/turmas', {
                 timeout: 5000,
                 headers: {
@@ -33,11 +33,17 @@ export default function PainelCoordenador() {
             
             const turmasData = response.data;
             console.log('Dados recebidos:', turmasData);
+
+            // Conta o total de crismandos somando o atributo total_crismandos de cada turma
+            const totalCrismandos = turmasData.reduce((acc, turma) => acc + Number(turma.total_crismandos || 0), 0);
+            console.log('Total de crismandos:', totalCrismandos);
+            setTotalAlunos(totalCrismandos);
+
+
             
             const turmasComCrismandos = await Promise.all(
                 turmasData.map(async (turma) => {
                     try {
-                        console.log(`Buscando crismandos para turma ${turma.id}`);
                         const crismandosResponse = await axios.get(`http://localhost:3000/api/turmas`, {
                             timeout: 5000,
                             headers: {
@@ -63,7 +69,7 @@ export default function PainelCoordenador() {
                             dataFim: turma.end_date
                         };
                     } catch (error) {
-                        console.error(`Erro ao buscar crismandos da turma ${turma.id}:`, error);
+                        //console.error(`Erro ao buscar crismandos da turma ${turma.id}:`, error);
                         return {
                             id: turma.id,
                             nome: turma.name,
@@ -85,8 +91,10 @@ export default function PainelCoordenador() {
             );
             
             setTurmas(turmasComCrismandos);
+            console.log('ENZOOOOOOOOOOOO', turmasComCrismandos);
+            
         } catch (error) {
-            console.error('Erro ao carregar turmas:', error);
+            //console.error('Erro ao carregar turmas:', error);
             console.error('Detalhes do erro:', error.response?.data || error.message);
             setError('Erro ao conectar com o backend. Verifique se o servidor está funcionando.');
             setTurmas([]);
@@ -160,7 +168,9 @@ export default function PainelCoordenador() {
 
     const turmasAtivas = turmas.filter(turma => turma.status === "Ativa");
     const turmasPausadas = turmas.filter(turma => turma.status === "Pausada");
-    const totalAlunos = turmas.reduce((total, turma) => total + turma.numeroAlunos, 0);
+
+    console.log('Turmas com número de crismandos:', turmas);
+    
 
     return (
         <>

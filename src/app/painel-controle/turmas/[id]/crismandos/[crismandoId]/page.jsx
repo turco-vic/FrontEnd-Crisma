@@ -37,23 +37,18 @@ export default function DetalheCrismando() {
                 setLoading(true);
                 setError(null);
 
-                const [turmaResponse, crismandosResponse] = await Promise.all([
-                    axios.get(`http://localhost:3000/api/turmas`, { timeout: 3000 }),
-                    axios.get(`http://localhost:3000/api/turmas/${turmaId}/crismandos`, { timeout: 3000 })
-                ]);
+                const turmaResponse = await axios.get(`http://localhost:3000/api/turmas/${turmaId}`, { timeout: 5000 });
+                const crismandosResponse = await axios.get(`http://localhost:3000/api/crismandos/${crismandoId}`, { timeout: 5000 });
 
-                const turmaData = turmaResponse.data.find(t => t.id === turmaId);
-                const crismandoData = crismandosResponse.data.find(c => c.id === crismandoId);
+                const turmaData = turmaResponse.data;
+                const crismandoData = crismandosResponse.data
 
-                if (turmaData && crismandoData) {
-                    setTurma({
-                        nome: turmaData.name,
-                        coordenador: turmaData.coordinator_name
-                    });
-                    setCrismando(crismandoData);
-                } else {
-                    throw new Error('Dados não encontrados');
-                }
+                console.log("Dados da turma:", turmaData);
+                console.log("Dados dos crismandos:", crismandoData);
+
+                setTurma(turmaData);
+                setCrismando(crismandoData);
+                
             } catch (err) {
                 console.error('Erro ao carregar dados do crismando:', err);
                 setError('Não foi possível conectar ao servidor. Verifique se o backend está funcionando.');
@@ -96,7 +91,7 @@ export default function DetalheCrismando() {
                         <h1>Crismando não encontrado</h1>
                         <p>{error || 'O crismando solicitado não foi encontrado ou o servidor não está disponível.'}</p>
                         <button 
-                            onClick={() => router.push(`/painel-coordenador/turma/${turmaId}`)} 
+                            onClick={() => router.push(`/painel-controle/turma/${turmaId}`)} 
                             className={styles.backButton}
                         >
                             <FaArrowLeft /> Voltar para a Turma
@@ -114,7 +109,7 @@ export default function DetalheCrismando() {
             <div className={styles.container}>
                 <div className={styles.hero}>
                     <button 
-                        onClick={() => router.push(`/painel-coordenador/turmas/${turmaId}`)} 
+                        onClick={() => router.push(`/painel-controle/turmas/${turmaId}`)} 
                         className={styles.backButton}
                     >
                         <FaArrowLeft /> Voltar para {turma.nome}
