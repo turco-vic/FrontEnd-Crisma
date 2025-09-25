@@ -38,7 +38,7 @@ export default function PainelCoordenador() {
                 turmasData.map(async (turma) => {
                     try {
                         console.log(`Buscando crismandos para turma ${turma.id}`);
-                        const crismandosResponse = await axios.get(`http://localhost:3000/api/turmas/${turmas.id}/crismandos`, {
+                        const crismandosResponse = await axios.get(`http://localhost:3000/api/turmas`, {
                             timeout: 5000,
                             headers: {
                                 'Content-Type': 'application/json'

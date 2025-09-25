@@ -5,14 +5,14 @@ import { useParams, useRouter } from 'next/navigation';
 import styles from './DetalheTurma.module.css';
 import Header from '../../../../components/Header';
 import Footer from '../../../../components/Footer';
-import { 
-    FaArrowLeft, 
-    FaUsers, 
-    FaClock, 
-    FaMapMarkerAlt, 
-    FaPhone, 
-    FaEnvelope, 
-    FaUser, 
+import {
+    FaArrowLeft,
+    FaUsers,
+    FaClock,
+    FaMapMarkerAlt,
+    FaPhone,
+    FaEnvelope,
+    FaUser,
     FaCalendarAlt,
     FaInfoCircle,
     FaExclamationTriangle
@@ -37,6 +37,9 @@ export default function DetalheTurma() {
                 setError(null);
 
                 const turmaResponse = await axios.get(`http://localhost:3000/api/turmas/${id}`, { timeout: 5000 });
+
+                console.log(turmaResponse.data);
+                
                 setTurma(turmaResponse.data);
             } catch (err) {
                 console.error('Erro ao carregar dados da turma:', err);
@@ -75,8 +78,8 @@ export default function DetalheTurma() {
                         <FaExclamationTriangle className={styles.errorIcon} />
                         <h1>Turma não encontrada</h1>
                         <p>{error || 'A turma solicitada não foi encontrada ou o servidor não está disponível.'}</p>
-                        <button 
-                            onClick={() => router.push('/painel-controle')} 
+                        <button
+                            onClick={() => router.push('/painel-controle')}
                             className={styles.backButton}
                         >
                             <FaArrowLeft /> Voltar ao Painel
@@ -93,8 +96,8 @@ export default function DetalheTurma() {
             <Header />
             <div className={styles.container}>
                 <div className={styles.hero}>
-                    <button 
-                        onClick={() => router.push('/painel-controle')} 
+                    <button
+                        onClick={() => router.push('/painel-controle')}
                         className={styles.backButton}
                     >
                         <FaArrowLeft /> Voltar ao Painel
@@ -120,15 +123,7 @@ export default function DetalheTurma() {
                                 <FaUsers className={styles.cardIcon} />
                                 <div className={styles.cardContent}>
                                     <h3 className={styles.cardTitle}>Número de Crismandos</h3>
-                                    <p className={styles.cardText}>{crismandos.length || 0}</p>
-                                </div>
-                            </div>
-
-                            <div className={styles.infoCard}>
-                                <FaCalendarAlt className={styles.cardIcon} />
-                                <div className={styles.cardContent}>
-                                    <h3 className={styles.cardTitle}>Fim</h3>
-                                    <p className={styles.cardText}>{turma.age_range || turma.idade || 'N/A'}</p>
+                                    <p className={styles.cardText}>{turma.total_crismandos || 0}</p>
                                 </div>
                             </div>
 
@@ -136,7 +131,7 @@ export default function DetalheTurma() {
                                 <FaClock className={styles.cardIcon} />
                                 <div className={styles.cardContent}>
                                     <h3 className={styles.cardTitle}>Horário</h3>
-                                    <p className={styles.cardText}>{turma.schedule || turma.horario || 'N/A'}</p>
+                                    <p className={styles.cardText}>{turma.meeting_time || turma.horario || 'N/A'}</p>
                                 </div>
                             </div>
 
@@ -144,17 +139,25 @@ export default function DetalheTurma() {
                                 <FaMapMarkerAlt className={styles.cardIcon} />
                                 <div className={styles.cardContent}>
                                     <h3 className={styles.cardTitle}>Local</h3>
-                                    <p className={styles.cardText}>{turma.location || turma.local || 'N/A'}</p>
+                                    <p className={styles.cardText}>{turma.classroom_location || 'N/A'}</p>
                                 </div>
                             </div>
 
                             <div className={styles.infoCard}>
-                                <FaPhone className={styles.cardIcon} />
+                                <FaCalendarAlt className={styles.cardIcon} />
                                 <div className={styles.cardContent}>
                                     <h3 className={styles.cardTitle}>Início</h3>
                                     <p className={styles.cardText}>
-                                        {turma.phone || (turma.contato && turma.contato.telefone) || 'N/A'}
+                                        {turma.start_date || 'N/A'}
                                     </p>
+                                </div>
+                            </div>
+
+                            <div className={styles.infoCard}>
+                                <FaCalendarAlt className={styles.cardIcon} />
+                                <div className={styles.cardContent}>
+                                    <h3 className={styles.cardTitle}>Fim</h3>
+                                    <p className={styles.cardText}>{turma.end_date || turma.idade || 'N/A'}</p>
                                 </div>
                             </div>
                         </div>
@@ -172,7 +175,7 @@ export default function DetalheTurma() {
                             <HiUserGroup className={styles.sectionIcon} />
                             Lista de Crismandos ({crismandos.length})
                         </h2>
-                        
+
                         {crismandos.length === 0 ? (
                             <div className={styles.emptyCrismandos}>
                                 <HiUserGroup className={styles.emptyIcon} />
@@ -182,8 +185,8 @@ export default function DetalheTurma() {
                         ) : (
                             <div className={styles.crismandosGrid}>
                                 {crismandos.map((crismando) => (
-                                    <div 
-                                        key={crismando.id} 
+                                    <div
+                                        key={crismando.id}
                                         className={styles.crismandoCard}
                                         onClick={() => router.push(`/painel-controle/turmas/${id}/crismandos/${crismando.id}`)}
                                     >
