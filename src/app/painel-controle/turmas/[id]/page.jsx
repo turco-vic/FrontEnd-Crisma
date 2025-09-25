@@ -18,6 +18,7 @@ import {
     FaExclamationTriangle
 } from 'react-icons/fa';
 import { HiAcademicCap, HiUserGroup } from 'react-icons/hi';
+import Image from 'next/image';
 import axios from 'axios';
 
 export default function DetalheTurma() {
@@ -198,14 +199,23 @@ export default function DetalheTurma() {
                                             <FaUser />
                                         </div>
                                         <div className={styles.crismandoInfo}>
+                                            {/* <Image
+                                                src={crismando.profile_photo || '/default-avatar.png'}
+                                                alt={`${crismando.name} ${crismando.surname}`}
+                                                width={64}
+                                                height={64}
+                                            /> */}
                                             <h4 className={styles.crismandoName}>
-                                                {crismando.name || crismando.nome}
+                                                {crismando.name}
+                                            </h4>
+                                            <h4 className={styles.crismandoSurname}>
+                                                {crismando.surname}
                                             </h4>
                                             <p className={styles.crismandoDetails}>
                                                 {crismando.age ? `${crismando.age} anos` : (crismando.idade ? `${crismando.idade} anos` : 'Idade não informada')}
                                             </p>
                                             <p className={styles.crismandoContact}>
-                                                {crismando.phone || crismando.telefone || 'Telefone não informado'}
+                                                {crismando.phone_number || crismando.telefone || 'Telefone não informado'}
                                             </p>
                                         </div>
                                         <div className={styles.crismandoArrow}>
