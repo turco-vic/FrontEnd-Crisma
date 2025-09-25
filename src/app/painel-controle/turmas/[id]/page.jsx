@@ -37,10 +37,14 @@ export default function DetalheTurma() {
                 setError(null);
 
                 const turmaResponse = await axios.get(`http://localhost:3000/api/turmas/${id}`, { timeout: 5000 });
+                const crismandosResponse = await axios.get(`http://localhost:3000/api/crismandos/turma/${id}`, { timeout: 5000 });
 
+                console.log("AAAAAAAAAAAAAAAAAA");
+                
                 console.log(turmaResponse.data);
                 
                 setTurma(turmaResponse.data);
+                setCrismandos(crismandosResponse.data || []);
             } catch (err) {
                 console.error('Erro ao carregar dados da turma:', err);
                 setError('Não foi possível conectar ao servidor. Verifique se o backend está funcionando.');
@@ -173,10 +177,10 @@ export default function DetalheTurma() {
                     <div className={styles.section}>
                         <h2 className={styles.sectionTitle}>
                             <HiUserGroup className={styles.sectionIcon} />
-                            Lista de Crismandos ({crismandos.length})
+                            Lista de Crismandos ({turma.total_crismandos || 0})
                         </h2>
 
-                        {crismandos.length === 0 ? (
+                        {turma.total_crismandos === 0 ? (
                             <div className={styles.emptyCrismandos}>
                                 <HiUserGroup className={styles.emptyIcon} />
                                 <h3>Nenhum crismando cadastrado</h3>
