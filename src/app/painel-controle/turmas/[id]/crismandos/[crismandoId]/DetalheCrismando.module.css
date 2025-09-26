@@ -5,8 +5,9 @@
 
 .hero {
   text-align: center;
-  padding: 2rem 1rem;
+  padding: 4rem 1rem;
   position: relative;
+  margin-top: 3rem;
   color: white;
 }
 
@@ -14,7 +15,7 @@
   position: absolute;
   left: 2rem;
   top: 2rem;
-  background: rgba(255, 255, 255, 0.2);
+  background: #3498db;
   color: white;
   border: none;
   padding: 0.7rem 1.2rem;
@@ -31,15 +32,16 @@
 }
 
 .backButton:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background: #ffffff4d;
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  color: #3498db;
 }
 
 .heroIcon {
   font-size: 4rem;
   margin-bottom: 1rem;
-  color: #ffd700;
+  color: #3498db;
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
 }
 
@@ -85,7 +87,7 @@
 }
 
 .sectionIcon {
-  color: #667eea;
+  color: #3498db;
   font-size: 1.3rem;
 }
 
@@ -109,11 +111,11 @@
 .infoCard:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
-  border-color: #667eea;
+  border-color: #3498db;
 }
 
 .cardIcon {
-  color: #667eea;
+  color: #3498db;
   font-size: 1.3rem;
   margin-top: 0.2rem;
   flex-shrink: 0;
@@ -162,13 +164,13 @@
 }
 
 .emailLink {
-  color: #667eea;
+  color: #3498db;
   text-decoration: none;
   font-weight: 500;
 }
 
 .emailLink:hover {
-  color: #5a6fd8;
+  color: #3498db;
   text-decoration: underline;
 }
 
@@ -181,7 +183,7 @@
 .loadingIcon {
   font-size: 4rem;
   margin-bottom: 1rem;
-  color: #ffd700;
+  color: #3498db;
   animation: pulse 2s infinite;
 }
 
@@ -201,7 +203,6 @@
   opacity: 0.9;
 }
 
-/* Responsividade */
 @media (max-width: 768px) {
   .backButton {
     position: static;

@@ -112,7 +112,7 @@ export default function DetalheCrismando() {
                         onClick={() => router.push(`/painel-controle/turmas/${turmaId}`)} 
                         className={styles.backButton}
                     >
-                        <FaArrowLeft /> Voltar para {turma.nome}
+                        <FaArrowLeft />  {turma.nome}
                     </button>
                     <HiAcademicCap className={styles.heroIcon} />
                     <h1 className={styles.title}>{crismando.nome || crismando.name}</h1>
