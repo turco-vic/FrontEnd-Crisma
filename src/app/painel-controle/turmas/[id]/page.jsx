@@ -7,6 +7,7 @@ import Header from '../../../../components/Header';
 import Footer from '../../../../components/Footer';
 import {
     FaArrowLeft,
+    FaArrowRight,
     FaUsers,
     FaClock,
     FaMapMarkerAlt,
@@ -22,6 +23,15 @@ import Image from 'next/image';
 import axios from 'axios';
 
 export default function DetalheTurma() {
+    function formatarData(dataStr) {
+        if (!dataStr) return 'N/A';
+        const data = new Date(dataStr);
+        if (isNaN(data)) return 'N/A';
+        const dia = String(data.getDate()).padStart(2, '0');
+        const mes = String(data.getMonth() + 1).padStart(2, '0');
+        const ano = data.getFullYear();
+        return `${dia}-${mes}-${ano}`;
+    }
     const params = useParams();
     const router = useRouter();
     const id = parseInt(params.id);
@@ -58,6 +68,18 @@ export default function DetalheTurma() {
             fetchTurmaData();
         }
     }, [id]);
+
+    function calcularIdade(birthday) {
+        if (!birthday) return null;
+        const nascimento = new Date(birthday);
+        const hoje = new Date();
+        let idade = hoje.getFullYear() - nascimento.getFullYear();
+        const m = hoje.getMonth() - nascimento.getMonth();
+        if (m < 0 || (m === 0 && hoje.getDate() < nascimento.getDate())) {
+            idade--;
+        }
+        return idade;
+    }
 
     if (loading) {
         return (
@@ -153,7 +175,7 @@ export default function DetalheTurma() {
                                 <div className={styles.cardContent}>
                                     <h3 className={styles.cardTitle}>Início</h3>
                                     <p className={styles.cardText}>
-                                        {turma.start_date || 'N/A'}
+                                        {formatarData(turma.start_date)}
                                     </p>
                                 </div>
                             </div>
@@ -162,7 +184,7 @@ export default function DetalheTurma() {
                                 <FaCalendarAlt className={styles.cardIcon} />
                                 <div className={styles.cardContent}>
                                     <h3 className={styles.cardTitle}>Fim</h3>
-                                    <p className={styles.cardText}>{turma.end_date || turma.idade || 'N/A'}</p>
+                                    <p className={styles.cardText}>{formatarData(turma.end_date)}</p>
                                 </div>
                             </div>
                         </div>
@@ -212,14 +234,19 @@ export default function DetalheTurma() {
                                                 {crismando.surname}
                                             </h4>
                                             <p className={styles.crismandoDetails}>
-                                                {crismando.age ? `${crismando.age} anos` : (crismando.idade ? `${crismando.idade} anos` : 'Idade não informada')}
+                                                {
+                                                    crismando.age ? `${crismando.age} anos`
+                                                    : crismando.idade ? `${crismando.idade} anos`
+                                                    : crismando.birthday ? `${calcularIdade(crismando.birthday)} anos`
+                                                    : 'Idade não informada'
+                                                }
                                             </p>
                                             <p className={styles.crismandoContact}>
                                                 {crismando.phone_number || crismando.telefone || 'Telefone não informado'}
                                             </p>
                                         </div>
                                         <div className={styles.crismandoArrow}>
-                                            →
+                                            <FaArrowRight />
                                         </div>
                                     </div>
                                 ))}
