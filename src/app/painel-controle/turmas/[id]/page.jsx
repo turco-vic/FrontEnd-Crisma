@@ -51,9 +51,9 @@ export default function DetalheTurma() {
                 const crismandosResponse = await axios.get(`http://localhost:3000/api/crismandos/turma/${id}`, { timeout: 5000 });
 
                 console.log("AAAAAAAAAAAAAAAAAA");
-                
+
                 console.log(turmaResponse.data);
-                
+
                 setTurma(turmaResponse.data);
                 setCrismandos(crismandosResponse.data || []);
             } catch (err) {
@@ -109,7 +109,7 @@ export default function DetalheTurma() {
                             onClick={() => router.push('/painel-controle')}
                             className={styles.backButton}
                         >
-                            <FaArrowLeft /> Voltar ao Painel
+                            <FaArrowLeft />
                         </button>
                     </div>
                 </div>
@@ -127,7 +127,7 @@ export default function DetalheTurma() {
                         onClick={() => router.push('/painel-controle')}
                         className={styles.backButton}
                     >
-                        <FaArrowLeft /> Voltar ao Painel
+                        <FaArrowLeft />
                     </button>
                     <HiAcademicCap className={styles.heroIcon} />
                     <h1 className={styles.title}>{turma.name || turma.nome}</h1>
@@ -227,26 +227,25 @@ export default function DetalheTurma() {
                                                 width={64}
                                                 height={64}
                                             /> */}
-                                            <h4 className={styles.crismandoName}>
-                                                {crismando.name}
-                                            </h4>
-                                            <h4 className={styles.crismandoSurname}>
-                                                {crismando.surname}
-                                            </h4>
+                                            <div className={styles.nameSurname}>
+                                                <h4 className={styles.crismandoName}>
+                                                    {crismando.name}
+                                                </h4>
+                                                <h4 className={styles.crismandoSurname}>
+                                                    {crismando.surname}
+                                                </h4>
+                                            </div>
                                             <p className={styles.crismandoDetails}>
                                                 {
                                                     crismando.age ? `${crismando.age} anos`
-                                                    : crismando.idade ? `${crismando.idade} anos`
-                                                    : crismando.birthday ? `${calcularIdade(crismando.birthday)} anos`
-                                                    : 'Idade não informada'
+                                                        : crismando.idade ? `${crismando.idade} anos`
+                                                            : crismando.birthday ? `${calcularIdade(crismando.birthday)} anos`
+                                                                : 'Idade não informada'
                                                 }
                                             </p>
                                             <p className={styles.crismandoContact}>
                                                 {crismando.phone_number || crismando.telefone || 'Telefone não informado'}
                                             </p>
-                                        </div>
-                                        <div className={styles.crismandoArrow}>
-                                            <FaArrowRight />
                                         </div>
                                     </div>
                                 ))}

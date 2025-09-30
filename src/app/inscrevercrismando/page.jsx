@@ -178,12 +178,10 @@ export default function InscreverCrismando() {
       [name]: value
     }));
     
-    // Atualizar feedback da senha em tempo real
     if (name === 'senha') {
       setPasswordFeedback(getPasswordRequirements(value));
     }
     
-    // Validar campo em tempo real se já houve erro
     if (errors[name]) {
       validateField(name, value);
     }
@@ -270,20 +268,16 @@ export default function InscreverCrismando() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    // Validar todos os campos obrigatórios
     const fieldsToValidate = [
       'nome', 'sobrenome', 'dataNascimento', 'cep', 'logradouro', 'numero', 
       'bairro', 'cidade', 'telefone', 'instagram', 'email', 'senha', 
       'confirmarSenha', 'nomeResponsavel', 'telefoneResponsavel', 
       'foto', 'certidaoBatismo', 'certidaoEucaristia', 'rg'
     ];
-    
     let hasErrors = false;
     let firstErrorField = null;
-    
     fieldsToValidate.forEach(field => {
       const value = ['foto', 'certidaoBatismo', 'certidaoEucaristia', 'rg'].includes(field) 
         ? formData[field] 
@@ -296,13 +290,9 @@ export default function InscreverCrismando() {
         }
       }
     });
-    
     if (hasErrors) {
-      // Fazer scroll para o primeiro campo com erro
       if (firstErrorField) {
         let element;
-        
-        // Para campos de arquivo, buscar o container de upload mais próximo
         if (['foto', 'certidaoBatismo', 'certidaoEucaristia', 'rg'].includes(firstErrorField)) {
           if (firstErrorField === 'foto') {
             element = document.querySelector('input[accept=".jpg,.jpeg,.png"]');
@@ -317,18 +307,14 @@ export default function InscreverCrismando() {
             }
           }
         } else {
-          // Para campos normais, buscar pelo ID
           element = document.getElementById(firstErrorField);
         }
-        
         if (element) {
           element.scrollIntoView({ 
             behavior: 'smooth', 
             block: 'center',
             inline: 'nearest'
           });
-          
-          // Focar no campo se não for um campo de arquivo
           if (!['foto', 'certidaoBatismo', 'certidaoEucaristia', 'rg'].includes(firstErrorField)) {
             setTimeout(() => element.focus(), 300);
           }
@@ -336,22 +322,53 @@ export default function InscreverCrismando() {
       }
       return;
     }
-    
     if (formData.senha !== formData.confirmarSenha) {
       return;
     }
-    
     if (formData.senha.length < 6) {
       return;
     }
-    
     const dadosCompletos = {
-      ...formData,
-      nomeCompleto: `${formData.nome} ${formData.sobrenome}`.trim(),
-      enderecoCompleto: `${formData.logradouro}, ${formData.numero}${formData.complemento ? ', ' + formData.complemento : ''}, ${formData.bairro}, ${formData.cidade}, CEP: ${formData.cep}`
+      name: formData.nome,
+      surname: formData.sobrenome,
+      birthday: formData.dataNascimento,
+      cep: formData.cep,
+      road: formData.logradouro,
+      house_number: formData.numero,
+      complement: formData.complemento,
+      neighborhood: formData.bairro,
+      city: formData.cidade,
+      phone_number: formData.telefone,
+      instagram: formData.instagram,
+      email: formData.email,
+      password: formData.senha,
+      responsible_person: formData.nomeResponsavel,
+      responsible_person_phone: formData.telefoneResponsavel,
+      baptismal_certificate: formData.certidaoBatismo,
+      certificate_first_communion: formData.certidaoEucaristia,
+      rg: formData.rg,
+      profile_photo: formData.foto,
+      // turma_id: pode ser adicionado aqui se necessário
     };
-    
-    console.log('Dados do formulário:', dadosCompletos);
+    const form = new FormData();
+    Object.entries(dadosCompletos).forEach(([key, value]) => {
+      form.append(key, value);
+    });
+    try {
+      const response = await fetch('http://localhost:3000/api/crismandos', {
+        method: 'POST',
+        body: form,
+      });
+      if (response.ok) {
+        alert('Inscrição enviada com sucesso!');
+        window.location.href = '/';
+      } else {
+        const errorText = await response.text();
+        window.prompt('Erro ao enviar inscrição. Copie o erro abaixo:', errorText);
+      }
+    } catch (err) {
+      window.prompt('Erro de conexão com o servidor. Copie o erro abaixo:', String(err));
+    }
   };
 
   return (

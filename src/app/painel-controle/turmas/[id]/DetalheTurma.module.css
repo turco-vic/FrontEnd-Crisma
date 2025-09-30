@@ -22,26 +22,30 @@
 }
 
 .backButton {
+    color: #fff;
+    cursor: pointer;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background: #3498db;
+    border: 1px solid rgba(255, 255, 255, .3);
+    border-radius: 50px;
+    align-items: center;
+    gap: .5rem;
+    padding: .7rem 1.2rem;
+    font-size: .95rem;
+    font-weight: 500;
+    transition: all .3s;
+    display: flex
+;
     position: absolute;
     top: 2rem;
     left: 2rem;
-    background: #ffffff33;
-    color: #ffffff;
-    border: 1px solid #ffffff4d;
-    padding: 1rem 1.5rem;
-    border-radius: 0.5rem;
-    font-size: 1rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
 }
 
 .backButton:hover {
-    background: #ffffff4d;
+    background: #ffffff;
     border-color: #ffffff80;
+    color: #3498db;
 }
 
 .heroIcon {
@@ -102,6 +106,29 @@
     align-items: center;
     gap: 1.5rem;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.description {
+    background: #ffffff;
+    border-radius: 1rem;
+    box-shadow: 0 0.5rem 1rem rgba(44, 62, 80, 0.07);
+    padding: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.descriptionTitle {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
+.descriptionText {
+    font-size: 1.1rem;
+    color: #5a6c7d;
+    line-height: 1.7;
+    margin: 0;
 }
 
 .infoCard:hover {
@@ -194,11 +221,12 @@
     display: flex;
     flex-direction: column;
     background: #ffffff;
-    padding: 0.5rem;
-    border-radius: 1rem;
+    min-height: 7rem;
+    border-radius: 10px;
     box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
 }
 
 .crismandoCard:hover {
@@ -231,10 +259,25 @@
 .crismandoInfo {
     padding: 0.5rem;
     display: flex;
+    min-height: 7rem;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     gap: 8rem;
+}
+
+.nameSurname {
+    display: flex;
+    flex-direction: row;
+    gap: 0.2rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.crismandoAvatar {
+    background-color: #3498db;
+    color: #ffffff;
+    padding: 0.25rem 0.50rem;
 }
 
 .crismandoItem {

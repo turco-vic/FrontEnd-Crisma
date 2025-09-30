@@ -13,6 +13,7 @@ const pages = [
   { name: 'Contato', href: '/contato' },
   { name: 'Sobre', href: '/sobre' },
   { name: 'Sobre o Desenvolvedor', href: '/sobredev' },
+  { name: 'Painel de Controle', href: '/painel-controle' }
 ];
 
 export default function Header() {
