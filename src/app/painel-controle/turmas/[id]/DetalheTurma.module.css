@@ -244,9 +244,10 @@
 }
 
 .crismandoIcon {
-    font-size: 2rem;
-    color: #ffffff;
-    flex-shrink: 0;
+    font-size: 1.3em;
+    color: #1976d2;
+    vertical-align: middle;
+    margin-right: 8px;
 }
 
 .crismandoNome {

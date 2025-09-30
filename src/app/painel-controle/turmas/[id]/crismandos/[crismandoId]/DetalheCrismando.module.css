@@ -33,7 +33,7 @@
 }
 
 .backButton:hover {
-  background: #ffffff4d;
+  background: #ffffff;
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   color: #3498db;

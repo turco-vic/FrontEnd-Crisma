@@ -78,7 +78,6 @@ export default function DetalheCrismando() {
         return `https://wa.me/55${cleanPhone}`;
     };
 
-    // Função para formatar data de nascimento como DD/MM/AAAA
     const formatarData = (data) => {
         if (!data) return 'N/A';
         const d = new Date(data);
@@ -89,7 +88,6 @@ export default function DetalheCrismando() {
         return `${dia}/${mes}/${ano}`;
     };
 
-    // Função para calcular idade a partir da data de nascimento
     const calcularIdade = (data) => {
         if (!data) return 'N/A';
         const nascimento = new Date(data);

@@ -14,6 +14,7 @@ import {
     FaPhone,
     FaEnvelope,
     FaUser,
+    FaBirthdayCake,
     FaCalendarAlt,
     FaInfoCircle,
     FaExclamationTriangle
@@ -211,15 +212,13 @@ export default function DetalheTurma() {
                             </div>
                         ) : (
                             <div className={styles.crismandosGrid}>
-                                {crismandos.map((crismando) => (
+                                {crismandos.map((crismando, idx) => (
                                     <div
                                         key={crismando.id}
                                         className={styles.crismandoCard}
                                         onClick={() => router.push(`/painel-controle/turmas/${id}/crismandos/${crismando.id}`)}
                                     >
-                                        <div className={styles.crismandoAvatar}>
-                                            <FaUser />
-                                        </div>
+                                        <div className={styles.crismandoAvatar}>{idx + 1}</div>
                                         <div className={styles.crismandoInfo}>
                                             {/* <Image
                                                 src={crismando.profile_photo || '/default-avatar.png'}
@@ -228,6 +227,7 @@ export default function DetalheTurma() {
                                                 height={64}
                                             /> */}
                                             <div className={styles.nameSurname}>
+                                                <span className={styles.crismandoIcon}><FaUser /></span>
                                                 <h4 className={styles.crismandoName}>
                                                     {crismando.name}
                                                 </h4>
@@ -236,6 +236,7 @@ export default function DetalheTurma() {
                                                 </h4>
                                             </div>
                                             <p className={styles.crismandoDetails}>
+                                                <span className={styles.crismandoIcon}><FaBirthdayCake /></span>
                                                 {
                                                     crismando.age ? `${crismando.age} anos`
                                                         : crismando.idade ? `${crismando.idade} anos`
@@ -244,6 +245,7 @@ export default function DetalheTurma() {
                                                 }
                                             </p>
                                             <p className={styles.crismandoContact}>
+                                                <span className={styles.crismandoIcon}><FaPhone /></span>
                                                 {crismando.phone_number || crismando.telefone || 'Telefone não informado'}
                                             </p>
                                         </div>
