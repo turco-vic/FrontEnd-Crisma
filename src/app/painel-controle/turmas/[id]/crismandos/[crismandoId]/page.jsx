@@ -15,7 +15,18 @@ import {
     FaCalendarAlt,
     FaIdCard,
     FaChalkboardTeacher,
-    FaWhatsapp
+    FaWhatsapp,
+    FaInstagram,
+    FaRoad,
+    FaHashtag,
+    FaBuilding,
+    FaMapMarkedAlt,
+    FaCity,
+    FaClock,
+    FaCheckCircle,
+    FaPlay,
+    FaStop,
+    FaInfoCircle
 } from 'react-icons/fa';
 import { HiAcademicCap, HiUserGroup } from 'react-icons/hi';
 import axios from 'axios';
@@ -67,6 +78,31 @@ export default function DetalheCrismando() {
         return `https://wa.me/55${cleanPhone}`;
     };
 
+    // Função para formatar data de nascimento como DD/MM/AAAA
+    const formatarData = (data) => {
+        if (!data) return 'N/A';
+        const d = new Date(data);
+        if (isNaN(d.getTime())) return 'N/A';
+        const dia = String(d.getDate()).padStart(2, '0');
+        const mes = String(d.getMonth() + 1).padStart(2, '0');
+        const ano = d.getFullYear();
+        return `${dia}/${mes}/${ano}`;
+    };
+
+    // Função para calcular idade a partir da data de nascimento
+    const calcularIdade = (data) => {
+        if (!data) return 'N/A';
+        const nascimento = new Date(data);
+        if (isNaN(nascimento.getTime())) return 'N/A';
+        const hoje = new Date();
+        let idade = hoje.getFullYear() - nascimento.getFullYear();
+        const m = hoje.getMonth() - nascimento.getMonth();
+        if (m < 0 || (m === 0 && hoje.getDate() < nascimento.getDate())) {
+            idade--;
+        }
+        return idade;
+    };
+
     if (loading) {
         return (
             <>
@@ -116,7 +152,7 @@ export default function DetalheCrismando() {
                     </button>
                     <HiAcademicCap className={styles.heroIcon} />
                     <h1 className={styles.title}>{crismando.nome || crismando.name}</h1>
-                    <p className={styles.subtitle}>Crismando da {turma.nome}</p>
+                    <p className={styles.subtitle}>Crismando da {turma.name}</p>
                 </div>
 
                 <div className={styles.content}>
@@ -130,7 +166,7 @@ export default function DetalheCrismando() {
                                 <FaIdCard className={styles.cardIcon} />
                                 <div className={styles.cardContent}>
                                     <h3 className={styles.cardTitle}>Nome Completo</h3>
-                                    <p className={styles.cardText}>{crismando.nome || crismando.name}</p>
+                                    <p className={styles.cardText}>{crismando.name && crismando.surname ? `${crismando.name} ${crismando.surname}` : 'N/A'}</p>
                                 </div>
                             </div>
 
@@ -138,7 +174,7 @@ export default function DetalheCrismando() {
                                 <FaBirthdayCake className={styles.cardIcon} />
                                 <div className={styles.cardContent}>
                                     <h3 className={styles.cardTitle}>Data de Nascimento</h3>
-                                    <p className={styles.cardText}>{crismando.nascimento || crismando.birth_date || 'N/A'}</p>
+                                    <p className={styles.cardText}>{formatarData(crismando.birthday)}</p>
                                 </div>
                             </div>
 
@@ -146,13 +182,12 @@ export default function DetalheCrismando() {
                                 <FaCalendarAlt className={styles.cardIcon} />
                                 <div className={styles.cardContent}>
                                     <h3 className={styles.cardTitle}>Idade</h3>
-                                    <p className={styles.cardText}>{crismando.idade || 'N/A'} anos</p>
+                                    <p className={styles.cardText}>{calcularIdade(crismando.birthday) !== 'N/A' ? `${calcularIdade(crismando.birthday)} anos` : 'N/A'}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    {/* Contato */}
                     <div className={styles.section}>
                         <h2 className={styles.sectionTitle}>
                             <FaPhone className={styles.sectionIcon} />
@@ -163,10 +198,10 @@ export default function DetalheCrismando() {
                                 <FaPhone className={styles.cardIcon} />
                                 <div className={styles.cardContent}>
                                     <h3 className={styles.cardTitle}>Telefone</h3>
-                                    <p className={styles.cardText}>{crismando.telefone || crismando.phone || 'N/A'}</p>
-                                    {(crismando.telefone || crismando.phone) && (
+                                    <p className={styles.cardText}>{crismando.phone_number || 'N/A'}</p>
+                                    {(crismando.phone_number) && (
                                         <a 
-                                            href={formatWhatsAppLink(crismando.telefone || crismando.phone)} 
+                                            href={formatWhatsAppLink(crismando.phone_number)} 
                                             target="_blank" 
                                             rel="noopener noreferrer"
                                             className={styles.whatsappLink}
@@ -194,8 +229,82 @@ export default function DetalheCrismando() {
                             <div className={styles.infoCard}>
                                 <FaMapMarkerAlt className={styles.cardIcon} />
                                 <div className={styles.cardContent}>
-                                    <h3 className={styles.cardTitle}>Endereço</h3>
-                                    <p className={styles.cardText}>{crismando.endereco || crismando.address || 'N/A'}</p>
+                                    <h3 className={styles.cardTitle}>CEP</h3>
+                                    <p className={styles.cardText}>{crismando.cep || 'N/A'}</p>
+                                </div>
+                            </div>
+
+                            <div className={styles.infoCard}>
+                                <FaRoad className={styles.cardIcon} />
+                                <div className={styles.cardContent}>
+                                    <h3 className={styles.cardTitle}>Rua</h3>
+                                    <p className={styles.cardText}>{crismando.road || 'N/A'}</p>
+                                </div>
+                            </div>
+
+                            <div className={styles.infoCard}>
+                                <FaHashtag className={styles.cardIcon} />
+                                <div className={styles.cardContent}>
+                                    <h3 className={styles.cardTitle}>Número</h3>
+                                    <p className={styles.cardText}>{crismando.house_number || 'N/A'}</p>
+                                </div>
+                            </div>
+
+                            <div className={styles.infoCard}>
+                                <FaBuilding className={styles.cardIcon} />
+                                <div className={styles.cardContent}>
+                                    <h3 className={styles.cardTitle}>Complemento</h3>
+                                    <p className={styles.cardText}>{crismando.complement || 'N/A'}</p>
+                                </div>
+                            </div>
+
+                            <div className={styles.infoCard}>
+                                <FaMapMarkedAlt className={styles.cardIcon} />
+                                <div className={styles.cardContent}>
+                                    <h3 className={styles.cardTitle}>Bairro</h3>
+                                    <p className={styles.cardText}>{crismando.neighborhood || 'N/A'}</p>
+                                </div>
+                            </div>
+
+                            <div className={styles.infoCard}>
+                                <FaCity className={styles.cardIcon} />
+                                <div className={styles.cardContent}>
+                                    <h3 className={styles.cardTitle}>Cidade</h3>
+                                    <p className={styles.cardText}>{crismando.city || 'N/A'}</p>
+                                </div>
+                            </div>
+
+                            <div className={styles.infoCard}>
+                                <FaInstagram className={styles.cardIcon} />
+                                <div className={styles.cardContent}>
+                                    <h3 className={styles.cardTitle}>Instagram</h3>
+                                    <p className={styles.cardText}>{crismando.instagram || 'N/A'}</p>
+                                </div>
+                            </div>
+
+                            <div className={styles.infoCard}>
+                                <FaUser className={styles.cardIcon} />
+                                <div className={styles.cardContent}>
+                                    <h3 className={styles.cardTitle}>Responsável</h3>
+                                    <p className={styles.cardText}>{crismando.responsible_person || 'N/A'}</p>
+                                </div>
+                            </div>
+                            
+                            <div className={styles.infoCard}>
+                                <FaPhone className={styles.cardIcon} />
+                                <div className={styles.cardContent}>
+                                    <h3 className={styles.cardTitle}>Telefone - Responsável</h3>
+                                    <p className={styles.cardText}>{crismando.responsible_person_phone || 'N/A'}</p>
+                                    {(crismando.responsible_person_phone) && (
+                                        <a 
+                                            href={formatWhatsAppLink(crismando.responsible_person_phone)} 
+                                            target="_blank" 
+                                            rel="noopener noreferrer"
+                                            className={styles.whatsappLink}
+                                        >
+                                            <FaWhatsapp /> WhatsApp
+                                        </a>
+                                    )}
                                 </div>
                             </div>
                         </div>
@@ -208,18 +317,74 @@ export default function DetalheCrismando() {
                         </h2>
                         <div className={styles.infoGrid}>
                             <div className={styles.infoCard}>
-                                <HiUserGroup className={styles.cardIcon} />
+                                <FaChalkboardTeacher className={styles.cardIcon} />
                                 <div className={styles.cardContent}>
                                     <h3 className={styles.cardTitle}>Turma</h3>
-                                    <p className={styles.cardText}>{turma.nome}</p>
+                                    <p className={styles.cardText}>{turma.name}</p>
                                 </div>
                             </div>
 
                             <div className={styles.infoCard}>
-                                <FaChalkboardTeacher className={styles.cardIcon} />
+                                <FaCalendarAlt className={styles.cardIcon} />
                                 <div className={styles.cardContent}>
-                                    <h3 className={styles.cardTitle}>Coordenador</h3>
-                                    <p className={styles.cardText}>{turma.coordenador}</p>
+                                    <h3 className={styles.cardTitle}>Ano</h3>
+                                    <p className={styles.cardText}>{turma.year}</p>
+                                </div>
+                            </div>
+
+                            <div className={styles.infoCard}>
+                                <FaCalendarAlt className={styles.cardIcon} />
+                                <div className={styles.cardContent}>
+                                    <h3 className={styles.cardTitle}>Dia de Encontro</h3>
+                                    <p className={styles.cardText}>{turma.meeting_day}</p>
+                                </div>
+                            </div>
+
+                            <div className={styles.infoCard}>
+                                <FaClock className={styles.cardIcon} />
+                                <div className={styles.cardContent}>
+                                    <h3 className={styles.cardTitle}>Horário de Encontro</h3>
+                                    <p className={styles.cardText}>{turma.meeting_time}</p>
+                                </div>
+                            </div>
+
+                            <div className={styles.infoCard}>
+                                <FaMapMarkerAlt className={styles.cardIcon} />
+                                <div className={styles.cardContent}>
+                                    <h3 className={styles.cardTitle}>Localização</h3>
+                                    <p className={styles.cardText}>{turma.classroom_location}</p>
+                                </div>
+                            </div>
+
+                            <div className={styles.infoCard}>
+                                <FaCheckCircle className={styles.cardIcon} />
+                                <div className={styles.cardContent}>
+                                    <h3 className={styles.cardTitle}>Status</h3>
+                                    <p className={styles.cardText}>{turma.status}</p>
+                                </div>
+                            </div>
+
+                            <div className={styles.infoCard}>
+                                <FaPlay className={styles.cardIcon} />
+                                <div className={styles.cardContent}>
+                                    <h3 className={styles.cardTitle}>Começo</h3>
+                                    <p className={styles.cardText}>{formatarData(turma.start_date)}</p>
+                                </div>
+                            </div>
+
+                            <div className={styles.infoCard}>
+                                <FaStop className={styles.cardIcon} />
+                                <div className={styles.cardContent}>
+                                    <h3 className={styles.cardTitle}>Fim</h3>
+                                    <p className={styles.cardText}>{formatarData(turma.end_date)}</p>
+                                </div>
+                            </div>
+
+                            <div className={styles.infoCard}>
+                                <FaInfoCircle className={styles.cardIcon} />
+                                <div className={styles.cardContent}>
+                                    <h3 className={styles.cardTitle}>Descrição</h3>
+                                    <p className={styles.cardText}>{turma.description}</p>
                                 </div>
                             </div>
                         </div>
