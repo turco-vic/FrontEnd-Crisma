@@ -208,10 +208,8 @@ export default function PainelControle() {
             <Header />
             <div className={styles.container}>
                 <div className={styles.hero}>
-                    <h1 className={styles.title}>Painel do Coordenador</h1>
-                    <p className={styles.subtitle}>
-                        Gerencie as turmas de crisma e acompanhe o desenvolvimento dos crismandos
-                    </p>
+                    <h1 className={styles.title}>Painel de Controle</h1>
+
                 </div>
 
                 <div className={styles.content}>
@@ -225,18 +223,18 @@ export default function PainelControle() {
                         </div>
 
                         <div className={styles.statCard}>
-                            <FaUsers className={styles.statIcon} />
-                            <div className={styles.statInfo}>
-                                <h3 className={styles.statNumber}>{totalAlunos}</h3>
-                                <p className={styles.statLabel}>Total de Crismandos</p>
-                            </div>
-                        </div>
-
-                        <div className={styles.statCard}>
                             <HiAcademicCap className={styles.statIcon} />
                             <div className={styles.statInfo}>
                                 <h3 className={styles.statNumber}>{turmasAtivas.length}</h3>
                                 <p className={styles.statLabel}>Turmas Ativas</p>
+                            </div>
+                        </div>
+
+                        <div className={styles.statCard}>
+                            <FaUsers className={styles.statIcon} />
+                            <div className={styles.statInfo}>
+                                <h3 className={styles.statNumber}>{totalAlunos}</h3>
+                                <p className={styles.statLabel}>Total de Crismandos</p>
                             </div>
                         </div>
 

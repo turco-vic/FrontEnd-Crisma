@@ -38,16 +38,6 @@
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
-.subtitle {
-    font-size: 1.2rem;
-    margin: 0 auto;
-    opacity: 0.9;
-    position: relative;
-    z-index: 2;
-    max-width: 38rem;
-    line-height: 1.6;
-}
-
 .retryButton {
     background: #3498db;
     color: #ffffff;
@@ -96,6 +86,7 @@
     align-items: center;
     gap: 1.5rem;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
 }
 
 .statCard:hover {
@@ -302,10 +293,6 @@
 
     .title {
         font-size: 2.5rem;
-    }
-
-    .subtitle {
-        font-size: 1rem;
     }
 
     .content {

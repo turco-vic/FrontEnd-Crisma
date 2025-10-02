@@ -262,8 +262,7 @@ export default function InscreverCrismando() {
           [fieldName]: 'uploaded'
         }));
       }
-      
-      // Validar campo de arquivo
+
       validateField(fieldName, file);
     }
   };
