@@ -379,34 +379,6 @@
     .cardContent strong {
         min-width: auto;
     }
-
-    .detalheCard[data-categoria="crismandos"] {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 1rem;
-    }
-    
-    .detalheCard[data-categoria="crismandos"] .cardHeader {
-        flex: none;
-        width: 100%;
-        border-right: none;
-        border-bottom: 1px solid #f1f5f9;
-        padding-right: 0;
-        padding-bottom: 0.75rem;
-        margin-right: 0;
-        margin-bottom: 0.75rem;
-    }
-    
-    .detalheCard[data-categoria="crismandos"] .cardContent {
-        width: 100%;
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-    
-    .detalheCard[data-categoria="crismandos"] .cardContent p {
-        min-width: auto;
-        width: 100%;
-    }
 }
 
 @media (max-width: 480px) {
@@ -458,16 +430,6 @@
 
     .turmaFooter {
         padding: 1rem;
-    }
-
-    .detalheCard[data-categoria="crismandos"] .cardContent p {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.25rem;
-    }
-    
-    .detalheCard[data-categoria="crismandos"] .cardContent strong {
-        min-width: auto;
     }
 }
 
@@ -536,117 +498,9 @@
     margin-top: 2rem;
 }
 
-.detalhesGrid[data-categoria="crismandos"] {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-top: 2rem;
-}
 
-.detalheCard[data-categoria="crismandos"] {
-    width: 100%;
-    max-width: none;
-    display: flex;
-    align-items: center;
-    padding: 1.25rem 1.5rem;
-    min-height: 80px;
-}
 
-.detalheCard[data-categoria="crismandos"] .cardHeader {
-    flex: 0 0 200px;
-    margin-bottom: 0;
-    padding-bottom: 0;
-    border-bottom: none;
-    border-right: 1px solid #f1f5f9;
-    padding-right: 1.5rem;
-    margin-right: 1.5rem;
-}
 
-.detalheCard[data-categoria="crismandos"] .cardTitle {
-    font-size: 1.1rem;
-    margin-bottom: 0.25rem;
-    width: 10rem;
-    height: 2rem;
-    display: flex;
-    align-items: center;
-}
-
-.detalheCard[data-categoria="crismandos"] .cardContent {
-    flex: 1;
-    margin-bottom: 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    gap: 1rem;
-}
-
-.detalheCard[data-categoria="crismandos"] .cardContent p {
-    margin: 0;
-    flex: 0 0 auto;
-    min-width: 150px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.85rem;
-}
-
-.detalheCard[data-categoria="crismandos"] .cardContent strong {
-    min-width: 60px;
-    color: #3498db;
-    font-weight: 600;
-}
-
-.detalheCard[data-categoria="crismandos"]:hover {
-    transform: translateX(5px);
-    border-left-color: #06b6d4;
-}
-
-.detalheCard[data-categoria="crismandos"]::before {
-    background: #06b6d4;
-}
-
-@media (max-width: 768px) {
-    .detalheCard[data-categoria="crismandos"] {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 1rem;
-    }
-    
-    .detalheCard[data-categoria="crismandos"] .cardHeader {
-        flex: none;
-        width: 100%;
-        border-right: none;
-        border-bottom: 1px solid #f1f5f9;
-        padding-right: 0;
-        padding-bottom: 0.75rem;
-        margin-right: 0;
-        margin-bottom: 0.75rem;
-    }
-    
-    .detalheCard[data-categoria="crismandos"] .cardContent {
-        width: 100%;
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-    
-    .detalheCard[data-categoria="crismandos"] .cardContent p {
-        min-width: auto;
-        width: 100%;
-    }
-}
-
-@media (max-width: 480px) {
-    .detalheCard[data-categoria="crismandos"] .cardContent p {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.25rem;
-    }
-    
-    .detalheCard[data-categoria="crismandos"] .cardContent strong {
-        min-width: auto;
-    }
-}
 
 .detalheCard {
     background: white;

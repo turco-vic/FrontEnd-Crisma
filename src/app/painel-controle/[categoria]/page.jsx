@@ -2,10 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter, useParams } from 'next/navigation';
-import styles from '../PainelControle.module.css';
+import styles from './Categoria.module.css';
 import Header from '../../../components/Header';
 import Footer from '../../../components/Footer';
-import { FaUsers, FaChalkboardTeacher, FaCalendarAlt, FaArrowRight, FaArrowLeft } from 'react-icons/fa';
+import { FaUsers, FaChalkboardTeacher, FaCalendarAlt, FaArrowRight, FaArrowLeft, FaSearch } from 'react-icons/fa';
 import { HiUserGroup, HiAcademicCap } from 'react-icons/hi';
 import axios from 'axios';
 
@@ -15,9 +15,11 @@ export default function DetalhesCategoria() {
     const categoria = params.categoria;
     
     const [dados, setDados] = useState([]);
+    const [dadosFiltrados, setDadosFiltrados] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [titulo, setTitulo] = useState('');
+    const [termoPesquisa, setTermoPesquisa] = useState('');
 
     const calcularIdade = (birthday) => {
         const nascimento = new Date(birthday);
@@ -30,6 +32,32 @@ export default function DetalhesCategoria() {
         }
         
         return idade;
+    };
+
+    const filtrarDados = (termo) => {
+        if (!termo.trim()) {
+            setDadosFiltrados(dados);
+            return;
+        }
+
+        const termoLower = termo.toLowerCase();
+        const dadosFiltrados = dados.filter(item => {
+            if (categoria === 'crismandos') {
+                return item.nome.toLowerCase().includes(termoLower) ||
+                       item.turma.toLowerCase().includes(termoLower) ||
+                       item.telefone.includes(termo) ||
+                       item.email.toLowerCase().includes(termoLower);
+            }
+            return item.nome.toLowerCase().includes(termoLower);
+        });
+        
+        setDadosFiltrados(dadosFiltrados);
+    };
+
+    const handlePesquisaChange = (e) => {
+        const termo = e.target.value;
+        setTermoPesquisa(termo);
+        filtrarDados(termo);
     };
 
     const fetchDados = async () => {
@@ -128,6 +156,7 @@ export default function DetalhesCategoria() {
             }
             
             setDados(dadosFormatados);
+            setDadosFiltrados(dadosFormatados);
             
         } catch (error) {
             console.error('Erro ao buscar dados:', error);
@@ -163,6 +192,7 @@ export default function DetalhesCategoria() {
     };
 
     useEffect(() => {
+        setTermoPesquisa('');
         fetchDados();
     }, [categoria]);
 
@@ -210,20 +240,35 @@ export default function DetalhesCategoria() {
                         onClick={() => router.back()}
                         className={styles.backButton}
                     >
-                        <FaArrowLeft /> Voltar
+                        <FaArrowLeft />
                     </button>
                     <h1 className={styles.title}>{titulo}</h1>
-                    <p className={styles.subtitle}>Total de {dados.length} registro(s)</p>
+                    <p className={styles.subtitle}>Total de {dadosFiltrados.length} registro(s)</p>
                 </div>
 
+                {categoria === 'crismandos' && (
+                    <div className={styles.searchContainer}>
+                        <div className={styles.searchBox}>
+                            <FaSearch className={styles.searchIcon} />
+                            <input
+                                type="text"
+                                placeholder="Pesquisar crismando..."
+                                value={termoPesquisa}
+                                onChange={handlePesquisaChange}
+                                className={styles.searchInput}
+                            />
+                        </div>
+                    </div>
+                )}
+
                 <div className={styles.content}>
-                    {dados.length === 0 ? (
+                    {dadosFiltrados.length === 0 ? (
                         <div className={styles.noData}>
-                            <p>Nenhum registro encontrado.</p>
+                            <p>{termoPesquisa ? 'Nenhum resultado encontrado para sua pesquisa.' : 'Nenhum registro encontrado.'}</p>
                         </div>
                     ) : (
                         <div className={styles.detalhesGrid} data-categoria={categoria}>
-                            {dados.map((item) => (
+                            {dadosFiltrados.map((item) => (
                                 <div
                                     key={item.id}
                                     className={`${styles.detalheCard} ${
@@ -254,7 +299,6 @@ export default function DetalhesCategoria() {
                                                 <p><strong>Ano:</strong> {item.ano}</p>
                                                 <p><strong>Local:</strong> {item.local}</p>
                                                 <p><strong>Crismandos:</strong> {item.numeroCrismandos}</p>
-                                                {item.descricao && <p><strong>Descrição:</strong> {item.descricao}</p>}
                                             </>
                                         ) : categoria === 'crismandos' ? (
                                             <>

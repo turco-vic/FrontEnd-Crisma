@@ -1,0 +1,575 @@
+.container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.hero {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    color: #ffffff;
+    padding: 6rem 1rem 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 60px;
+}
+
+.title {
+    color: #ffffff;
+    font-size: 4rem;
+    font-weight: 700;
+    margin: 0 0 1rem;
+    position: relative;
+    z-index: 2;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+.retryButton {
+    background: #3498db;
+    color: #ffffff;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 2rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+}
+
+.retryButton:hover {
+    background: #3498db;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(52, 152, 219, 0.4);
+}
+
+.content {
+    max-width: 95rem;
+    margin: 0 auto;
+    padding: 4rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    flex: 1;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.searchContainer {
+    max-width: 95rem;
+    margin: 0 auto;
+    padding: 0 1rem;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    margin-top: -2rem;
+    margin-bottom: 2rem;
+}
+
+.searchBox {
+    position: relative;
+    max-width: 600px;
+    width: 100%;
+}
+
+.searchInput {
+    width: 100%;
+    padding: 1rem 1rem 1rem 3rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 50px;
+    font-size: 1rem;
+    background: white;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.searchInput:focus {
+    border-color: #3498db;
+    box-shadow: 0 4px 20px rgba(52, 152, 219, 0.15);
+    transform: translateY(-2px);
+}
+
+.searchInput::placeholder {
+    color: #94a3b8;
+    font-style: italic;
+}
+
+.searchIcon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #64748b;
+    font-size: 1rem;
+    z-index: 2;
+}
+
+.backButton {
+    color: #fff;
+    cursor: pointer;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background: #3498db;
+    border: 1px solid rgba(255, 255, 255, .3);
+    border-radius: 50px;
+    align-items: center;
+    gap: .5rem;
+    padding: .7rem 1.2rem;
+    font-size: .95rem;
+    font-weight: 500;
+    transition: all .3s;
+    display: flex
+;
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+}
+
+.backButton:hover {
+    background: rgb(255, 255, 255);
+    color: #3498db;
+    transform: translateX(-3px);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.detalhesGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.detalhesGrid[data-categoria="crismandos"] {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.detalheCard {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    border: 1px solid #f1f5f9;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    animation: slideIn 0.4s ease-out;
+}
+
+.detalheCard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: #e2e8f0;
+    transition: all 0.3s ease;
+}
+
+.detalheCard.clickableCard {
+    cursor: pointer;
+}
+
+.detalheCard.clickableCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    border-color: #3498db;
+}
+
+.detalheCard.clickableCard:hover::before {
+    background: #3498db;
+    width: 6px;
+}
+
+.detalheCard[data-categoria="crismandos"] {
+    width: 100%;
+    max-width: none;
+    display: flex;
+    align-items: center;
+    padding: 1.25rem 1.5rem;
+    min-height: 80px;
+}
+
+.detalheCard[data-categoria="crismandos"] .cardHeader {
+    flex: 0 0 200px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+    border-right: 1px solid #f1f5f9;
+    padding-right: 1.5rem;
+    margin-right: 1.5rem;
+}
+
+.detalheCard[data-categoria="crismandos"] .cardTitle {
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+    width: 30rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+}
+
+.detalheCard[data-categoria="crismandos"] .cardContent {
+    flex: 1;
+    margin-bottom: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 1rem;
+}
+
+.detalheCard[data-categoria="crismandos"] .cardContent p {
+    margin: 0;
+    flex: 0 0 auto;
+    min-width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+}
+
+.detalheCard[data-categoria="crismandos"] .cardContent strong {
+    min-width: 60px;
+    color: #3498db;
+    font-weight: 600;
+}
+
+.detalheCard[data-categoria="crismandos"]:hover {
+    transform: translateX(5px);
+    border-left-color: #06b6d4;
+}
+
+.detalheCard[data-categoria="crismandos"]::before {
+    background: #06b6d4;
+}
+
+.cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.cardTitle {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin: 0;
+    line-height: 1.3;
+    transition: color 0.3s ease;
+}
+
+.detalheCard.clickableCard:hover .cardTitle {
+    color: #3498db;
+}
+
+.statusBadge {
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border: 1px solid transparent;
+}
+
+.statusAtiva {
+    background: #dcfce7;
+    color: #166534;
+    border-color: #bbf7d0;
+}
+
+.statusPausada {
+    background: #fef3c7;
+    color: #92400e;
+    border-color: #fde68a;
+}
+
+.cardContent {
+    margin-bottom: 1rem;
+}
+
+.cardContent p {
+    margin: 0.6rem 0;
+    color: #64748b;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.cardContent strong {
+    color: #334155;
+    font-weight: 600;
+    min-width: 80px;
+    display: inline-block;
+}
+
+.cardFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 0.75rem;
+    border-top: 1px solid #f1f5f9;
+    margin-top: 1rem;
+    background: #f8fafc;
+    margin: 1rem -1.5rem -1.5rem;
+    padding: 1rem 1.5rem;
+    border-radius: 0 0 12px 12px;
+}
+
+.viewDetails {
+    color: #3498db;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.detalheCard.clickableCard:hover .viewDetails {
+    color: #3498db;
+}
+
+.arrowIcon {
+    color: #3498db;
+    transition: all 0.3s ease;
+}
+
+.detalheCard.clickableCard:hover .arrowIcon {
+    transform: translateX(5px);
+    color: #3498db;
+}
+
+.clickableCard {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.clickableCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.clickableCard:active {
+    transform: translateY(-2px);
+}
+
+.noData {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: #64748b;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    border: 1px solid #f1f5f9;
+    margin-top: 2rem;
+}
+
+.noData p {
+    font-size: 1.1rem;
+    margin: 0;
+    color: #64748b;
+}
+
+/* Animações */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.detalheCard {
+    animation: slideIn 0.4s ease-out;
+}
+
+.detalheCard:nth-child(1) { animation-delay: 0.05s; }
+.detalheCard:nth-child(2) { animation-delay: 0.1s; }
+.detalheCard:nth-child(3) { animation-delay: 0.15s; }
+.detalheCard:nth-child(4) { animation-delay: 0.2s; }
+.detalheCard:nth-child(5) { animation-delay: 0.25s; }
+.detalheCard:nth-child(6) { animation-delay: 0.3s; }
+
+/* Media queries para responsividade */
+@media (max-width: 768px) {
+    .hero {
+        padding: 4rem 1rem 3rem;
+        margin-top: 60px;
+    }
+
+    .title {
+        font-size: 2.5rem;
+    }
+
+    .content {
+        padding: 2rem 1rem;
+        gap: 2rem;
+    }
+
+    .searchContainer {
+        padding: 0 1rem;
+        margin-top: -1rem;
+        margin-bottom: 1rem;
+    }
+
+    .searchInput {
+        padding: 0.875rem 0.875rem 0.875rem 2.5rem;
+        font-size: 0.95rem;
+    }
+
+    .searchIcon {
+        left: 0.875rem;
+        font-size: 0.9rem;
+    }
+
+    .detalhesGrid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .detalheCard {
+        padding: 1.25rem;
+    }
+    
+    .cardHeader {
+        flex-direction: column;
+        gap: 0.75rem;
+        align-items: flex-start;
+    }
+    
+    .backButton {
+        position: static;
+        margin-bottom: 1rem;
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+    
+    .cardFooter {
+        margin: 1rem -1.25rem -1.25rem;
+        padding: 1rem 1.25rem;
+    }
+    
+    .cardContent p {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
+    }
+    
+    .cardContent strong {
+        min-width: auto;
+    }
+
+    .detalheCard[data-categoria="crismandos"] {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem;
+    }
+    
+    .detalheCard[data-categoria="crismandos"] .cardHeader {
+        flex: none;
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #f1f5f9;
+        padding-right: 0;
+        padding-bottom: 0.75rem;
+        margin-right: 0;
+        margin-bottom: 0.75rem;
+    }
+    
+    .detalheCard[data-categoria="crismandos"] .cardContent {
+        width: 100%;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .detalheCard[data-categoria="crismandos"] .cardContent p {
+        min-width: auto;
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        padding: 3rem 1rem 2rem;
+        margin-top: 60px;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+
+    .content {
+        padding: 1.5rem 1rem;
+    }
+
+    .searchContainer {
+        padding: 0 1rem;
+        margin-top: -0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .searchInput {
+        padding: 0.75rem 0.75rem 0.75rem 2.25rem;
+        font-size: 0.9rem;
+    }
+
+    .searchInput::placeholder {
+        font-size: 0.85rem;
+    }
+
+    .searchIcon {
+        left: 0.75rem;
+        font-size: 0.85rem;
+    }
+
+    .detalheCard {
+        padding: 1rem;
+    }
+
+    .cardHeader {
+        flex-direction: column;
+        gap: 0.75rem;
+        align-items: flex-start;
+    }
+
+    .detalheCard[data-categoria="crismandos"] .cardContent p {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
+    }
+    
+    .detalheCard[data-categoria="crismandos"] .cardContent strong {
+        min-width: auto;
+    }
+}
