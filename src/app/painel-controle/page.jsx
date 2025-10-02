@@ -16,6 +16,7 @@ export default function PainelControle() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [totalAlunos, setTotalAlunos] = useState(0);
+    const [coordenadores, setCoordenadores] = useState([]);
 
 
 
@@ -30,11 +31,43 @@ export default function PainelControle() {
                     'Content-Type': 'application/json'
                 }
             });
+
+            try {
+                const coordenadoresResponse = await axios.get('http://localhost:3000/api/coordenadores', {
+                    timeout: 5000,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                console.log('Coordenadores encontrados:', coordenadoresResponse.data);
+                setCoordenadores(coordenadoresResponse.data || []);
+            } catch (coordError) {
+                console.warn('Erro ao buscar coordenadores via /api/coordenadores:', coordError);
+                
+                try {
+                    const usuariosResponse = await axios.get('http://localhost:3000/api/usuarios', {
+                        timeout: 5000,
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    });
+                    const todosUsuarios = usuariosResponse.data || [];
+                    const apenasCoordinadores = todosUsuarios.filter(user => 
+                        user.role === 'coordinator' || 
+                        user.tipo === 'coordenador' || 
+                        user.user_type === 'coordinator'
+                    );
+                    console.log('Coordenadores encontrados via /api/usuarios:', apenasCoordinadores);
+                    setCoordenadores(apenasCoordinadores);
+                } catch (usuariosError) {
+                    console.warn('Erro ao buscar coordenadores via /api/usuarios:', usuariosError);
+                    setCoordenadores([]);
+                }
+            }
             
             const turmasData = response.data;
             console.log('Dados recebidos:', turmasData);
 
-            // Conta o total de crismandos somando o atributo total_crismandos de cada turma
             const totalCrismandos = turmasData.reduce((acc, turma) => acc + Number(turma.total_crismandos || 0), 0);
             console.log('Total de crismandos:', totalCrismandos);
             setTotalAlunos(totalCrismandos);
@@ -69,7 +102,6 @@ export default function PainelControle() {
                             dataFim: turma.end_date
                         };
                     } catch (error) {
-                        //console.error(`Erro ao buscar crismandos da turma ${turma.id}:`, error);
                         return {
                             id: turma.id,
                             nome: turma.name,
@@ -94,7 +126,6 @@ export default function PainelControle() {
             console.log('ENZOOOOOOOOOOOO', turmasComCrismandos);
             
         } catch (error) {
-            //console.error('Erro ao carregar turmas:', error);
             console.error('Detalhes do erro:', error.response?.data || error.message);
             setError('Erro ao conectar com o backend. Verifique se o servidor está funcionando.');
             setTurmas([]);
@@ -212,7 +243,7 @@ export default function PainelControle() {
                         <div className={styles.statCard}>
                             <FaChalkboardTeacher className={styles.statIcon} />
                             <div className={styles.statInfo}>
-                                <h3 className={styles.statNumber}>{turmas.filter(t => t.coordenador !== 'Não definido').length}</h3>
+                                <h3 className={styles.statNumber}>{coordenadores.length}</h3>
                                 <p className={styles.statLabel}>Coordenadores</p>
                             </div>
                         </div>
