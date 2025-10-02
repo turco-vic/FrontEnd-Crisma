@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import styles from './PainelControle.module.css';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
-import { FaUsers, FaChalkboardTeacher, FaCalendarAlt, FaArrowRight } from 'react-icons/fa';
+import { FaUsers, FaChalkboardTeacher, FaArrowRight } from 'react-icons/fa';
 import { HiUserGroup, HiAcademicCap } from 'react-icons/hi';
 import axios from 'axios';
 
@@ -17,8 +17,6 @@ export default function PainelControle() {
     const [error, setError] = useState(null);
     const [totalAlunos, setTotalAlunos] = useState(0);
     const [coordenadores, setCoordenadores] = useState([]);
-
-
 
     const fetchTurmas = async () => {
         try {
@@ -39,45 +37,29 @@ export default function PainelControle() {
                         'Content-Type': 'application/json'
                     }
                 });
-                console.log('Coordenadores encontrados:', coordenadoresResponse.data);
                 setCoordenadores(coordenadoresResponse.data || []);
             } catch (coordError) {
-                console.warn('Erro ao buscar coordenadores via /api/coordenadores:', coordError);
-                
-                try {
-                    const usuariosResponse = await axios.get('http://localhost:3000/api/usuarios', {
-                        timeout: 5000,
-                        headers: {
-                            'Content-Type': 'application/json'
-                        }
-                    });
-                    const todosUsuarios = usuariosResponse.data || [];
-                    const apenasCoordinadores = todosUsuarios.filter(user => 
-                        user.role === 'coordinator' || 
-                        user.tipo === 'coordenador' || 
-                        user.user_type === 'coordinator'
-                    );
-                    console.log('Coordenadores encontrados via /api/usuarios:', apenasCoordinadores);
-                    setCoordenadores(apenasCoordinadores);
-                } catch (usuariosError) {
-                    console.warn('Erro ao buscar coordenadores via /api/usuarios:', usuariosError);
-                    setCoordenadores([]);
-                }
+                setCoordenadores([]);
+            }
+
+            try {
+                const crismandosResponse = await axios.get('http://localhost:3000/api/crismandos', {
+                    timeout: 5000,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                setTotalAlunos(crismandosResponse.data.length || 0);
+            } catch (crismandosError) {
+                setTotalAlunos(0);
             }
             
             const turmasData = response.data;
-            console.log('Dados recebidos:', turmasData);
-
-            const totalCrismandos = turmasData.reduce((acc, turma) => acc + Number(turma.total_crismandos || 0), 0);
-            console.log('Total de crismandos:', totalCrismandos);
-            setTotalAlunos(totalCrismandos);
-
-
             
             const turmasComCrismandos = await Promise.all(
                 turmasData.map(async (turma) => {
                     try {
-                        const crismandosResponse = await axios.get(`http://localhost:3000/api/turmas`, {
+                        const crismandosResponse = await axios.get(`http://localhost:3000/api/crismandos?turma_id=${turma.id}`, {
                             timeout: 5000,
                             headers: {
                                 'Content-Type': 'application/json'
@@ -88,16 +70,12 @@ export default function PainelControle() {
                         return {
                             id: turma.id,
                             nome: turma.name,
-                            coordenador: turma.coordinator_name || 'Não definido',
                             numeroAlunos: numeroCrismandos,
                             horario: formatarHorario(turma.meeting_day, turma.meeting_time),
                             status: turma.status === 'active' ? 'Ativa' : 'Pausada',
                             ano: turma.year,
                             descricao: turma.description,
                             local: turma.classroom_location,
-                            capacidadeMaxima: turma.max_capacity,
-                            telefone: turma.coordinator_phone,
-                            email: turma.coordinator_email,
                             dataInicio: turma.start_date,
                             dataFim: turma.end_date
                         };
@@ -105,16 +83,12 @@ export default function PainelControle() {
                         return {
                             id: turma.id,
                             nome: turma.name,
-                            coordenador: turma.coordinator_name || 'Não definido',
                             numeroAlunos: 0,
                             horario: formatarHorario(turma.meeting_day, turma.meeting_time),
                             status: turma.status === 'active' ? 'Ativa' : 'Pausada',
                             ano: turma.year,
                             descricao: turma.description,
                             local: turma.classroom_location,
-                            capacidadeMaxima: turma.max_capacity,
-                            telefone: turma.coordinator_phone,
-                            email: turma.coordinator_email,
                             dataInicio: turma.start_date,
                             dataFim: turma.end_date
                         };
@@ -123,10 +97,8 @@ export default function PainelControle() {
             );
             
             setTurmas(turmasComCrismandos);
-            console.log('ENZOOOOOOOOOOOO', turmasComCrismandos);
             
         } catch (error) {
-            console.error('Detalhes do erro:', error.response?.data || error.message);
             setError('Erro ao conectar com o backend. Verifique se o servidor está funcionando.');
             setTurmas([]);
         } finally {
@@ -157,8 +129,8 @@ export default function PainelControle() {
         fetchTurmas();
     }, []);
 
-    const handleTurmaClick = (turmaId) => {
-        router.push(`/painel-controle/turmas/${turmaId}`);
+    const handleCardClick = (categoria) => {
+        router.push(`/painel-controle/${categoria}`);
     };
 
     if (loading) {
@@ -198,10 +170,6 @@ export default function PainelControle() {
     }
 
     const turmasAtivas = turmas.filter(turma => turma.status === "Ativa");
-    const turmasPausadas = turmas.filter(turma => turma.status === "Pausada");
-
-    console.log('Turmas com número de crismandos:', turmas);
-    
 
     return (
         <>
@@ -209,158 +177,59 @@ export default function PainelControle() {
             <div className={styles.container}>
                 <div className={styles.hero}>
                     <h1 className={styles.title}>Painel de Controle</h1>
-
+                    <p className={styles.subtitle}>Clique em uma categoria para ver os detalhes</p>
                 </div>
 
                 <div className={styles.content}>
                     <div className={styles.statsContainer}>
-                        <div className={styles.statCard}>
+                        <div 
+                            className={`${styles.statCard} ${styles.clickableCard}`}
+                            onClick={() => handleCardClick('turmas')}
+                        >
                             <HiUserGroup className={styles.statIcon} />
                             <div className={styles.statInfo}>
                                 <h3 className={styles.statNumber}>{turmas.length}</h3>
                                 <p className={styles.statLabel}>Total de Turmas</p>
                             </div>
+                            <FaArrowRight className={styles.cardArrow} />
                         </div>
 
-                        <div className={styles.statCard}>
+                        <div 
+                            className={`${styles.statCard} ${styles.clickableCard}`}
+                            onClick={() => handleCardClick('turmas-ativas')}
+                        >
                             <HiAcademicCap className={styles.statIcon} />
                             <div className={styles.statInfo}>
                                 <h3 className={styles.statNumber}>{turmasAtivas.length}</h3>
                                 <p className={styles.statLabel}>Turmas Ativas</p>
                             </div>
+                            <FaArrowRight className={styles.cardArrow} />
                         </div>
 
-                        <div className={styles.statCard}>
+                        <div 
+                            className={`${styles.statCard} ${styles.clickableCard}`}
+                            onClick={() => handleCardClick('crismandos')}
+                        >
                             <FaUsers className={styles.statIcon} />
                             <div className={styles.statInfo}>
                                 <h3 className={styles.statNumber}>{totalAlunos}</h3>
                                 <p className={styles.statLabel}>Total de Crismandos</p>
                             </div>
+                            <FaArrowRight className={styles.cardArrow} />
                         </div>
 
-                        <div className={styles.statCard}>
+                        <div 
+                            className={`${styles.statCard} ${styles.clickableCard}`}
+                            onClick={() => handleCardClick('coordenadores')}
+                        >
                             <FaChalkboardTeacher className={styles.statIcon} />
                             <div className={styles.statInfo}>
                                 <h3 className={styles.statNumber}>{coordenadores.length}</h3>
                                 <p className={styles.statLabel}>Coordenadores</p>
                             </div>
+                            <FaArrowRight className={styles.cardArrow} />
                         </div>
                     </div>
-
-                    <div className={styles.turmasSection}>
-                        <div className={styles.sectionHeader}>
-                            <h2 className={styles.sectionTitle}>Turmas Ativas</h2>
-                            <p className={styles.sectionDescription}>
-                                {turmas.length === 0 
-                                    ? "Nenhuma turma encontrada. Verifique se o backend está conectado."
-                                    : "Clique em uma turma para ver os detalhes e crismandos"
-                                }
-                            </p>
-                        </div>
-
-                        {turmasAtivas.length === 0 ? (
-                            <div className={styles.noData}>
-                                <p>Nenhuma turma ativa encontrada.</p>
-                            </div>
-                        ) : (
-                            <div className={styles.turmasGrid}>
-                                {turmasAtivas.map((turma) => (
-                                    <div
-                                    key={turma.id}
-                                    className={styles.turmaCard}
-                                    onClick={() => handleTurmaClick(turma.id)}
-                                    >
-                                    <div className={styles.turmaHeader}>
-                                        <h3 className={styles.turmaNome}>{turma.nome}</h3>
-                                        <div className={styles.turmaStatus}>
-                                            <span className={styles.statusBadge}>{turma.status}</span>
-                                        </div>
-                                    </div>
-
-                                    <div className={styles.turmaInfo}>
-                                        <div className={styles.infoItem}>
-                                            <FaChalkboardTeacher className={styles.infoIcon} />
-                                            <span className={styles.infoText}>{turma.coordenador}</span>
-                                        </div>
-
-                                        <div className={styles.infoItem}>
-                                            <FaUsers className={styles.infoIcon} />
-                                            <span className={styles.infoText}>{turma.numeroAlunos} crismandos</span>
-                                        </div>
-
-                                        <div className={styles.infoItem}>
-                                            <FaCalendarAlt className={styles.infoIcon} />
-                                            <span className={styles.infoText}>{turma.horario}</span>
-                                        </div>
-
-                                        <div className={styles.infoItem}>
-                                            <span className={styles.infoLabel}>Ano:</span>
-                                            <span className={styles.infoText}>{turma.ano}</span>
-                                        </div>
-                                    </div>
-
-                                    <div className={styles.turmaFooter}>
-                                        <span className={styles.viewDetails}>Ver Detalhes</span>
-                                        <FaArrowRight className={styles.arrowIcon} />
-                                    </div>
-                                </div>
-                                ))}
-                            </div>
-                        )}
-                    </div>
-
-                    {turmasPausadas.length > 0 && (
-                        <div className={styles.turmasSection}>
-                            <div className={styles.sectionHeader}>
-                                <h2 className={styles.sectionTitle}>Turmas Pausadas</h2>
-                                <p className={styles.sectionDescription}>Turmas temporariamente inativas</p>
-                            </div>
-
-                            <div className={styles.turmasGrid}>
-                                {turmasPausadas.map((turma) => (
-                                    <div
-                                        key={turma.id}
-                                        className={`${styles.turmaCard} ${styles.turmaCardPausada}`}
-                                        onClick={() => handleTurmaClick(turma.id)}
-                                    >
-                                        <div className={styles.turmaHeader}>
-                                            <h3 className={styles.turmaNome}>{turma.nome}</h3>
-                                            <div className={styles.turmaStatus}>
-                                                <span className={`${styles.statusBadge} ${styles.statusPausada}`}>{turma.status}</span>
-                                            </div>
-                                        </div>
-
-                                        <div className={styles.turmaInfo}>
-                                            <div className={styles.infoItem}>
-                                                <FaChalkboardTeacher className={styles.infoIcon} />
-                                                <span className={styles.infoText}>{turma.coordenador}</span>
-                                            </div>
-
-                                            <div className={styles.infoItem}>
-                                                <FaUsers className={styles.infoIcon} />
-                                                <span className={styles.infoText}>{turma.numeroAlunos} crismandos</span>
-                                            </div>
-
-                                            <div className={styles.infoItem}>
-                                                <FaCalendarAlt className={styles.infoIcon} />
-                                                <span className={styles.infoText}>{turma.horario}</span>
-                                            </div>
-
-                                            <div className={styles.infoItem}>
-                                                <span className={styles.infoLabel}>Ano:</span>
-                                                <span className={styles.infoText}>{turma.ano}</span>
-                                            </div>
-                                        </div>
-
-                                        <div className={styles.turmaFooter}>
-                                            <span className={styles.viewDetails}>Ver Detalhes</span>
-                                            <FaArrowRight className={styles.arrowIcon} />
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    )}
                 </div>
             </div>
             <Footer />
