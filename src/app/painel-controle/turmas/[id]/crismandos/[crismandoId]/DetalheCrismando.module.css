@@ -61,7 +61,7 @@
 }
 
 .content {
-  max-width: 1200px;
+  max-width: 100rem;
   margin: 0 auto;
   padding: 0 2rem;
   transform: translateY(-30px);

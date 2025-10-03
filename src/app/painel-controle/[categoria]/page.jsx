@@ -125,6 +125,7 @@ export default function DetalhesCategoria() {
                         nome: `${crismando.name} ${crismando.surname}`,
                         idade: calcularIdade(crismando.birthday),
                         turma: turmasMap[crismando.turma_id] || 'Sem turma',
+                        turmaId: crismando.turma_id,
                         telefone: crismando.phone_number,
                         email: crismando.email,
                         endereco: `${crismando.road}, ${crismando.house_number}${crismando.complement ? ` - ${crismando.complement}` : ''}, ${crismando.neighborhood}, ${crismando.city}`,
@@ -188,6 +189,8 @@ export default function DetalhesCategoria() {
     const handleItemClick = (item) => {
         if (categoria === 'turmas' || categoria === 'turmas-ativas') {
             router.push(`/painel-controle/turmas/${item.id}`);
+        } else if (categoria === 'crismandos' && item.turmaId) {
+            router.push(`/painel-controle/turmas/${item.turmaId}/crismandos/${item.id}`);
         }
     };
 
@@ -272,7 +275,7 @@ export default function DetalhesCategoria() {
                                 <div
                                     key={item.id}
                                     className={`${styles.detalheCard} ${
-                                        (categoria === 'turmas' || categoria === 'turmas-ativas') 
+                                        (categoria === 'turmas' || categoria === 'turmas-ativas' || categoria === 'crismandos') 
                                             ? styles.clickableCard 
                                             : ''
                                     }`}
@@ -298,7 +301,6 @@ export default function DetalhesCategoria() {
                                                 <p><strong>Horário:</strong> {item.horario}</p>
                                                 <p><strong>Ano:</strong> {item.ano}</p>
                                                 <p><strong>Local:</strong> {item.local}</p>
-                                                <p><strong>Crismandos:</strong> {item.numeroCrismandos}</p>
                                             </>
                                         ) : categoria === 'crismandos' ? (
                                             <>
@@ -316,6 +318,13 @@ export default function DetalhesCategoria() {
                                     </div>
                                     
                                     {(categoria === 'turmas' || categoria === 'turmas-ativas') && (
+                                        <div className={styles.cardFooter}>
+                                            <span className={styles.viewDetails}>Ver Detalhes</span>
+                                            <FaArrowRight className={styles.arrowIcon} />
+                                        </div>
+                                    )}
+                                    
+                                    {categoria === 'crismandos' && (
                                         <div className={styles.cardFooter}>
                                             <span className={styles.viewDetails}>Ver Detalhes</span>
                                             <FaArrowRight className={styles.arrowIcon} />
