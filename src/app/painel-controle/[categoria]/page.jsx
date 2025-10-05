@@ -312,7 +312,7 @@ export default function DetalhesCategoria() {
                                             <>
                                                 <p><strong>Email:</strong> {item.email}</p>
                                                 <p><strong>Telefone:</strong> {item.telefone}</p>
-                                                <p><strong>Cadastro:</strong> {item.dataCadastro}</p>
+                                                <p><strong>Cadastro:</strong> {item.dataCadastro}</p> 
                                             </>
                                         ) : null}
                                     </div>

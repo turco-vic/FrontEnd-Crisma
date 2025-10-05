@@ -155,7 +155,7 @@ export default function InscreverCoordenador() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     const fieldsToValidate = ['nome', 'sobrenome', 'telefone', 'email', 'senha', 'confirmarSenha', 'fotoPerfil'];
@@ -202,10 +202,38 @@ export default function InscreverCoordenador() {
       return;
     }
     
-    console.log('Dados do coordenador:', {
-      ...formData,
-      nomeCompleto: `${formData.nome} ${formData.sobrenome}`.trim()
+    // Preparar dados completos para envio
+    const dadosCompletos = {
+      nome: formData.nome,
+      sobrenome: formData.sobrenome,
+      telefone: formData.telefone,
+      email: formData.email,
+      senha: formData.senha,
+      foto_perfil: formData.fotoPerfil
+    };
+    
+    // Criar FormData para envio
+    const form = new FormData();
+    Object.entries(dadosCompletos).forEach(([key, value]) => {
+      form.append(key, value);
     });
+    
+    try {
+      const response = await fetch('http://localhost:3000/api/coordenadores', {
+        method: 'POST',
+        body: form,
+      });
+      
+      if (response.ok) {
+        alert('Cadastro de coordenador enviado com sucesso!');
+        window.location.href = '/';
+      } else {
+        const errorText = await response.text();
+        window.prompt('Erro ao enviar cadastro. Copie o erro abaixo:', errorText);
+      }
+    } catch (err) {
+      window.prompt('Erro de conexão com o servidor. Copie o erro abaixo:', String(err));
+    }
   };
 
   return (
