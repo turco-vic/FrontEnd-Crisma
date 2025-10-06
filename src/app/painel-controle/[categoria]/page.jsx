@@ -319,13 +319,6 @@ export default function DetalhesCategoria() {
                                             </>
                                         ) : null}
                                     </div>
-                                    
-                                    {(categoria === 'turmas' || categoria === 'turmas-ativas' || categoria === 'crismandos' || categoria === 'coordenadores') && (
-                                        <div className={styles.cardFooter}>
-                                            <span className={styles.viewDetails}>Ver Detalhes</span>
-                                            <FaArrowRight className={styles.arrowIcon} />
-                                        </div>
-                                    )}
                                 </div>
                             ))}
                         </div>

@@ -371,19 +371,6 @@
     display: inline-block;
 }
 
-.cardFooter {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 0.75rem;
-    border-top: 1px solid #f1f5f9;
-    margin-top: 1rem;
-    background: #f8fafc;
-    margin: 1rem -1.5rem -1.5rem;
-    padding: 1rem 1.5rem;
-    border-radius: 0 0 12px 12px;
-}
-
 .viewDetails {
     color: #3498db;
     font-weight: 500;
@@ -511,11 +498,6 @@
         margin-bottom: 1rem;
         padding: 0.6rem 1.2rem;
         font-size: 0.9rem;
-    }
-    
-    .cardFooter {
-        margin: 1rem -1.25rem -1.25rem;
-        padding: 1rem 1.25rem;
     }
     
     .cardContent p {
