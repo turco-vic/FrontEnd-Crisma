@@ -144,7 +144,6 @@ export default function InscreverCoordenador() {
         fotoPerfil: true
       }));
       
-      // Criar preview da imagem
       const reader = new FileReader();
       reader.onload = (e) => {
         setImagePreview(e.target.result);

@@ -266,6 +266,46 @@
     background: #06b6d4;
 }
 
+/* Estilos específicos para coordenadores */
+.detalheCard[data-categoria="coordenadores"] {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.detalheCard[data-categoria="coordenadores"]:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    border-color: #3498db;
+}
+
+.detalheCard[data-categoria="coordenadores"]:hover::before {
+    background: #3498db;
+    width: 6px;
+}
+
+.detalheCard[data-categoria="coordenadores"]:hover .cardTitle {
+    color: #3498db;
+}
+
+/* Estilos para turmas */
+.detalheCard[data-categoria="turmas"]:hover,
+.detalheCard[data-categoria="turmas-ativas"]:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    border-color: #3498db;
+}
+
+.detalheCard[data-categoria="turmas"]:hover::before,
+.detalheCard[data-categoria="turmas-ativas"]:hover::before {
+    background: #3498db;
+    width: 6px;
+}
+
+.detalheCard[data-categoria="turmas"]:hover .cardTitle,
+.detalheCard[data-categoria="turmas-ativas"]:hover .cardTitle {
+    color: #3498db;
+}
+
 .cardHeader {
     display: flex;
     justify-content: space-between;
@@ -398,7 +438,6 @@
     color: #64748b;
 }
 
-/* Animações */
 @keyframes slideIn {
     from {
         opacity: 0;
@@ -421,7 +460,6 @@
 .detalheCard:nth-child(5) { animation-delay: 0.25s; }
 .detalheCard:nth-child(6) { animation-delay: 0.3s; }
 
-/* Media queries para responsividade */
 @media (max-width: 768px) {
     .hero {
         padding: 4rem 1rem 3rem;

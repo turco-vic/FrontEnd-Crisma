@@ -191,6 +191,9 @@ export default function DetalhesCategoria() {
             router.push(`/painel-controle/turmas/${item.id}`);
         } else if (categoria === 'crismandos' && item.turmaId) {
             router.push(`/painel-controle/turmas/${item.turmaId}/crismandos/${item.id}`);
+        } else if (categoria === 'coordenadores') {
+            // Por enquanto apenas log, pode implementar página de detalhes depois
+            console.log('Clicou no coordenador:', item);
         }
     };
 
@@ -275,7 +278,7 @@ export default function DetalhesCategoria() {
                                 <div
                                     key={item.id}
                                     className={`${styles.detalheCard} ${
-                                        (categoria === 'turmas' || categoria === 'turmas-ativas' || categoria === 'crismandos') 
+                                        (categoria === 'turmas' || categoria === 'turmas-ativas' || categoria === 'crismandos' || categoria === 'coordenadores') 
                                             ? styles.clickableCard 
                                             : ''
                                     }`}
@@ -317,14 +320,7 @@ export default function DetalhesCategoria() {
                                         ) : null}
                                     </div>
                                     
-                                    {(categoria === 'turmas' || categoria === 'turmas-ativas') && (
-                                        <div className={styles.cardFooter}>
-                                            <span className={styles.viewDetails}>Ver Detalhes</span>
-                                            <FaArrowRight className={styles.arrowIcon} />
-                                        </div>
-                                    )}
-                                    
-                                    {categoria === 'crismandos' && (
+                                    {(categoria === 'turmas' || categoria === 'turmas-ativas' || categoria === 'crismandos' || categoria === 'coordenadores') && (
                                         <div className={styles.cardFooter}>
                                             <span className={styles.viewDetails}>Ver Detalhes</span>
                                             <FaArrowRight className={styles.arrowIcon} />
