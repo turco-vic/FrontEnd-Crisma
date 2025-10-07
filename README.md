@@ -33,8 +33,6 @@ Antes de começar, certifique-se de ter instalado em sua máquina:
    
    *Alternativa: Baixe o arquivo ZIP*
    - Acesse: https://github.com/turco-vic/FrontEnd-Crisma
-   - Clique em "Code" → "Download ZIP"
-   - Extraia o arquivo ZIP em uma pasta de sua escolha
 
 2. **Navegue até a pasta do projeto**
    ```bash
@@ -140,43 +138,6 @@ src/
 - Interface intuitiva e acessível
 - Desenvolvido especificamente para a Paróquia Sant'Ana Sousas
 
-## 🐛 Resolução de Problemas
-
-### Porta 3000 em uso
-```bash
-# Windows PowerShell
-netstat -ano | findstr :3000
-taskkill /PID <número_do_pid> /F
-
-# Ou simplesmente use outra porta
-npm run dev -- --port 3001
-```
-
-### Problemas com Node.js/npm
-```bash
-# Verificar versões
-node --version  # Deve ser 18+
-npm --version
-
-# Atualizar npm
-npm install -g npm@latest
-```
-
-### Problemas com dependências
-```bash
-# Limpar tudo e reinstalar
-Remove-Item -Recurse -Force node_modules, package-lock.json
-npm install
-```
-
-### Git não encontrado
-- Baixe e instale: https://git-scm.com/downloads
-- Ou baixe o projeto como ZIP do GitHub
-
-### Erro de permissão
-- Execute o PowerShell como **Administrador**
-- No Windows: `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`
-
 ## 📝 Informações do Repositório
 
 - **GitHub**: https://github.com/turco-vic/FrontEnd-Crisma
@@ -195,7 +156,5 @@ Para contribuir com o projeto:
 5. Abra um Pull Request
 
 ---
-
-**Desenvolvido com ❤️ para a comunidade da Paróquia Sant'Ana Sousas**
 
 *Sistema de gerenciamento e acompanhamento da preparação para o Sacramento da Crisma*
