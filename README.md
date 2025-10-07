@@ -30,9 +30,6 @@ Antes de começar, certifique-se de ter instalado em sua máquina:
    ```bash
    git clone https://github.com/turco-vic/FrontEnd-Crisma.git
    ```
-   
-   *Alternativa: Baixe o arquivo ZIP*
-   - Acesse: https://github.com/turco-vic/FrontEnd-Crisma
 
 2. **Navegue até a pasta do projeto**
    ```bash
