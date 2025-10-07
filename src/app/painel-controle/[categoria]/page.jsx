@@ -274,25 +274,27 @@ export default function DetalhesCategoria() {
                         </div>
                     ) : (
                         <div className={styles.detalhesGrid} data-categoria={categoria}>
-                            {dadosFiltrados.map((item) => (
-                                <div
-                                    key={item.id}
-                                    className={`${styles.detalheCard} ${
-                                        (categoria === 'turmas' || categoria === 'turmas-ativas' || categoria === 'crismandos' || categoria === 'coordenadores') 
-                                            ? styles.clickableCard 
-                                            : ''
-                                    }`}
-                                    data-categoria={categoria}
-                                    onClick={() => handleItemClick(item)}
-                                >
+                            {dadosFiltrados.map((item) => {
+                                const isClickable = categoria === 'turmas' || categoria === 'turmas-ativas' || categoria === 'crismandos' || categoria === 'coordenadores';
+                                const cardClasses = isClickable 
+                                    ? `${styles.detalheCard} ${styles.clickableCard}` 
+                                    : styles.detalheCard;
+                                
+                                return (
+                                    <div
+                                        key={item.id}
+                                        className={cardClasses}
+                                        data-categoria={categoria}
+                                        onClick={() => handleItemClick(item)}
+                                    >
                                     <div className={styles.cardHeader}>
                                         <h3 className={styles.cardTitle}>{item.nome}</h3>
                                         {item.status && (
-                                            <span className={`${styles.statusBadge} ${
+                                            <span className={
                                                 item.status === 'Ativa' || item.status === 'Ativo' 
-                                                    ? styles.statusAtiva 
-                                                    : styles.statusPausada
-                                            }`}>
+                                                    ? `${styles.statusBadge} ${styles.statusAtiva}`
+                                                    : `${styles.statusBadge} ${styles.statusPausada}`
+                                            }>
                                                 {item.status}
                                             </span>
                                         )}
@@ -320,7 +322,8 @@ export default function DetalhesCategoria() {
                                         ) : null}
                                     </div>
                                 </div>
-                            ))}
+                                );
+                            })}
                         </div>
                     )}
                 </div>
