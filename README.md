@@ -26,17 +26,19 @@ Antes de começar, certifique-se de ter instalado em sua máquina:
 
 ### Instalação Passo a Passo
 
-1. **Clone ou baixe o projeto**
+1. **Clone o projeto do GitHub**
    ```bash
-   # Se usando Git
-   git clone <URL_DO_REPOSITORIO>
-   
-   # Ou baixe o arquivo ZIP e extraia
+   git clone https://github.com/turco-vic/FrontEnd-Crisma.git
    ```
+   
+   *Alternativa: Baixe o arquivo ZIP*
+   - Acesse: https://github.com/turco-vic/FrontEnd-Crisma
+   - Clique em "Code" → "Download ZIP"
+   - Extraia o arquivo ZIP em uma pasta de sua escolha
 
 2. **Navegue até a pasta do projeto**
    ```bash
-   cd FrontEnd-Final.Project.Individual
+   cd FrontEnd-Crisma
    ```
 
 3. **Instale as dependências**
@@ -44,22 +46,37 @@ Antes de começar, certifique-se de ter instalado em sua máquina:
    npm install
    ```
    
+   *Este comando pode demorar alguns minutos na primeira execução*
+   
    Este comando irá instalar todas as bibliotecas necessárias:
-   - Next.js 15.5.2
-   - React 18.3.1
-   - Ant Design 5.27.2
-   - Axios 1.12.2
-   - React Icons 5.5.0
+   - Next.js 15.5.2 (Framework React)
+   - React 18.3.1 (Biblioteca para interfaces)
+   - Ant Design 5.27.2 (Componentes UI)
+   - Axios 1.12.2 (Requisições HTTP)
+   - React Icons 5.5.0 (Ícones)
 
-4. **Execute a aplicação em modo de desenvolvimento**
+4. **Inicie o servidor de desenvolvimento**
    ```bash
    npm run dev
    ```
+   
+   *Aguarde a mensagem: "Ready - started server on 0.0.0.0:3000"*
 
-5. **Acesse a aplicação**
-   - Abra seu navegador
-   - Acesse: http://localhost:3000
-   - A página será redirecionada automaticamente para `/home`
+5. **Acesse a aplicação no navegador**
+   - URL: **http://localhost:3000**
+   - A página será automaticamente redirecionada para `/home`
+   - Se a porta 3000 estiver ocupada, o Next.js sugerirá outra porta
+
+### ⚡ Comandos Rápidos (Para Usuários Experientes)
+
+```bash
+git clone https://github.com/turco-vic/FrontEnd-Crisma.git
+cd FrontEnd-Crisma
+npm install
+npm run dev
+```
+
+Depois acesse: http://localhost:3000
 
 ### Scripts Disponíveis
 
@@ -125,24 +142,60 @@ src/
 
 ## 🐛 Resolução de Problemas
 
-**Erro de porta em uso:**
+### Porta 3000 em uso
 ```bash
-# Matar processo na porta 3000 (Windows)
+# Windows PowerShell
 netstat -ano | findstr :3000
 taskkill /PID <número_do_pid> /F
+
+# Ou simplesmente use outra porta
+npm run dev -- --port 3001
 ```
 
-**Problemas com dependências:**
+### Problemas com Node.js/npm
 ```bash
-# Limpar cache e reinstalar
-rm -rf node_modules package-lock.json
+# Verificar versões
+node --version  # Deve ser 18+
+npm --version
+
+# Atualizar npm
+npm install -g npm@latest
+```
+
+### Problemas com dependências
+```bash
+# Limpar tudo e reinstalar
+Remove-Item -Recurse -Force node_modules, package-lock.json
 npm install
 ```
 
-**Erro de permissão (Windows):**
-- Execute o terminal como Administrador
-- Ou use: `npm install --force`
+### Git não encontrado
+- Baixe e instale: https://git-scm.com/downloads
+- Ou baixe o projeto como ZIP do GitHub
+
+### Erro de permissão
+- Execute o PowerShell como **Administrador**
+- No Windows: `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`
+
+## 📝 Informações do Repositório
+
+- **GitHub**: https://github.com/turco-vic/FrontEnd-Crisma
+- **Autor**: turco-vic
+- **Branch Principal**: main
+- **Licença**: Projeto privado
+
+## 🤝 Contribuindo
+
+Para contribuir com o projeto:
+
+1. Faça um fork do repositório
+2. Crie uma branch para sua feature (`git checkout -b feature/nova-funcionalidade`)
+3. Commit suas mudanças (`git commit -m 'Adiciona nova funcionalidade'`)
+4. Push para a branch (`git push origin feature/nova-funcionalidade`)
+5. Abra um Pull Request
 
 ---
 
-Desenvolvido com ❤️ para a comunidade da Paróquia Sant'Ana Sousas
+**Desenvolvido com ❤️ para a comunidade da Paróquia Sant'Ana Sousas**
+
+*Sistema de gerenciamento e acompanhamento da preparação para o Sacramento da Crisma*
